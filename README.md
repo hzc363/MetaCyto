@@ -14,17 +14,14 @@ To install the MetaCyto package, please open the “MetaCyto.Rproj” file in �
 Three simple examples are created to show users how to use MetaCyto for different purposes.
 
 
-### MetaCyto_Example_Meta_Local
-This example shows how to perform meta-analysis using MetaCyto on your local datasets. 
+* **MetaCyto_Example_Meta_Local** This example shows how to perform meta-analysis using MetaCyto on your local datasets. 
 
 
 
-### MetaCyto_Example_Meta_ImmPort
-This example shows how to use MetaCyto to meta-analyze cytometry data downloaded from ImmPort
+* **MetaCyto_Example_Meta_ImmPort** This example shows how to use MetaCyto to meta-analyze cytometry data downloaded from ImmPort
 
 
-### MetaCyto_Example_One_Experiment
-This example shows how to use MetaCyto to analyze cytometry data from a single experiment. 
+* **MetaCyto_Example_One_Experiment** This example shows how to use MetaCyto to analyze cytometry data from a single experiment. 
 
 
 
