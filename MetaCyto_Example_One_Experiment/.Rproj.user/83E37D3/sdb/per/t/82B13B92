@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "library(dplyr)\nlibrary(tidyr)\nlibrary(MetaCyto)\nlibrary(ggplot2)\n\n\n# This example is a light weighted example of how to use MetaCyto to  analyze cytometry data from one experiment. \n\n###################################################\n########## Check working directory first ##########\n###################################################\nwd=getwd()\nif(grepl(\"MetaCyto_Example_One_Experiment$\",wd)==F){print(\"Please change the working directory to 'MetaCyto_Example_One_Experiment'\")}\n\n\n#############################################\n########## Collect data Manually  ##########\n############################################\n\n# If you want to associate fcs data with some phenotype or genotype data, such as age, gender or SNP, \n# you need to collect the sample information as well, like the one below. \n#  The fcs_files column specifies the location of the fcs files.\n# Other two columns specifies the age and gender of each subject corresponding to each fcs file. \n# you can include whatever sample information in the table. \nsample_info=read.csv(\"Data/sample_info.csv\")\nprint(sample_info)\n\n\n#############################################\n########## Perform preprossessing ##########\n############################################\nfiles = list.files(\"Data\",pattern=\"fcs$\",full.names=T)\nfcs = preprocessing(fcsFiles=files, \n                    assay = \"FCM\", \n                    b = 1/150,\n                    fileSampleSize=1000, \n                    excludeTransformParameters = c(\"FSC-A\", \"FSC-W\", \"FSC-H\", \"Time\", \"Cell_length\"))\n\n#######################################\n########## Cluster the Data ##########\n######################################\n\n# cluster using flowSOM.MC\ncluster_list=flowSOM.MC(fcsFrame=fcs,\n                        excludeClusterParameters=c(\"FSC-A\",\"FSC-W\",\"FSC-H\",\"SSC-A\",\"SSC-W\",\"SSC-H\",\"Time\"))\n\n# label each clusters\ncluster_label=labelCluster(fcsFrame=fcs,\n                           clusterList=cluster_list,\n                           excludeClusterParameters=c(\"FSC-A\",\"FSC-W\",\"FSC-H\",\"SSC-A\",\"SSC-W\",\"SSC-H\",\"Time\"),\n                           minPercent=0.01,\n                           labelQuantile=0.95)\n\n# Add a user-defined label (CCR7+ CD8+ T cells) to the cluster_label. This step allows users \n# to include their favorate cell types into the analysis. \ncluster_label$clusterLabel=c(cluster_label$clusterLabel,\"CD3+|CD4-|CD8B+|CCR7+\")\n\n# Find the hyper-ractangle clusters corresponding to the labels\ncluster_list=searchCluster(fcsFrame=fcs,\n                      clusterLabel=cluster_label$clusterLabel,\n                      cutoff=cluster_label$cutoff)\n\n# derive summary statistics from each clusters\ncluster_stats=clusterStats(fcsFrame=fcs, \n                          clusterList=cluster_list$clusterList, \n                          fcsNames=files)\n\n\n############################################\n########## Visualize the results  ##########\n############################################\n\n# let's see how the fraction of \"CCR7+ CD8+ T cells\" change with age\nsub_data=subset(cluster_stats,cluster_stats$label==\"CD3+|CD4-|CD8B+|CCR7+\")\nsub_data=inner_join(sub_data,sample_info,by=c(\"fcs_names\"=\"fcs_files\"))\np=ggplot(data=sub_data,aes(x=SUBJECT_AGE,y=fraction))+\n  geom_point()+\n  geom_smooth(method=\"lm\")+\n  ggtitle(\"CCR7+ CD8+ T cells\")\nplot(p)\n\n",
+    "created" : 1487708647211.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2533180936",
+    "id" : "82B13B92",
+    "lastKnownWriteTime" : 1487708945,
+    "last_content_update" : 1487708945362,
+    "path" : "~/Box Sync/MetaCyto_related/MetaCyto/MetaCyto_Example_One_Experiment/Code/Example_Code_One_Experiment.R",
+    "project_path" : "Code/Example_Code_One_Experiment.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

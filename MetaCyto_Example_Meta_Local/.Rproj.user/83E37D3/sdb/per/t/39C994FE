@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "library(dplyr)\nlibrary(tidyr)\nlibrary(MetaCyto)\n\n# This example is a light weighted example of how to use MetaCyto to joint analyze your own local data. \n\n###################################################\n########## Check working directory first ##########\n###################################################\nwd=getwd()\nif(grepl(\"MetaCyto_Example_Meta_Local$\",wd)==F){print(\"Please change the working directory to 'MetaCyto_Example'\")}\n\n\n#############################################\n########## Collect data Manually  ##########\n############################################\n# For your own data, the data collection step need to be done manually.\n# First, you need to prepare a fcs_info table like the one below. \n#  The fcs_files column specifies the location of the fcs files.\n# The study_id column specifies that panels. \n#Each panel is a collection of fcs files that have the same markers and are from the same study. \n\nfcs_info=read.csv(\"Data/fcs_info.csv\")\nprint(fcs_info)\n\n\n# If you want to associate fcs data with some phenotype or genotype data, such as age, gender or SNP, \n# you need to collect the sample information as well, like the one below. \n#  The fcs_files column specifies the location of the fcs files.\n# Other two columns specifies the age and gender of each subject corresponding to each fcs file. \n# you can include whatever sample information in the table. \nsample_info=read.csv(\"Data/sample_info.csv\")\nprint(sample_info)\n\n\n",
+    "created" : 1487705445495.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3308258783",
+    "id" : "39C994FE",
+    "lastKnownWriteTime" : 1487705076,
+    "last_content_update" : 1487705076,
+    "path" : "~/Box Sync/MetaCyto_related/MetaCyto/MetaCyto_Example_Meta_Local/Code/step1_data_collection.R",
+    "project_path" : "Code/step1_data_collection.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
