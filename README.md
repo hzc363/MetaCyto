@@ -6,7 +6,7 @@ MetaCyto is an R package that performs meta-analysis of cytometry data. It is ab
 
 ## Installation
 
-To install the MetaCyto package, please open the “MetaCyto.Rproj” file in “MetaCyto_Package” folder and click Build&Reload button in RStudio. 
+To install the MetaCyto package, please open the “MetaCyto.Rproj” file in “MetaCyto_Package” folder and click Build&Reload button in RStudio. You may get some errors due to missing dependencies. Install the missing packages should solve the problem. 
 
 
 ## Examples
@@ -15,7 +15,6 @@ Three simple examples are created to show users how to use MetaCyto for differen
 
 
 * **MetaCyto_Example_Meta_Local:** This example shows how to perform meta-analysis using MetaCyto on your local datasets. 
-
 
 
 * **MetaCyto_Example_Meta_ImmPort:** This example shows how to use MetaCyto to meta-analyze cytometry data downloaded from ImmPort
