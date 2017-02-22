@@ -368,12 +368,12 @@ preprocessing.batch = function(inputMeta,
 }#end of function
 
 
-#' cluster the pre-processed fcs files from different studies in batch
+#' Cluster the preprocessed fcs files from different studies in batch
 #'
-#' A function that clusters the pre-processed fcs files from different studies in batch
-#' @param preprocessOutputFolder directory where the pre-processed results are stored.
-#' @param excludeClusterParameters A vector specifiying the name of markers not to be used for clustering and labeling.
-#' @param labelQuantile a number between 0 and 0.5. Used to specify the minimum percent of a cluster required to be larger or smaller than the cutoff value for labeling.
+#' A function that clusters the pre-processed fcs files from different studies in batch.
+#' @param preprocessOutputFolder Directory where the preprocessed results are stored. Should be the same with the outpath argument in preprocessing.batch function.
+#' @param excludeClusterParameters A vector specifiying the name of markers not to be used for clustering and labeling. Typical example includes: Time, cell_length.
+#' @param labelQuantile A number between 0 and 0.5. Used to specify the minimum percent of cells in a cluster required to be larger or smaller than the cutoff value for labeling.
 #' @param clusterFunction The name of unsuperviesed clustering function the user wish to use for clustering the cells. The default is "flowSOM.MC". The first argument of the function must take a flow frame, the second argument of the function must take a vector of excludeClusterParameters. The function must returns a list of clusters containing cell IDs. flowSOM.MC and flowHC are implemented in the package. For other methods, please make your own wrapper functions.
 #' @param minPercent a number between 0 and 0.5. Used to specify the minimum percent of cells in positive and negative region after bisection. Keep it small to avoid bisecting uni-mode distributions.
 #' @param ... pass arguments to labelCluster and clusterFunction
@@ -895,6 +895,16 @@ flowSOM.MC=function(fcsFrame,excludeClusterParameters){
 
 
 # Define back-end functions----------
+
+#' find cutoff for a 1D distribution
+#'
+#' A function that find cutoff for a 1D distribution.
+#' @param x a vector of values.
+#' @param returnSil Logic, used to specify if the max average silhouette is returned
+#' @param useBL Logic, used to specify if outliers should be ignored
+#' @param minX a numerical value, used to specify the min value allowed for the cutoff.
+#' @return If returnSil=F, returns a single cutoff value. Otherwise, returns a list containing the cutoff value and the max average silhouette
+#' @export
 findCutoff=function(x,returnSil=F,useBL=T,minX=0){
   if(length(x)>1000){x=sample(x,1000)}
   if(useBL==T){x=baselineCut(x)}

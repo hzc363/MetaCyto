@@ -2,18 +2,18 @@
 % Please edit documentation in R/MetaCyto_functions.R
 \name{autoCluster.batch}
 \alias{autoCluster.batch}
-\title{cluster the pre-processed fcs files from different studies in batch}
+\title{Cluster the preprocessed fcs files from different studies in batch}
 \usage{
 autoCluster.batch(preprocessOutputFolder,
   excludeClusterParameters = c("TIME"), labelQuantile = 0.9,
   clusterFunction = flowSOM.MC, minPercent = 0.05, ...)
 }
 \arguments{
-\item{preprocessOutputFolder}{directory where the pre-processed results are stored.}
+\item{preprocessOutputFolder}{Directory where the preprocessed results are stored. Should be the same with the outpath argument in preprocessing.batch function.}
 
-\item{excludeClusterParameters}{A vector specifiying the name of markers not to be used for clustering and labeling.}
+\item{excludeClusterParameters}{A vector specifiying the name of markers not to be used for clustering and labeling. Typical example includes: Time, cell_length.}
 
-\item{labelQuantile}{a number between 0 and 0.5. Used to specify the minimum percent of a cluster required to be larger or smaller than the cutoff value for labeling.}
+\item{labelQuantile}{A number between 0 and 0.5. Used to specify the minimum percent of cells in a cluster required to be larger or smaller than the cutoff value for labeling.}
 
 \item{clusterFunction}{The name of unsuperviesed clustering function the user wish to use for clustering the cells. The default is "flowSOM.MC". The first argument of the function must take a flow frame, the second argument of the function must take a vector of excludeClusterParameters. The function must returns a list of clusters containing cell IDs. flowSOM.MC and flowHC are implemented in the package. For other methods, please make your own wrapper functions.}
 
@@ -25,6 +25,6 @@ autoCluster.batch(preprocessOutputFolder,
 a vector of labels identified in the cytometry data.
 }
 \description{
-A function that clusters the pre-processed fcs files from different studies in batch
+A function that clusters the pre-processed fcs files from different studies in batch.
 }
 

@@ -29,8 +29,8 @@ Three simple examples are created to show users how to use MetaCyto for differen
 Data used in the example is a subset of data from SDY420[1] and SDY736[2] on ImmPort[3]. 
 
 
-[1] Whiting, Chan C., et al. "Large-scale and comprehensive immune profiling and functional analysis of normal human aging." PloS one 10.7 (2015): e0133627.
+* [1] Whiting, Chan C., et al. "Large-scale and comprehensive immune profiling and functional analysis of normal human aging." PloS one 10.7 (2015): e0133627.
 
-[2] Wertheimer, Anne M., et al. "Aging and cytomegalovirus infection differentially and jointly affect distinct circulating T cell subsets in humans." The Journal of Immunology 192.5 (2014): 2143-2155.
+* [2] Wertheimer, Anne M., et al. "Aging and cytomegalovirus infection differentially and jointly affect distinct circulating T cell subsets in humans." The Journal of Immunology 192.5 (2014): 2143-2155.
 
-[3] Bhattacharya, Sanchita, et al. "ImmPort: disseminating data to the public for the future of immunology." Immunologic research 58.2-3 (2014): 234-239.
+* [3] Bhattacharya, Sanchita, et al. "ImmPort: disseminating data to the public for the future of immunology." Immunologic research 58.2-3 (2014): 234-239.
