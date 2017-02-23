@@ -96,39 +96,15 @@ labelCluster= function(fcsFrame,
 searchCluster=function(fcsFrame,
                        clusterLabel,
                        cutoff=NULL,
-                       rmNull=T,
-                       preGate=NULL){
+                       rmNull=T){
 
   #prepare exclude parameters
   clusterLabel=toupper(clusterLabel)
   antibodies=markerFinder(fcsFrame)
 
-  # Get expression matrix
+    # Get expression matrix
   expr=flowCore::exprs(fcsFrame);
   colnames(expr)=antibodies
-
-
-  # pre-gating
-  if(!is.null(preGate)){
-    preGate=toupper(preGate)
-    pre_vec = strsplit(preGate,split="&|\\|")[[1]]
-    pre_marker = gsub("\\+$|-$|\\^NE$|\\^LO$|\\^HI$","",pre_vec )
-
-      cutoff0=apply(X=expr[,pre_marker,drop=F],MARGIN=2,FUN=findCutoff)
-
-    P1=sapply(pre_vec,function(x){
-      m=gsub("\\+$|-$|\\^NE$|\\^LO$|\\^HI$","",x)
-      if(grepl("\\+$",x)){w=which(expr[,m]>cutoff0[m])}
-      if(grepl("-$",x)){w=which(expr[,m]<cutoff0[m])}
-      if(grepl("\\^NE$",x)){w=which(expr[,m]<triS[2,m])}
-      if(grepl("\\^LO$",x)){w=which(expr[,m]<triS[1,m])&expr[,m]>triS[2,m]}
-      if(grepl("\\^HI$",x)){w=which(expr[,m]>triS[1,m])}
-      return(w)
-    })
-    if(length(pre_vec)>1){P1=Reduce(intersect,P1)}
-  }
-
-  # subset expr
   AB=unlist(strsplit(clusterLabel,split="&|\\|"))
   AB=sapply(AB,function(x){gsub("\\+$|-$|\\^NE$|\\^LO$|\\^HI$","",x)})
   w=which(antibodies%in%AB)
@@ -147,7 +123,7 @@ searchCluster=function(fcsFrame,
 
   #find cutoff of each parameter
   if(is.null(cutoff)){
-    cutoff=apply(X=expr[P1,],MARGIN=2,FUN=findCutoff)
+    cutoff=apply(X=expr,MARGIN=2,FUN=findCutoff)
   }
 
   #find each cluster
@@ -172,7 +148,6 @@ searchCluster=function(fcsFrame,
   }
 
   if(length(CL)<1){return(list())}
-  CL=lapply(CL,intersect,y=P1)
 
   names(CL)=CL_label
   Result=list("clusterList"=CL,"cutoff"=cutoff)
