@@ -31,4 +31,22 @@ It transform and compensate for the raw fcs files and write out the processed da
 \details{
 The function takes a data frame which specify the location of the fcs files and the panels the fcs files belong to. It transform the cytometry data using the arcsinh transformtion. For flow cytometry data, it compensate the data using the compensation matrix supplied in the fcs file. the preprocessed fcs files and a table called "processed_sample_summary.csv" will be wrote out to outpath as well.
 }
+\examples{
+#get meta-data
+fn=system.file("extdata","fcs_info.csv",package="MetaCyto")
+fcs_info=read.csv(fn,stringsAsFactors=F,check.names=F)
+fcs_info$fcs_files=system.file("extdata",fcs_info$fcs_files,package="MetaCyto")
+# make sure the transformation parameter "b" and the "assay" argument are correct of FCM and CyTOF files
+b=assay=rep(NA,nrow(fcs_info))
+b[grepl("CyTOF",fcs_info$study_id)]=1/8
+b[grepl("FCM",fcs_info$study_id)]=1/150
+assay[grepl("CyTOF",fcs_info$study_id)]="CyTOF"
+assay[grepl("FCM",fcs_info$study_id)]="FCM"
+# preprocessing
+preprocessing.batch(inputMeta=fcs_info,
+                    assay=assay,
+                    b=b,
+                    outpath="Example_Result/preprocess_output",
+                    excludeTransformParameters=c("FSC-A","FSC-W","FSC-H","Time","Cell_length"))
+}
 

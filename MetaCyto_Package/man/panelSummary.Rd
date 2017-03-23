@@ -26,4 +26,11 @@ A dataframe describing what markers are in each panel.
 \description{
 A function that summarize markers in panels.
 }
+\examples{
+fn=system.file("extdata","",package="MetaCyto")
+fn=list.files(fn,pattern="processed_sample",full.names=T)
+panel_info=collectData(fn,longform=F)
+dir.create("Example_Result")
+PS=panelSummary(panel_info,"Example_Result",cluster=F,width=30,height=20)
+}
 

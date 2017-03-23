@@ -21,4 +21,8 @@ returns a vector of labels that pass through the filter.
 \description{
 A function that filter cluster labels.
 }
+\examples{
+labels= c("CD3-|CD4-|CD8-","CD3+|CD4+|CD8-","CD3+|CD4-|CD8+","CD3+|CD4-|CD8+|CCR7+|CD45RA-|CCR6-")
+labels=filterLabels(labels=labels,minPlus=1,minMarker=2,maxMarker=5)
+}
 

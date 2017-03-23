@@ -24,4 +24,16 @@ Returns a list with two components: 1) clusterLabel, contains a vector of lables
 \description{
 A function that label each cluster as "+" or "-" or neutral for each marker
 }
+\examples{
+# Find fcs files
+files=system.file("extdata","SDY420/ResultFiles/CyTOF_result",package="MetaCyto")
+files=list.files(files,pattern="fcs$",full.names=T)
+# Preprocess
+fcs = preprocessing(fcsFiles=files,assay ="CyTOF",b=1/8)
+# cluster using flowSOM.MC
+cluster_list=flowSOM.MC(fcsFrame=fcs,excludeClusterParameters=c("Time","Cell_length"))
+# label each clusters
+cluster_label=labelCluster(fcsFrame=fcs,clusterList=cluster_list,
+                           excludeClusterParameters=c("Time","Cell_length"))
+}
 

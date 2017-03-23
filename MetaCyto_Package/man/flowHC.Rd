@@ -19,4 +19,13 @@ a list of clusters. Each cluster contains the ID of all cells that belong to the
 \description{
 A function that cluster cytometry data using hierarchical clustering.
 }
+\examples{
+# Find fcs files
+files=system.file("extdata","SDY420/ResultFiles/CyTOF_result",package="MetaCyto")
+files=list.files(files,pattern="fcs$",full.names=T)
+# Preprocess
+fcs = preprocessing(fcsFiles=files,assay ="CyTOF",b=1/8)
+# cluster using flowHC
+cluster_list=flowSHC(fcsFrame=fcs,excludeClusterParameters=c("Time","Cell_length"))
+}
 

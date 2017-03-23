@@ -36,4 +36,19 @@ A function that perform generalized linear model analysis to estimate effect siz
 \details{
 The function use the model value ~ variableOfInterst + otherVariables + studyID to estimate the effect size. Use it as a screening tool. Use metaAnalysis function to analyze an  effect size in more detail.
 }
+\examples{
+#collect all summary statistics
+fn=system.file("extdata","",package="MetaCyto")
+files=list.files(fn,pattern="cluster_stats_in_each_sample",recursive=T,full.names=T)
+fcs_stats=collectData(files,longform=T)
+# Collect sample information
+files=list.files(fn,pattern="sample_info",recursive=T,full.names=T)
+sample_info=collectData(files,longform=F)
+# join the cluster summary statistics with sample information
+all_data=inner_join(fcs_stats,sample_info,by="fcs_files")
+# See the fraction of what clusters are affected by age (while controlling for GENDER)
+GA=glmAnalysis(value="value",variableOfInterst="SUBJECT_AGE",parameter="fraction",
+              otherVariables=c("GENDER"),studyID="study_id",label="label",
+              data=all_data,CILevel=0.95,ifScale=c(T,F))
+}
 

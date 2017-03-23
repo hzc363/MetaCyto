@@ -25,4 +25,11 @@ Returns a flowFrame object containing the preprocessed cytometry data. Cells fro
 \description{
 A function that preprocess fcs files from a single experiment.
 }
+\examples{
+# Find fcs files
+files=system.file("extdata","SDY420/ResultFiles/CyTOF_result",package="MetaCyto")
+files=list.files(files,pattern="fcs$",full.names=T)
+# Preprocess
+fcs = preprocessing(fcsFiles=files,assay ="CyTOF",b=1/8)
+}
 

@@ -22,4 +22,20 @@ NULL. The plot will show up automatically.
 \description{
 A function that draw density plot for each cluster.
 }
+\examples{
+# Find fcs files
+files=system.file("extdata","SDY420/ResultFiles/CyTOF_result",package="MetaCyto")
+files=list.files(files,pattern="fcs$",full.names=T)
+# Preprocess
+fcs = preprocessing(fcsFiles=files,assay ="CyTOF",b=1/8)
+# Search clusters
+cluster_list=searchCluster(fcsFrame=fcs,
+                           clusterLabel=c("CD3+|CD8+","CD3-|CD19+"),
+                           cutoff=cluster_label$cutoff)
+# plot density plot for clusters
+densityPlot(fcs,
+            clusterList=cluster_list$clusterList,
+            cutoff=cluster_label$cutoff,
+            markerToPlot=c("CD3","CD8","CD19"))
+}
 

@@ -28,4 +28,15 @@ Returns a list with two components: 1) clusterList, contains a list.
 \description{
 A function that search for clusters using pre-defined labels
 }
+\examples{
+# Find fcs files
+files=system.file("extdata","SDY420/ResultFiles/CyTOF_result",package="MetaCyto")
+files=list.files(files,pattern="fcs$",full.names=T)
+# Preprocess
+fcs = preprocessing(fcsFiles=files,assay ="CyTOF",b=1/8)
+# Search clusters
+cluster_list=searchCluster(fcsFrame=fcs,
+                           clusterLabel=c("CD3+|CD8+","CD3-|CD19+"),
+                           cutoff=cluster_label$cutoff)
+}
 

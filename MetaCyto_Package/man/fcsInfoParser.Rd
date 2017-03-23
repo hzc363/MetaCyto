@@ -22,4 +22,14 @@ A dataframe containing 2 columns: a column called "fcs_files" that contains the 
 \description{
 A function that organizes fcs files in a study from ImmPort into panels.
 }
+\examples{
+fn=system.file("extdata","SDY736/SDY736-DR19_Subject_2_Flow_cytometry_result.txt",package="MetaCyto")
+meta_data=read.table(fn,sep='\\t',header=T)
+# Organize fcs file into panels
+fn=system.file("extdata","SDY736",package="MetaCyto")
+fcs_info_SDY736=fcsInfoParser(metaData=meta_data,
+                              studyFolder=fn,
+                              fcsCol="FILE_NAME",
+                              assay="FCM")
+}
 

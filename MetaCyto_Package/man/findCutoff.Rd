@@ -21,4 +21,8 @@ If returnSil=F, returns a single cutoff value. Otherwise, returns a list contain
 \description{
 A function that find cutoff for a 1D distribution.
 }
+\examples{
+x=c(rnorm(1000),rnorm(1000,5))
+findCutoff(x)
+}
 

@@ -17,4 +17,11 @@ A dataframe containing conbined information from multiple csv files.
 \description{
 A function that collect and combine data from multiple csv files of the same format.
 }
+\examples{
+# find all the files we want to combine
+fn=system.file("extdata","",package="MetaCyto")
+fn=list.files(fn,pattern="cluster_stats_in_each_sample",full.names=T)
+# Comine the data
+all_data = collectData(fn,longform=T)
+}
 

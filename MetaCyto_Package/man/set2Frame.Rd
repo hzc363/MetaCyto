@@ -15,4 +15,11 @@ Returns a flowFrame object. All cells from flow set are combined into one flow f
 \description{
 A function that combine cells in a flow set into a flow frame.
 }
+\examples{
+library(flowCore)
+files=system.file("extdata","SDY420/ResultFiles/CyTOF_result",package="MetaCyto")
+files=list.files(files,pattern="fcs$",full.names=T)
+flow_set = read.flowSet(files)
+flow_frame = set2Frame(flow_set)
+}
 

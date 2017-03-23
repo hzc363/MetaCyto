@@ -32,4 +32,24 @@ returns data frame describing the effect size of variableOfInterst on value in e
 \description{
 A function that performs meta-analysis
 }
+\examples{
+#collect all summary statistics
+fn=system.file("extdata","",package="MetaCyto")
+files=list.files(fn,pattern="cluster_stats_in_each_sample",recursive=T,full.names=T)
+fcs_stats=collectData(files,longform=T)
+# Collect sample information
+files=list.files(fn,pattern="sample_info",recursive=T,full.names=T)
+sample_info=collectData(files,longform=F)
+# join the cluster summary statistics with sample information
+all_data=inner_join(fcs_stats,sample_info,by="fcs_files")
+
+# plot forrest plot to see if the proportion of CCR7+ CD8 T cell
+# is affected by age (while controlling for GENDER)
+L="CD3+|CD4-|CD8+|CCR7+"
+dat=subset(all_data,all_data$parameter_name=="fraction"&
+            all_data$label==L)
+MA=metaAnalysis(value="value",variableOfInterst="SUBJECT_AGE",main=L,
+                otherVariables=c("GENDER"),studyID="study_id",
+                data=dat,CILevel=0.95,ifScale=c(T,F))
+}
 

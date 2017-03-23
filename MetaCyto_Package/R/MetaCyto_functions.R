@@ -9,6 +9,18 @@
 #' @param minPercent a number between 0 and 0.5. Used to specify the minimum percent of cells in positive and negative region after bisection. Keep it small to avoid bisecting uni-mode distributions.
 #' @param labelQuantile a number between 0 and 0.5. Used to specify the minimum percent of a cluster required to be larger or smaller than the cutoff value for labeling.
 #' @return Returns a list with two components: 1) clusterLabel, contains a vector of lables, each correspond to a cluster in clusterList. 2) cutoff, contains a vector of cutoff values used to bisect each marker.
+#' @examples
+#' # Find fcs files
+#' files=system.file("extdata","SDY420/ResultFiles/CyTOF_result",package="MetaCyto")
+#' files=list.files(files,pattern="fcs$",full.names=T)
+#' # Preprocess
+#' fcs = preprocessing(fcsFiles=files,assay ="CyTOF",b=1/8)
+#' # cluster using flowSOM.MC
+#' cluster_list=flowSOM.MC(fcsFrame=fcs,excludeClusterParameters=c("Time","Cell_length"))
+#' # label each clusters
+#' cluster_label=labelCluster(fcsFrame=fcs,clusterList=cluster_list,
+#'                            excludeClusterParameters=c("Time","Cell_length"))
+
 #' @export
 labelCluster= function(fcsFrame,
                        clusterList,
@@ -19,6 +31,8 @@ labelCluster= function(fcsFrame,
 
   #prepare exclude parameters
   excludeClusterParameters=toupper(excludeClusterParameters)
+  excludeClusterParameters=union("SAMPLE_ID",excludeClusterParameters)
+
   # get marker names
   antibodies=markerFinder(fcsFrame)
 
@@ -92,6 +106,16 @@ labelCluster= function(fcsFrame,
 #'   Each element of the list is a vector containing the ID of all cells in a
 #'   cluster. The names corresponds to the labels specified in clusterLabel. 2)
 #'   cutoff, contains a vector of cutoff values used to bisect each marker.
+#' @examples
+#' # Find fcs files
+#' files=system.file("extdata","SDY420/ResultFiles/CyTOF_result",package="MetaCyto")
+#' files=list.files(files,pattern="fcs$",full.names=T)
+#' # Preprocess
+#' fcs = preprocessing(fcsFiles=files,assay ="CyTOF",b=1/8)
+#' # Search clusters
+#' cluster_list=searchCluster(fcsFrame=fcs,
+#'                            clusterLabel=c("CD3+|CD8+","CD3-|CD19+"),
+#'                            cutoff=cluster_label$cutoff)
 #' @export
 searchCluster=function(fcsFrame,
                        clusterLabel,
@@ -109,6 +133,7 @@ searchCluster=function(fcsFrame,
 
 
   # pre-gating
+  P1=1:nrow(expr)
   if(!is.null(preGate)){
     preGate=toupper(preGate)
     pre_vec = strsplit(preGate,split="&|\\|")[[1]]
@@ -188,6 +213,12 @@ searchCluster=function(fcsFrame,
 #' @param fileSampleSize An integer specifying the number of events sampled from each fcs file. If NULL, all the events will be pre-processed and wrote out to the new fcs files.
 #' @param excludeTransformParameters A vector specifiying the name of parameters not to be transformed (left at linear scale).
 #' @return Returns a flowFrame object containing the preprocessed cytometry data. Cells from different fcs files are combined into one flow frame. A new paramter, sample_id, is introduced to indicate the origin of each cell.
+#' @examples
+#' # Find fcs files
+#' files=system.file("extdata","SDY420/ResultFiles/CyTOF_result",package="MetaCyto")
+#' files=list.files(files,pattern="fcs$",full.names=T)
+#' # Preprocess
+#' fcs = preprocessing(fcsFiles=files,assay ="CyTOF",b=1/8)
 #' @export
 preprocessing=function(fcsFiles,
                        assay=c("FCM", "CyTOF"),
@@ -274,6 +305,20 @@ preprocessing=function(fcsFiles,
 #' @param clusterList a list, each element should be a vector containing the IDs of all cells that are belong to a cluster
 #' @param fcsNames a vector of fcs file names. Each element corresponds to an interger ID in the "sample_id" parameter in fcsFrame.
 #' @return Returns a data frame, with rows correspond to each fcs file, columns correspond to markers or fractions.
+#' @examples
+#' # Find fcs files
+#' files=system.file("extdata","SDY420/ResultFiles/CyTOF_result",package="MetaCyto")
+#' files=list.files(files,pattern="fcs$",full.names=T)
+#' # Preprocess
+#' fcs = preprocessing(fcsFiles=files,assay ="CyTOF",b=1/8)
+#' # Search clusters
+#' cluster_list=searchCluster(fcsFrame=fcs,
+#'                            clusterLabel=c("CD3+|CD8+","CD3-|CD19+"),
+#'                            cutoff=cluster_label$cutoff)
+#' # derive summary statistics
+#' cluster_stats=clusterStats(fcsFrame=fcs,
+#'                            clusterList=cluster_list$clusterList,
+#'                            fcsNames=files)
 #' @export
 clusterStats=function(fcsFrame,clusterList,fcsNames){
   antibodies=markerFinder(fcsFrame)
@@ -316,7 +361,23 @@ clusterStats=function(fcsFrame,clusterList,fcsNames){
 #'   marker. The names of the vector should be the same as the marker names.
 #' @param markerToPlot a vector specifying markers included in the plot. If NULL, all markers will be plotted.
 #' @return NULL. The plot will show up automatically.
+#' @examples
+#' # Find fcs files
+#' files=system.file("extdata","SDY420/ResultFiles/CyTOF_result",package="MetaCyto")
+#' files=list.files(files,pattern="fcs$",full.names=T)
+#' # Preprocess
+#' fcs = preprocessing(fcsFiles=files,assay ="CyTOF",b=1/8)
+#' # Search clusters
+#' cluster_list=searchCluster(fcsFrame=fcs,
+#'                            clusterLabel=c("CD3+|CD8+","CD3-|CD19+"),
+#'                            cutoff=cluster_label$cutoff)
+#' # plot density plot for clusters
+#' densityPlot(fcs,
+#'             clusterList=cluster_list$clusterList,
+#'             cutoff=cluster_label$cutoff,
+#'             markerToPlot=c("CD3","CD8","CD19"))
 #' @export
+
 densityPlot=function(fcsFrame,clusterList,cutoff,markerToPlot=NULL){
   CL_label=toupper(names(clusterList))
   markerToPlot=toupper(markerToPlot)
@@ -332,7 +393,7 @@ densityPlot=function(fcsFrame,clusterList,cutoff,markerToPlot=NULL){
     x_all=expr[,markerToPlot[i]]
     for(j in 1:length(CL)){
       b=seq(min(x_all),max(x_all), ((max(x_all)-min(x_all))/100) )
-      hist(x_all,col=rgb(0, 0, 0, 0.2),xlab=markerToPlot[i],breaks=b,freq=T,border=F,main=paste0(markerToPlot[i]," of cluster ",j," : \n", CL_label[j]))
+      hist(x_all,col=rgb(0, 0, 0, 0.5),xlab=markerToPlot[i],breaks=b,freq=T,border=F,main=paste0(markerToPlot[i]," of cluster ",j," : \n", CL_label[j]))
       hist(expr[CL[[j]],markerToPlot[i]],add=T,breaks=b,col=rgb(1, 0, 0, 0.5),freq=T,border=F)
       if(markerToPlot[i]%in%names(cutoff)){abline(v=cutoff[markerToPlot[i]])}
     }
@@ -353,6 +414,24 @@ densityPlot=function(fcsFrame,clusterList,cutoff,markerToPlot=NULL){
 #' @param excludeTransformParameters A vector specifiying the name of parameters not to be transformed (left at linear scale).
 #' @return Does not return anything. The output is wrote to the directory specified by the "outpath".
 #' @details The function takes a data frame which specify the location of the fcs files and the panels the fcs files belong to. It transform the cytometry data using the arcsinh transformtion. For flow cytometry data, it compensate the data using the compensation matrix supplied in the fcs file. the preprocessed fcs files and a table called "processed_sample_summary.csv" will be wrote out to outpath as well.
+#' @examples
+#' #get meta-data
+#' fn=system.file("extdata","fcs_info.csv",package="MetaCyto")
+#' fcs_info=read.csv(fn,stringsAsFactors=F,check.names=F)
+#' fcs_info$fcs_files=system.file("extdata",fcs_info$fcs_files,package="MetaCyto")
+#' # make sure the transformation parameter "b" and the "assay" argument are correct of FCM and CyTOF files
+#' b=assay=rep(NA,nrow(fcs_info))
+#' b[grepl("CyTOF",fcs_info$study_id)]=1/8
+#' b[grepl("FCM",fcs_info$study_id)]=1/150
+#' assay[grepl("CyTOF",fcs_info$study_id)]="CyTOF"
+#' assay[grepl("FCM",fcs_info$study_id)]="FCM"
+#' # preprocessing
+#' preprocessing.batch(inputMeta=fcs_info,
+#'                     assay=assay,
+#'                     b=b,
+#'                     outpath="Example_Result/preprocess_output",
+#'                     excludeTransformParameters=c("FSC-A","FSC-W","FSC-H","Time","Cell_length"))
+
 #' @export
 
 preprocessing.batch = function(inputMeta,
@@ -403,6 +482,33 @@ preprocessing.batch = function(inputMeta,
 #' @param minPercent a number between 0 and 0.5. Used to specify the minimum percent of cells in positive and negative region after bisection. Keep it small to avoid bisecting uni-mode distributions.
 #' @param ... pass arguments to labelCluster and clusterFunction
 #' @return a vector of labels identified in the cytometry data.
+#' @examples
+#' #get meta-data
+#' fn=system.file("extdata","fcs_info.csv",package="MetaCyto")
+#' fcs_info=read.csv(fn,stringsAsFactors=F,check.names=F)
+#' fcs_info$fcs_files=system.file("extdata",fcs_info$fcs_files,package="MetaCyto")
+#' # make sure the transformation parameter "b" and the "assay" argument are correct of FCM and CyTOF files
+#' b=assay=rep(NA,nrow(fcs_info))
+#' b[grepl("CyTOF",fcs_info$study_id)]=1/8
+#' b[grepl("FCM",fcs_info$study_id)]=1/150
+#' assay[grepl("CyTOF",fcs_info$study_id)]="CyTOF"
+#' assay[grepl("FCM",fcs_info$study_id)]="FCM"
+#' # preprocessing
+#' preprocessing.batch(inputMeta=fcs_info,
+#'                     assay=assay,
+#'                     b=b,
+#'                     outpath="Example_Result/preprocess_output",
+#'                     excludeTransformParameters=c("FSC-A","FSC-W","FSC-H","Time","Cell_length"))
+#' # Make sure marker names are consistant in different studies
+#' files=list.files("Example_Result",pattern="processed_sample",recursive=T,full.names=T)
+#' nameUpdator("CD8B","CD8",files)
+#' # find the clusters
+#' excludeClusterParameters=c("FSC-A","FSC-W","FSC-H","SSC-A","SSC-W","SSC-H","Time",
+#'                           "CELL_LENGTH","DEAD","DNA1","DNA2")
+#' cluster_label=autoCluster.batch(preprocessOutputFolder="Example_Result/preprocess_output",
+#'                                 excludeClusterParameters=excludeClusterParameters,
+#'                                 labelQuantile=0.95,
+#'                                 clusterFunction=flowHC)
 #' @export
 autoCluster.batch= function(preprocessOutputFolder,
                             excludeClusterParameters=c("TIME"),
@@ -458,6 +564,31 @@ autoCluster.batch= function(preprocessOutputFolder,
 #' @param ifPlot True or False. Used to specifiy if a the density plot for each cluster should be plotted
 #' @return NULL
 #' @details The function write out the summary statistics for each cluster. A seperate directory will be created for each study.
+#' @examples
+#' #get meta-data
+#' fn=system.file("extdata","fcs_info.csv",package="MetaCyto")
+#' fcs_info=read.csv(fn,stringsAsFactors=F,check.names=F)
+#' fcs_info$fcs_files=system.file("extdata",fcs_info$fcs_files,package="MetaCyto")
+#' # make sure the transformation parameter "b" and the "assay" argument are correct of FCM and CyTOF files
+#' b=assay=rep(NA,nrow(fcs_info))
+#' b[grepl("CyTOF",fcs_info$study_id)]=1/8
+#' b[grepl("FCM",fcs_info$study_id)]=1/150
+#' assay[grepl("CyTOF",fcs_info$study_id)]="CyTOF"
+#' assay[grepl("FCM",fcs_info$study_id)]="FCM"
+#' # preprocessing
+#' preprocessing.batch(inputMeta=fcs_info,
+#'                     assay=assay,
+#'                     b=b,
+#'                     outpath="Example_Result/preprocess_output",
+#'                     excludeTransformParameters=c("FSC-A","FSC-W","FSC-H","Time","Cell_length"))
+#' # Make sure marker names are consistant in different studies
+#' files=list.files("Example_Result",pattern="processed_sample",recursive=T,full.names=T)
+#' nameUpdator("CD8B","CD8",files)
+#' # find the clusters
+#' cluster_label=c("CD3-|CD19+","CD3+|CD4-|CD8+")
+#' searchCluster.batch(preprocessOutputFolder="Example_Result/preprocess_output",
+#'                     outpath="Example_Result/search_output",
+#'                     clusterLabel=cluster_label)
 #' @export
 searchCluster.batch=function(preprocessOutputFolder,
                              outpath="search_output",
@@ -519,6 +650,15 @@ searchCluster.batch=function(preprocessOutputFolder,
 #' @param fcsCol a string specifiying the name of the column in metaData that lists fcs files included in the study.
 #' @param assay Either "FCM" or "CyTOF" to indicate the type of cytometry data.
 #' @return A dataframe containing 2 columns: a column called "fcs_files" that contains the location (relative to the working directory) of each fcs file on the hard drive and a column called "study_id" that specify what study each fcs file belongs to.
+#' @examples
+#' fn=system.file("extdata","SDY736/SDY736-DR19_Subject_2_Flow_cytometry_result.txt",package="MetaCyto")
+#' meta_data=read.table(fn,sep='\t',header=T)
+#' # Organize fcs file into panels
+#' fn=system.file("extdata","SDY736",package="MetaCyto")
+#' fcs_info_SDY736=fcsInfoParser(metaData=meta_data,
+#'                               studyFolder=fn,
+#'                               fcsCol="FILE_NAME",
+#'                               assay="FCM")
 #' @export
 fcsInfoParser =function(metaData,
                         studyFolder,
@@ -561,6 +701,12 @@ fcsInfoParser =function(metaData,
 #' @param files a vector containing the paths of csv files to be combined.
 #' @param longform True or False. Used to specify if the table in each csv file should be converted into long form before combining.
 #' @return A dataframe containing conbined information from multiple csv files.
+#' @examples
+#' # find all the files we want to combine
+#' fn=system.file("extdata","",package="MetaCyto")
+#' fn=list.files(fn,pattern="cluster_stats_in_each_sample",full.names=T)
+#' # Comine the data
+#' all_data = collectData(fn,longform=T)
 #' @export
 collectData=function(files,longform=T){
   all_data=NULL
@@ -587,6 +733,16 @@ collectData=function(files,longform=T){
 #' @param assay Either "FCM" or "CyTOF" to indicate the type of cytometry data.
 #' @param attrCol a vector of column names. Used to specify the information about each cytometry the user wish to include in the analysis.
 #' @return A dataframe containing sample information.
+#' @examples
+#' fn=system.file("extdata","SDY736/SDY736-DR19_Subject_2_Flow_cytometry_result.txt",package="MetaCyto")
+#' meta_data=read.table(fn,sep='\t',header=T)
+#' # Find the AGE, GENDER info from selected_data
+#' fn=system.file("extdata","SDY736",package="MetaCyto")
+#' sample_info_SDY736=sampleInfoParser(metaData=meta_data,
+#'                                     studyFolder=fn,
+#'                                     assay="FCM",
+#'                                     fcsCol="FILE_NAME",
+#'                                     attrCol=c("SUBJECT_AGE","GENDER"))
 #' @export
 sampleInfoParser =function(metaData=selected_data,
                            studyFolder,
@@ -616,6 +772,12 @@ sampleInfoParser =function(metaData=selected_data,
 #' @param width Used to specify the width of the plot
 #' @param height Used to specify the height of the plot
 #' @return A dataframe describing what markers are in each panel.
+#' @examples
+#' fn=system.file("extdata","",package="MetaCyto")
+#' fn=list.files(fn,pattern="processed_sample",full.names=T)
+#' panel_info=collectData(fn,longform=F)
+#' dir.create("Example_Result")
+#' PS=panelSummary(panel_info,"Example_Result",cluster=F,width=30,height=20)
 #' @export
 panelSummary=function(panelInfo,folder,cluster=T,plotImage=T,width=20,height=20){
   panelInfo=unique(panelInfo[,c("study_id","antibodies")])
@@ -688,6 +850,12 @@ nameUpdator=function(oldNames,newNames,files){
 #' A function that combine cells in a flow set into a flow frame.
 #' @param flowSet a flow set object
 #' @return Returns a flowFrame object. All cells from flow set are combined into one flow frame. A new paramter, sample_id, is introduced to indicate the origin of each cell.
+#' @examples
+#' library(flowCore)
+#' files=system.file("extdata","SDY420/ResultFiles/CyTOF_result",package="MetaCyto")
+#' files=list.files(files,pattern="fcs$",full.names=T)
+#' flow_set = read.flowSet(files)
+#' flow_frame = set2Frame(flow_set)
 #' @export
 set2Frame=function(flowSet){
   expr=flowCore::fsApply(flowSet,function(x){
@@ -729,6 +897,9 @@ set2Frame=function(flowSet){
 #' @param minMarker an integer, used to specify the minmum number of markers a label should contain.
 #' @param maxMarker an integer, used to specify the max number of markers a label should contain.
 #' @return returns a vector of labels that pass through the filter.
+#' @examples
+#' labels= c("CD3-|CD4-|CD8-","CD3+|CD4+|CD8-","CD3+|CD4-|CD8+","CD3+|CD4-|CD8+|CCR7+|CD45RA-|CCR6-")
+#' labels=filterLabels(labels=labels,minPlus=1,minMarker=2,maxMarker=5)
 #' @export
 filterLabels=function(labels,minPlus,minMarker,maxMarker){
   plus_N=sapply(labels,function(x){
@@ -747,6 +918,12 @@ filterLabels=function(labels,minPlus,minMarker,maxMarker){
 #' @param fcsFrame a flow frame object.
 #' @return returns a vector of markers.
 #' @details If the antibody name is available, the antibody name will be returned, otherwise the channel name will be returned.
+#' @examples
+#' library(flowCore)
+#' files=system.file("extdata","SDY420/ResultFiles/CyTOF_result",package="MetaCyto")
+#' files=list.files(files,pattern="fcs$",full.names=T)[1]
+#' fcs = read.FCS(files)
+#' markers = markerFinder(fcs)
 #' @export
 markerFinder=function(fcsFrame){
   Label=flowCore::pData(flowCore::parameters(fcsFrame));
@@ -775,6 +952,25 @@ markerFinder=function(fcsFrame){
 #' @param ifScale a vector of two logic values, specifing if the dependent variable and the variableOfInterst should be scaled when calculating the effect size.
 #' @param cex a number specifying the amount by which plotting text and symbols should be scaled relative to the default in the forrest plot.
 #' @return returns data frame describing the effect size of variableOfInterst on value in each individule studies, as well as the over all effect size.
+#' @examples
+#' #collect all summary statistics
+#' fn=system.file("extdata","",package="MetaCyto")
+#' files=list.files(fn,pattern="cluster_stats_in_each_sample",recursive=T,full.names=T)
+#' fcs_stats=collectData(files,longform=T)
+#' # Collect sample information
+#' files=list.files(fn,pattern="sample_info",recursive=T,full.names=T)
+#' sample_info=collectData(files,longform=F)
+#' # join the cluster summary statistics with sample information
+#' all_data=inner_join(fcs_stats,sample_info,by="fcs_files")
+#'
+#' # plot forrest plot to see if the proportion of CCR7+ CD8 T cell
+#' # is affected by age (while controlling for GENDER)
+#' L="CD3+|CD4-|CD8+|CCR7+"
+#' dat=subset(all_data,all_data$parameter_name=="fraction"&
+#'             all_data$label==L)
+#' MA=metaAnalysis(value="value",variableOfInterst="SUBJECT_AGE",main=L,
+#'                 otherVariables=c("GENDER"),studyID="study_id",
+#'                 data=dat,CILevel=0.95,ifScale=c(T,F))
 #' @export
 metaAnalysis=function(value,variableOfInterst,otherVariables,
                       studyID,data,CILevel,main,
@@ -822,6 +1018,20 @@ metaAnalysis=function(value,variableOfInterst,otherVariables,
 #' @param ifScale a vector of two logic values, specifing if the dependent variable and the variableOfInterst should be scaled when calculating the effect size.
 #' @return returns data frame describing the overall effect size of variableOfInterst on value.  May be slightly different from the value reported from the function metaAnalysis.
 #' @details The function use the model value ~ variableOfInterst + otherVariables + studyID to estimate the effect size. Use it as a screening tool. Use metaAnalysis function to analyze an  effect size in more detail.
+#' @examples
+#' #collect all summary statistics
+#'fn=system.file("extdata","",package="MetaCyto")
+#'files=list.files(fn,pattern="cluster_stats_in_each_sample",recursive=T,full.names=T)
+#'fcs_stats=collectData(files,longform=T)
+#'# Collect sample information
+#'files=list.files(fn,pattern="sample_info",recursive=T,full.names=T)
+#'sample_info=collectData(files,longform=F)
+#'# join the cluster summary statistics with sample information
+#'all_data=inner_join(fcs_stats,sample_info,by="fcs_files")
+#'# See the fraction of what clusters are affected by age (while controlling for GENDER)
+#'GA=glmAnalysis(value="value",variableOfInterst="SUBJECT_AGE",parameter="fraction",
+#'               otherVariables=c("GENDER"),studyID="study_id",label="label",
+#'               data=all_data,CILevel=0.95,ifScale=c(T,F))
 #' @export
 glmAnalysis=function(value="value",variableOfInterst="SUBJECT_AGE",parameter,
                      otherVariables=c("GENDER"),studyID="study",label="label",
@@ -846,8 +1056,11 @@ glmAnalysis=function(value="value",variableOfInterst="SUBJECT_AGE",parameter,
              data.frame(CI,check.names=F),"N"=nrow(sub_data))
     result=rbind(result,t1)
   }
-  rownames(result)=NULL
-  colnames(result)=c("label","Effect_size","SE","t_value","p_value","lower","upper","N")
+  if(!is.null(result)){
+    rownames(result)=NULL
+    colnames(result)=c("label","Effect_size","SE","t_value","p_value","lower","upper","N")
+  }
+
   return(result)
 }
 
@@ -858,6 +1071,23 @@ glmAnalysis=function(value="value",variableOfInterst="SUBJECT_AGE",parameter,
 #' @param GA a data frame returned from the function glmAnalysis.
 #' @param size font size of texts in the plot
 #' @return NULL
+#' @examples
+#' #collect all summary statistics
+#'fn=system.file("extdata","",package="MetaCyto")
+#'files=list.files(fn,pattern="cluster_stats_in_each_sample",recursive=T,full.names=T)
+#'fcs_stats=collectData(files,longform=T)
+#'# Collect sample information
+#'files=list.files(fn,pattern="sample_info",recursive=T,full.names=T)
+#'sample_info=collectData(files,longform=F)
+#'# join the cluster summary statistics with sample information
+#'all_data=inner_join(fcs_stats,sample_info,by="fcs_files")
+#'# See the fraction of what clusters are affected by age (while controlling for GENDER)
+#'GA=glmAnalysis(value="value",variableOfInterst="SUBJECT_AGE",parameter="fraction",
+#'               otherVariables=c("GENDER"),studyID="study_id",label="label",
+#'               data=all_data,CILevel=0.95,ifScale=c(T,F))
+#' GA=GA[order(GA$Effect_size),]
+#' # plot the effect sizes
+#' plotGA(GA)
 #' @export
 plotGA=function(GA,size=16){
   GA$label=factor(GA$label,levels=GA$label)
@@ -871,7 +1101,6 @@ plotGA=function(GA,size=16){
   print(p)
 }
 
-
 # Define clustering functions---------
 
 #' cluster cytometry data using hierarchical clustering
@@ -881,6 +1110,14 @@ plotGA=function(GA,size=16){
 #' @param excludeClusterParameters A vector specifiying the name of markers not to be used for clustering.
 #' @param minimumClusterSizePercent a number between 0 and 1, used to specify the minimum size of a cluster relative to all events.
 #' @return a list of clusters. Each cluster contains the ID of all cells that belong to the cluster.
+#' @examples
+#' # Find fcs files
+#' files=system.file("extdata","SDY420/ResultFiles/CyTOF_result",package="MetaCyto")
+#' files=list.files(files,pattern="fcs$",full.names=T)
+#' # Preprocess
+#' fcs = preprocessing(fcsFiles=files,assay ="CyTOF",b=1/8)
+#' # cluster using flowHC
+#' cluster_list=flowSHC(fcsFrame=fcs,excludeClusterParameters=c("Time","Cell_length"))
 #' @export
 flowHC=function(fcsFrame,excludeClusterParameters,minimumClusterSizePercent=0.05){
   antibodies=markerFinder(fcsFrame)
@@ -902,17 +1139,25 @@ flowHC=function(fcsFrame,excludeClusterParameters,minimumClusterSizePercent=0.05
 #' @param fcsFrame a flow frame.
 #' @param excludeClusterParameters A vector specifiying the name of markers not to be used for clustering.
 #' @return a list of clusters. Each cluster contains the ID of all cells that belong to the cluster.
+#' @examples
+#' # Find fcs files
+#' files=system.file("extdata","SDY420/ResultFiles/CyTOF_result",package="MetaCyto")
+#' files=list.files(files,pattern="fcs$",full.names=T)
+#' # Preprocess
+#' fcs = preprocessing(fcsFiles=files,assay ="CyTOF",b=1/8)
+#' # cluster using flowSOM.MC
+#' cluster_list=flowSOM.MC(fcsFrame=fcs,excludeClusterParameters=c("Time","Cell_length"))
 #' @export
-flowSOM.MC=function(fcsFrame,excludeClusterParameters){
+flowSOM.MC=function(fcsFrame,excludeClusterParameters,grid=10,k=40){
   antibodies=markerFinder(fcsFrame)
   excludeClusterParameters=toupper(excludeClusterParameters)
   excludeClusterParameters=union(excludeClusterParameters,c("TIME","SAMPLE_ID"))
   w=which(!antibodies%in%excludeClusterParameters)
   fSOM <- FlowSOM::ReadInput(fcsFrame, transform = FALSE, scale = FALSE)
   fSOM <- FlowSOM::BuildSOM(fSOM, colsToUse = w,
-                            xdim = 10, ydim = 10)
+                            xdim = grid, ydim = grid)
   fSOM <- FlowSOM::BuildMST(fSOM)
-  meta <- FlowSOM::metaClustering_consensus(fSOM$map$codes,k=40)
+  meta <- FlowSOM::metaClustering_consensus(fSOM$map$codes,k=k)
   CL <- meta[fSOM$map$mapping[, 1]]
   CL=lapply(unique(CL),function(x){which(CL==x)})
   return(CL)
@@ -929,6 +1174,9 @@ flowSOM.MC=function(fcsFrame,excludeClusterParameters){
 #' @param useBL Logic, used to specify if outliers should be ignored
 #' @param minX a numerical value, used to specify the min value allowed for the cutoff.
 #' @return If returnSil=F, returns a single cutoff value. Otherwise, returns a list containing the cutoff value and the max average silhouette
+#' @examples
+#' x=c(rnorm(1000),rnorm(1000,5))
+#' findCutoff(x)
 #' @export
 findCutoff=function(x,returnSil=F,useBL=T,minX=0){
   if(length(x)>2000){x=sample(x,2000)}
@@ -992,7 +1240,7 @@ baselineCut=function(x){
   breaks=seq(min(x),max(x),length.out=100)
   h=hist(x,breaks,plot=F)
   #h2=h$counts[h$counts>1]
-  baseline=max(3,mean(h$counts)/10)
+  baseline=max(4,mean(h$counts)/10)
   bound=range(which(h$counts>baseline))
   x=x[x>breaks[bound[1]]&x<breaks[bound[2]]]
   return(x)
@@ -1019,6 +1267,18 @@ trisect=function(x){
 
 
 # Archive functions------
+#' make a summary for the labels (cell populations) identified in different cytometry panels.
+#'
+#' A function that summarize the labels (cell populations) identified in different cytometry panels.
+#' @param allData A table containing the summary statistics of cell populations. Often is the output of the function "collectData".
+#' @param minStudy Minium number of cytometry panels a label should apear in. Set it >1 to find cel populations identified in more than 1 cytometry panel for meta-analysis.
+#' @return A data frame summarizing the labels ifentified in different cytometry panels.
+#' @examples
+#' fn=system.file("extdata","",package="MetaCyto")
+#' files=list.files(fn,pattern="cluster_stats_in_each_sample",recursive=T,full.names=T)
+#' fcs_stats=collectData(files,longform=T)
+#' label_summary = labelSummary(allData=fcs_stats,minStudy=2)
+#' @export
 labelSummary=function(allData,minStudy=2){
   result=NULL
   for(label in unique(allData$label)){
@@ -1035,3 +1295,4 @@ labelSummary=function(allData,minStudy=2){
   }
   return(result)
 }
+

@@ -27,4 +27,32 @@ a vector of labels identified in the cytometry data.
 \description{
 A function that clusters the pre-processed fcs files from different studies in batch.
 }
+\examples{
+#get meta-data
+fn=system.file("extdata","fcs_info.csv",package="MetaCyto")
+fcs_info=read.csv(fn,stringsAsFactors=F,check.names=F)
+fcs_info$fcs_files=system.file("extdata",fcs_info$fcs_files,package="MetaCyto")
+# make sure the transformation parameter "b" and the "assay" argument are correct of FCM and CyTOF files
+b=assay=rep(NA,nrow(fcs_info))
+b[grepl("CyTOF",fcs_info$study_id)]=1/8
+b[grepl("FCM",fcs_info$study_id)]=1/150
+assay[grepl("CyTOF",fcs_info$study_id)]="CyTOF"
+assay[grepl("FCM",fcs_info$study_id)]="FCM"
+# preprocessing
+preprocessing.batch(inputMeta=fcs_info,
+                    assay=assay,
+                    b=b,
+                    outpath="Example_Result/preprocess_output",
+                    excludeTransformParameters=c("FSC-A","FSC-W","FSC-H","Time","Cell_length"))
+# Make sure marker names are consistant in different studies
+files=list.files("Example_Result",pattern="processed_sample",recursive=T,full.names=T)
+nameUpdator("CD8B","CD8",files)
+# find the clusters
+excludeClusterParameters=c("FSC-A","FSC-W","FSC-H","SSC-A","SSC-W","SSC-H","Time",
+                          "CELL_LENGTH","DEAD","DNA1","DNA2")
+cluster_label=autoCluster.batch(preprocessOutputFolder="Example_Result/preprocess_output",
+                                excludeClusterParameters=excludeClusterParameters,
+                                labelQuantile=0.95,
+                                clusterFunction=flowHC)
+}
 
