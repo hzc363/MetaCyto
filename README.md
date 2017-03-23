@@ -5,7 +5,7 @@ MetaCyto is an R package that performs meta-analysis of both flow cytometry and 
 
 ## Installation
 
-To install the MetaCyto package, please open the “MetaCyto.Rproj” file in “MetaCyto_Package” folder and click Build&Reload button in RStudio. You may get some errors due to missing dependencies. Install the missing packages should solve the problem. 
+To install the MetaCyto package, please open the “MetaCyto.Rproj” file in “MetaCyto_Package” folder and click Build&Reload button in RStudio. You may get some errors due to missing dependencies. Install the missing packages from CRAN and Bioconductor should solve the problem. 
 
 ## Vignette
 A vignette in the form of R Markdown (MetaCyto_Vignette.Rmd) is created to introduce users to MetaCyto.
@@ -13,7 +13,7 @@ A vignette in the form of R Markdown (MetaCyto_Vignette.Rmd) is created to intro
 
 ## Examples
 
-Three simple examples are created to show users how to use MetaCyto for different purposes.
+Three self-contained examples, including code and data, are created to show users how to use MetaCyto for different purposes.
 
 
 * **MetaCyto_Example_Meta_Local:** This example shows how to perform meta-analysis using MetaCyto on your local datasets. 
