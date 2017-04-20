@@ -5,11 +5,16 @@ MetaCyto is an R package that performs meta-analysis of both flow cytometry and 
 
 ## Installation
 
-To install the MetaCyto package, please open the “MetaCyto.Rproj” file in “MetaCyto” folder and click Build&Reload button in RStudio. You may get some errors due to missing dependencies. Install the missing packages from CRAN and Bioconductor should solve the problem. Dependencies include: dplyr, flowCore, tidyr, fastcluster, ggplot2, metafor, cluster, FlowSOM.
+Method 1: To install the MetaCyto package, please run the following code:
+```
+library("devtools")
+install_github("hzc363/MetaCyto")
+```
+Method 2: Please open the “MetaCyto.Rproj” file and click Build&Reload button in RStudio. You may get some errors due to missing dependencies. Install the missing packages from CRAN and Bioconductor should solve the problem. Dependencies include: dplyr, flowCore, tidyr, fastcluster, ggplot2, metafor, cluster, FlowSOM.
 
 ## Examples
 
-Three self-contained examples, including code and data, are created to show users how to use MetaCyto for different purposes.
+The best way to learn how to use MetaCyto is through running examples. Three self-contained examples, including code and data, are created to show users how to use MetaCyto for different purposes. There are available in : https://github.com/hzc363/MetaCyto_Examples
 
 
 * **MetaCyto_Example_Meta_Local:** This example shows how to perform meta-analysis using MetaCyto on your local datasets. 
@@ -21,7 +26,7 @@ Three self-contained examples, including code and data, are created to show user
 * **MetaCyto_Example_One_Experiment:** This example shows how to use MetaCyto to analyze cytometry data from a single experiment. 
 
 ## Vignette
-A vignette in the form of R Markdown (MetaCyto_Vignette.Rmd) is created to introduce users to MetaCyto.
+A vignette in the form of R Markdown (MetaCyto_Vignette.Rmd) is created to introduce users to MetaCyto. It is available in : https://github.com/hzc363/MetaCyto_Examples
 
 ## Reference
 
