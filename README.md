@@ -10,7 +10,9 @@ Method 1: To install the MetaCyto package, please run the following code:
 library("devtools")
 install_github("hzc363/MetaCyto")
 ```
-Method 2: Please open the “MetaCyto.Rproj” file and click Build&Reload button in RStudio. You may get some errors due to missing dependencies. Install the missing packages from CRAN and Bioconductor should solve the problem. Dependencies include: dplyr, flowCore, tidyr, fastcluster, ggplot2, metafor, cluster, FlowSOM.
+Note for CITRUS users: If you have changed the compiler for R when installing CITRUS, please switch back to the default compiler.
+
+Method 2: Please open the “MetaCyto.Rproj” file and click Build&Reload button in RStudio. You may get some errors due to missing dependencies. Install the missing packages from CRAN and Bioconductor should solve the problem. Dependencies include: dplyr, flowCore, tidyr, fastcluster, ggplot2, metafor, cluster, FlowSOM. 
 
 ## Examples
 
