@@ -2,7 +2,7 @@ library(dplyr)
 library(tidyr)
 library(MetaCyto)
 
-# This example is a light weighted example of how to use MetaCyto to joint analyze your own local data. 
+# This example is a light weight example of how to use MetaCyto to joint analyze your own local data. 
 
 ###################################################
 ########## Check working directory first ##########

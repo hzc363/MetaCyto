@@ -4,7 +4,7 @@ library(dplyr)
 ###############################################
 ########## Collect Summary statistics  ########
 ###############################################
-# Collect Summary statistics generated in step 4
+# Collect Summary statistics generated in step 3
 files=list.files("Result/search_output",pattern="cluster_stats_in_each_sample",recursive=T,full.names=T)
 fcs_stats=collectData(files,longform=T)
 

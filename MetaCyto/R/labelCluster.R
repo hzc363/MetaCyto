@@ -47,8 +47,13 @@ labelCluster= function(fcsFrame,
   expr=expr[,w,drop=FALSE]
 
   #find cutoff of each parameter
-  if(is.null(cutoff)){
-    cutoff=apply(X=expr,MARGIN=2,FUN=findCutoff)
+  if(!setequal(colnames(expr),names(cutoff))){
+    t1=apply(X=expr,MARGIN=2,FUN=findCutoff)
+    if(!is.null(cutoff)){
+      cutoff=cutoff[names(cutoff)%in%colnames(expr)]
+      t1[names(cutoff)]=cutoff
+      }
+    cutoff=t1
   }
 
   #label each cluster

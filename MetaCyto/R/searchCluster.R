@@ -77,8 +77,13 @@ searchCluster=function(fcsFrame,
   if(length(CL_label)<1){return(list())}
 
   #find cutoff of each parameter
-  if(is.null(cutoff)){
-    cutoff=apply(X=expr[P1,],MARGIN=2,FUN=findCutoff)
+  if(!setequal(AB,names(cutoff))){
+    t1=apply(X=expr[P1,],MARGIN=2,FUN=findCutoff)
+    if(!is.null(cutoff)){
+      cutoff=cutoff[names(cutoff)%in%AB]
+      t1[names(cutoff)]=cutoff
+      }
+    cutoff=t1
   }
 
   #find each cluster

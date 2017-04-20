@@ -9,7 +9,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-MetaCyto is an R package that performs meta-analysis of both flow cytometry and mass cytometry (CyTOF) data. It is able to jointly analyze cytometry data from different studies with diverse sets of markers. MetaCyto carries out the meta-analysis in 4 steps: data collection, data pre-processing, identifying common cell subsets across studies and statistical analysis. We created 2 examples to demostrate the use of MetaCyto in this Vigenette.In the first example, we provided an example to show how MetaCyto can be used to analyze your local cytometry datasets. The example will walk you through all 4 steps of meta-analysis.  In the second example, we provide an example to show how to use functions in MetaCyto to automate the data collection step for datasets from ImmPort.  More self-contained examples, including data and code, are available on github (https://github.com/hzc363/MetaCyto).
+MetaCyto is an R package that performs meta-analysis of both flow cytometry and mass cytometry (CyTOF) data. It is able to jointly analyze cytometry data from different studies with diverse sets of markers. MetaCyto carries out the meta-analysis in 4 steps: data collection, data pre-processing, identifying common cell subsets across studies and statistical analysis. We created 2 examples to demonstrate the use of MetaCyto in this Vignette.In the first example, we provided an example to show how MetaCyto can be used to analyze your local cytometry datasets. The example will walk you through all 4 steps of meta-analysis.  In the second example, we provide an example to show how to use functions in MetaCyto to automate the data collection step for datasets from ImmPort.  More self-contained examples, including data and code, are available on github (https://github.com/hzc363/MetaCyto).
 
 - **Example 1: Local Cytometry Datasets.** This example shows how to perform meta-analysis using MetaCyto on your local datasets.
 
@@ -31,7 +31,7 @@ row.names(fcs_info)=NULL
 knitr::kable(head(fcs_info, 6))
 ```
 
-The second file (sample_info.csv) contains the infomation about the samples or subjects corresponding to each of the fcs files. In this example, we try to see how gender and age affect immune cells. So we will include gender and age in the file. The path of fcs files in fcs_info.csv and sample_info.csv must be the same.
+The second file (sample_info.csv) contains the information about the samples or subjects corresponding to each of the fcs files. In this example, we try to see how gender and age affect immune cells. So we will include gender and age in the file. The path of fcs files in fcs_info.csv and sample_info.csv must be the same.
 ```{r, echo=FALSE, results='asis'}
 fn=system.file("extdata","sample_info_vignette.csv",package="MetaCyto")
 sample_info=read.csv(fn,stringsAsFactors=F,check.names=F)
@@ -43,7 +43,7 @@ knitr::kable(head(sample_info, 6))
 ### Step 2: data preprocessing
 In this step, we performs transformation for both CyTOF and flow cytometry data using the "preprocessing.batch" function. The function also performs compensation for flow cytometry data. 
 
-Before running the "preprocessing.batch" function, we need to define the type of each fcs files (FCM or CyTOF). We also need to tell the function the transformation paramter b we wish to use for each fcs fils. Arcsinh transformation is used in the "preprocessing.batch" function: f(x) = asinh (b*x). We recommend b = 1/8 for CyTOF data and b = 1/150 for flow cytometry data. 
+Before running the "preprocessing.batch" function, we need to define the type of each fcs files (FCM or CyTOF). We also need to tell the function the transformation parameter b we wish to use for each fcs files. Arcsinh transformation is used in the "preprocessing.batch" function: f(x) = asinh (b*x). We recommend b = 1/8 for CyTOF data and b = 1/150 for flow cytometry data. 
 ```{r, fig.show='hold'}
 b=assay=rep(NA,nrow(fcs_info))
 # define transformation parameter for each fcs files
@@ -54,7 +54,7 @@ assay[grepl("CyTOF",fcs_info$study_id)]="CyTOF"
 assay[grepl("FCM",fcs_info$study_id)]="FCM"
 ```
 
-As you can see, the type of fcs file is identified by the "study_id" column in the fcs_info.csv file. So, it is benifitial to name your study_id informatively, not just use "study 1", "study 2".  
+As you can see, the type of fcs file is identified by the "study_id" column in the fcs_info.csv file. So, it is beneficial to name your study_id informatively, not just use "study 1", "study 2".  
 
 Now we can use the "preprocessing.batch" function to perform data pre-processing. The output is written to the "preprocess_output" folder. 
 
@@ -98,7 +98,7 @@ nameUpdator(oldNames=c("CD8B"), newNames=c("CD8"), files=files)
 
 ### step 3: Identification of common clusters across studies
 
-In MetaCyto, the clusters in cytometry data can be identified using two pipelines, clustering pipeline and searching pipeline. The two pipelines can be used seperately or be used together. In this example, we use both pipelines to identify novel and known cell populations. 
+In MetaCyto, the clusters in cytometry data can be identified using two pipelines, clustering pipeline and searching pipeline. The two pipelines can be used separately or be used together. In this example, we use both pipelines to identify novel and known cell populations. 
 
 We first use clustering pipeline to identify cell subsets in an un-supervised way. 
 
@@ -149,7 +149,7 @@ all_data=inner_join(fcs_stats,sample_info,by="fcs_files")
 ```
 
 
-To see how the fraction of cell subsets within the blood chance with age, we can use the glmAnalysis function. The follow code performs a regression model: fraction ~ SUBJECT_AGE + GENDER + study_id. Only the effect size of SUBJECT_AGE will be reported. If you are interesed in the effect of GENDER, put "GENDER" in "variableOfInterst" and "SUBJECT_AGE" in "otherVariables". You can add other control variables to "otherVariables" as well. If you want to see how the expression of CD28 change with age, you can change "parameter" argument from "fraction" to "CD28".  In this example, since only a few samples are included, the estimated effect size have large error bars. 
+To see how the fraction of cell subsets within the blood chance with age, we can use the glmAnalysis function. The follow code performs a regression model: fraction ~ SUBJECT_AGE + GENDER + study_id. Only the effect size of SUBJECT_AGE will be reported. If you are interested in the effect of GENDER, put "GENDER" in "variableOfInterst" and "SUBJECT_AGE" in "otherVariables". You can add other control variables to "otherVariables" as well. If you want to see how the expression of CD28 change with age, you can change "parameter" argument from "fraction" to "CD28".  In this example, since only a few samples are included, the estimated effect size have large error bars. 
 
 ```{r, fig.show='hold', message=FALSE, warning=FALSE , fig.height=4, fig.width=6}
 # See the fraction of what clusters are affected by age (while controlling for GENDER)
@@ -166,7 +166,7 @@ plotGA(GA)
 ```
 
 
-The metaAnalysis function allows us to see the detailed effect size estimated in each cytometry pannels. Here, let's look at how the proportion of "CD3+ CD4- CD8+ CCR7+" population change with age. 
+The metaAnalysis function allows us to see the detailed effect size estimated in each cytometry panels. Here, let's look at how the proportion of "CD3+ CD4- CD8+ CCR7+" population change with age. 
 ```{r, fig.show='hold', message=FALSE, warning=FALSE , fig.height=4, fig.width=6}
 # Subset the data to only include effect size of age on the proportion of "CD3+ CD4- CD8+ CCR7+"
 L="CD3+|CD4-|CD8+|CCR7+"
@@ -181,7 +181,7 @@ MA=metaAnalysis(value="value",variableOfInterst="SUBJECT_AGE",main=L,
 
 ## Example 2: Data collection for ImmPort datasets
 
-The cytometry datasets from ImmPort are associated with standardized metadata. Therefore, the fcs_info.csv and sample_info.csv can be genereated automatically. 
+The cytometry datasets from ImmPort are associated with standardized metadata. Therefore, the fcs_info.csv and sample_info.csv can be generated automatically. 
 
 We first generate fcs info using the "fcsInfoParser" function for SDY736 from ImmPort. 
 ```{r, fig.show='hold', results="hide", message=FALSE, warning=FALSE , fig.height=4, fig.width=6}
@@ -212,7 +212,7 @@ Then combine the fcs info for 2 studies
 fcs_info=rbind(fcs_info_SDY420,fcs_info_SDY736)
 ```
 
-For generating sample info, we can use the "sampleInfoParser" fundtion. We first generate sample info using for SDY736 from ImmPort. 
+For generating sample info, we can use the "sampleInfoParser" function. We first generate sample info using for SDY736 from ImmPort. 
 ```{r, fig.show='hold', results="hide", message=FALSE, warning=FALSE , fig.height=4, fig.width=6}
 # read meta-data of SDY736
 fn=system.file("extdata","SDY736/SDY736-DR19_Subject_2_Flow_cytometry_result.txt",package="MetaCyto")

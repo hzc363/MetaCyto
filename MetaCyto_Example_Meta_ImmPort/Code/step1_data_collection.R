@@ -2,7 +2,7 @@ library(dplyr)
 library(tidyr)
 library(MetaCyto)
 
-# This example is a light weighted example of how to use MetaCyto to analyze data downloaded from 
+# This example is a light weight example of how to use MetaCyto to analyze data downloaded from 
 # ImmPort. First, we collect fcs files from SDY736(flow cytometry data) and SDY420(CyTOF data). 
 
 ###################################################

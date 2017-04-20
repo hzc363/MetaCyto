@@ -4,7 +4,7 @@ library(MetaCyto)
 library(ggplot2)
 
 
-# This example is a light weighted example of how to use MetaCyto to  analyze cytometry data from one experiment. 
+# This example is a light weight example of how to use MetaCyto to  analyze cytometry data from one experiment. 
 
 ###################################################
 ########## Check working directory first ##########

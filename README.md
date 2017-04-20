@@ -1,15 +1,11 @@
 ## Introduction
 
-MetaCyto is an R package that performs meta-analysis of both flow cytometry and mass cytometry (CyTOF) data. It is able to jointly analyze cytometry data from different studies with diverse sets of markers. MetaCyto carries out the meta-analysis in 4 steps: data collection, data pre-processing, identifying common cell subsets across studies and statistical analysis. In addtion to perform meta-analysis, it can also be used to analyze cytometry data from single experiment.  
+MetaCyto is an R package that performs meta-analysis of both flow cytometry and mass cytometry (CyTOF) data. It is able to jointly analyze cytometry data from different studies with diverse sets of markers. MetaCyto carries out the meta-analysis in 4 steps: data collection, data pre-processing, identifying common cell subsets across studies and statistical analysis. In addition to perform meta-analysis, it can also be used to analyze cytometry data from single experiment.  
 
 
 ## Installation
 
-To install the MetaCyto package, please open the “MetaCyto.Rproj” file in “MetaCyto_Package” folder and click Build&Reload button in RStudio. You may get some errors due to missing dependencies. Install the missing packages from CRAN and Bioconductor should solve the problem. 
-
-## Vignette
-A vignette in the form of R Markdown (MetaCyto_Vignette.Rmd) is created to introduce users to MetaCyto.
-
+To install the MetaCyto package, please open the “MetaCyto.Rproj” file in “MetaCyto” folder and click Build&Reload button in RStudio. You may get some errors due to missing dependencies. Install the missing packages from CRAN and Bioconductor should solve the problem. Dependencies include: dplyr, flowCore, tidyr, fastcluster, ggplot2, metafor, cluster, FlowSOM.
 
 ## Examples
 
@@ -24,7 +20,8 @@ Three self-contained examples, including code and data, are created to show user
 
 * **MetaCyto_Example_One_Experiment:** This example shows how to use MetaCyto to analyze cytometry data from a single experiment. 
 
-
+## Vignette
+A vignette in the form of R Markdown (MetaCyto_Vignette.Rmd) is created to introduce users to MetaCyto.
 
 ## Reference
 
