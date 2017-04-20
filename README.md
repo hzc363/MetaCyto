@@ -16,7 +16,7 @@ Method 2: Please open the “MetaCyto.Rproj” file and click Build&Reload butto
 
 ## Examples
 
-The best way to learn how to use MetaCyto is through running examples. Three self-contained examples, including code and data, are created to show users how to use MetaCyto for different purposes. There are available in : https://github.com/hzc363/MetaCyto_Examples
+The best way to learn how to use MetaCyto is through running examples. Three self-contained examples, including code and data, are created to show users how to use MetaCyto for different purposes. They are available in : https://github.com/hzc363/MetaCyto_Examples
 
 
 * **MetaCyto_Example_Meta_Local:** This example shows how to perform meta-analysis using MetaCyto on your local datasets. 
