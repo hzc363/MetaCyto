@@ -12,7 +12,16 @@ install_github("hzc363/MetaCyto")
 ```
 Note for CITRUS users: If you have changed the compiler for R when installing CITRUS, please switch back to the default compiler.
 
-**Method 2:** Please open the “MetaCyto.Rproj” file and click Build&Reload button in RStudio. You may get some errors due to missing dependencies. Install the missing packages from CRAN and Bioconductor should solve the problem. Dependencies include: dplyr, flowCore, tidyr, fastcluster, ggplot2, metafor, cluster, FlowSOM. 
+**Method 2:** Please install dependencies using the following code:
+
+```
+install.packages(c("dplyr", "tidyr", "fastcluster", "ggplot2", "metafor", "cluster"))
+
+source("https://bioconductor.org/biocLite.R")
+biocLite("flowCore")
+biocLite("FlowSOM")
+```
+After installing all the dependencies, please open the “MetaCyto.Rproj” file and click Build&Reload button in RStudio. 
 
 Note for CITRUS users: No need to switch back to the default compiler using this method.
 
