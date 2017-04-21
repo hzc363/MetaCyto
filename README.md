@@ -21,7 +21,7 @@ source("https://bioconductor.org/biocLite.R")
 biocLite("flowCore")
 biocLite("FlowSOM")
 ```
-After installing all the dependencies, please open the “MetaCyto.Rproj” file and click Build&Reload button in RStudio. 
+After installing all the dependencies, please download the whole package repository, open the “MetaCyto.Rproj” file and click Build&Reload button in RStudio. 
 
 Note for CITRUS users: No need to switch back to the default compiler using this method.
 
