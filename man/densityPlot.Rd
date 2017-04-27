@@ -2,14 +2,14 @@
 % Please edit documentation in R/densityPlot.R
 \name{densityPlot}
 \alias{densityPlot}
-\title{draw density plot for each cluster.}
+\title{draw density plot for each cell cluster.}
 \usage{
 densityPlot(fcsFrame, clusterList, cutoff, markerToPlot = NULL)
 }
 \arguments{
 \item{fcsFrame}{A flow Frame object returned from preprocessing function.}
 
-\item{clusterList}{a list, each element should be a vector containing the IDs of all cells that are belong to a cluster}
+\item{clusterList}{a list, each element should be a vector containing the IDs of all cells that belong to a cluster}
 
 \item{cutoff}{a vector of cutoff values to bisect the distribution of each
 marker. The names of the vector should be the same as the marker names.}
@@ -20,7 +20,10 @@ marker. The names of the vector should be the same as the marker names.}
 NULL. The plot will show up automatically.
 }
 \description{
-A function that draw density plot for each cluster.
+A function that draws density plot for each cell cluster.
+}
+\details{
+The plot can be very large, we suggest plotting it into a pdf jpeg file directly.
 }
 \examples{
 # Find fcs files

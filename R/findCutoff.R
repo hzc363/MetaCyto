@@ -1,6 +1,6 @@
 #' find cutoff for a 1D distribution
 #'
-#' A function that find cutoff for a 1D distribution.
+#' A function that finds cutoff for a 1D distribution.
 #' @param x a vector of values.
 #' @param returnSil Logic, used to specify if the max average silhouette is returned
 #' @param useBL Logic, used to specify if outliers should be ignored

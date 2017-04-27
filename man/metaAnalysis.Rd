@@ -2,32 +2,41 @@
 % Please edit documentation in R/metaAnalysis.R
 \name{metaAnalysis}
 \alias{metaAnalysis}
-\title{perform meta-analysis}
+\title{performs meta-analysis}
 \usage{
 metaAnalysis(value, variableOfInterst, otherVariables, studyID, data, CILevel,
   main, ifScale = c(TRUE, FALSE), cex = 1)
 }
 \arguments{
-\item{value}{a string to specify the column name of the dependent variable (y)}
+\item{value}{a string to specify the column name of the dependent variable
+(y)}
 
-\item{variableOfInterst}{a string to specify the column name of the independent variable of interest (x1)}
+\item{variableOfInterst}{a string to specify the column name of the
+independent variable of interest (x1)}
 
-\item{otherVariables}{a string vector to specify the column names of independent variables included in the regression model other than the variableOfInterst.}
+\item{otherVariables}{a string vector to specify the column names of
+independent variables included in the regression model other than the
+variableOfInterst.}
 
 \item{studyID}{a string to specify the column name of study ID.}
 
 \item{data}{a data frame containing the data}
 
-\item{CILevel}{a number between 0 to 1, used to specify the confidence interval to be plotted in the forrest plot.}
+\item{CILevel}{a number between 0 to 1, used to specify the confidence
+interval to be plotted in the forest plot.}
 
-\item{main}{a string to specify the title of the forrest plot}
+\item{main}{a string to specify the title of the forest plot}
 
-\item{ifScale}{a vector of two logic values, specifing if the dependent variable and the variableOfInterst should be scaled when calculating the effect size.}
+\item{ifScale}{a vector of two logic values, specifying if the dependent
+variable and the variableOfInterst should be scaled when calculating the
+effect size.}
 
-\item{cex}{a number specifying the amount by which plotting text and symbols should be scaled relative to the default in the forrest plot.}
+\item{cex}{a number specifying the amount by which plotting text and symbols
+should be scaled relative to the default in the forest plot.}
 }
 \value{
-returns data frame describing the effect size of variableOfInterst on value in each individule studies, as well as the over all effect size.
+returns data frame describing the effect size of variableOfInterst on
+  value in each individual studies, as well as the over all effect size.
 }
 \description{
 A function that performs meta-analysis

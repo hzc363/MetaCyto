@@ -9,7 +9,7 @@ flowHC(fcsFrame, excludeClusterParameters, minimumClusterSizePercent = 0.05)
 \arguments{
 \item{fcsFrame}{a flow frame.}
 
-\item{excludeClusterParameters}{A vector specifiying the name of markers not to be used for clustering.}
+\item{excludeClusterParameters}{A vector specifying the name of markers not to be used for clustering.}
 
 \item{minimumClusterSizePercent}{a number between 0 and 1, used to specify the minimum size of a cluster relative to all events.}
 }

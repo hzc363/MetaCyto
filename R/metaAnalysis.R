@@ -1,16 +1,25 @@
-#' perform meta-analysis
+#' performs meta-analysis
 #'
 #' A function that performs meta-analysis
-#' @param value a string to specify the column name of the dependent variable (y)
-#' @param variableOfInterst a string to specify the column name of the independent variable of interest (x1)
-#' @param otherVariables a string vector to specify the column names of independent variables included in the regression model other than the variableOfInterst.
+#' @param value a string to specify the column name of the dependent variable
+#'   (y)
+#' @param variableOfInterst a string to specify the column name of the
+#'   independent variable of interest (x1)
+#' @param otherVariables a string vector to specify the column names of
+#'   independent variables included in the regression model other than the
+#'   variableOfInterst.
 #' @param studyID a string to specify the column name of study ID.
 #' @param data a data frame containing the data
-#' @param CILevel a number between 0 to 1, used to specify the confidence interval to be plotted in the forrest plot.
-#' @param main a string to specify the title of the forrest plot
-#' @param ifScale a vector of two logic values, specifing if the dependent variable and the variableOfInterst should be scaled when calculating the effect size.
-#' @param cex a number specifying the amount by which plotting text and symbols should be scaled relative to the default in the forrest plot.
-#' @return returns data frame describing the effect size of variableOfInterst on value in each individule studies, as well as the over all effect size.
+#' @param CILevel a number between 0 to 1, used to specify the confidence
+#'   interval to be plotted in the forest plot.
+#' @param main a string to specify the title of the forest plot
+#' @param ifScale a vector of two logic values, specifying if the dependent
+#'   variable and the variableOfInterst should be scaled when calculating the
+#'   effect size.
+#' @param cex a number specifying the amount by which plotting text and symbols
+#'   should be scaled relative to the default in the forest plot.
+#' @return returns data frame describing the effect size of variableOfInterst on
+#'   value in each individual studies, as well as the over all effect size.
 #' @examples
 #' #collect all summary statistics
 #' fn=system.file("extdata","",package="MetaCyto")

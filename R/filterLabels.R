@@ -2,8 +2,8 @@
 #'
 #' A function that filter cluster labels.
 #' @param labels a vector containing labels for cell clusters
-#' @param minPlus an integer, used to specify the minmum number of "+" a label should contain.
-#' @param minMarker an integer, used to specify the minmum number of markers a label should contain.
+#' @param minPlus an integer, used to specify the minimum  number of "+" a label should contain.
+#' @param minMarker an integer, used to specify the minimum  number of markers a label should contain.
 #' @param maxMarker an integer, used to specify the max number of markers a label should contain.
 #' @return returns a vector of labels that pass through the filter.
 #' @examples

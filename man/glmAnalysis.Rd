@@ -13,7 +13,7 @@ glmAnalysis(value = "value", variableOfInterst = "SUBJECT_AGE", parameter,
 
 \item{variableOfInterst}{a string to specify the column name of the independent variable of interest (x1)}
 
-\item{parameter}{a string to specify what summary statistics is the dependent variale.}
+\item{parameter}{a string to specify what summary statistics is the dependent variable.}
 
 \item{otherVariables}{a string vector to specify the column names of independent variables included in the regression model other than the variableOfInterst.}
 
@@ -23,18 +23,18 @@ glmAnalysis(value = "value", variableOfInterst = "SUBJECT_AGE", parameter,
 
 \item{data}{a data frame containing the data. Usually a long form data frame returned by collectData.}
 
-\item{CILevel}{a number between 0 to 1, used to specify the confidence interval to be plotted in the forrest plot.}
+\item{CILevel}{a number between 0 to 1, used to specify the confidence interval to be plotted in the forest plot.}
 
-\item{ifScale}{a vector of two logic values, specifing if the dependent variable and the variableOfInterst should be scaled when calculating the effect size.}
+\item{ifScale}{a vector of two logic values, specifying if the dependent variable and the variableOfInterst should be scaled when calculating the effect size.}
 }
 \value{
 returns data frame describing the overall effect size of variableOfInterst on value.  May be slightly different from the value reported from the function metaAnalysis.
 }
 \description{
-A function that perform generalized linear model analysis to estimate effect size.
+A function that performs generalized linear model analysis to estimate effect size.
 }
 \details{
-The function use the model value ~ variableOfInterst + otherVariables + studyID to estimate the effect size. Use it as a screening tool. Use metaAnalysis function to analyze an  effect size in more detail.
+The function use the model value ~ variableOfInterst + otherVariables + studyID to estimate the effect size. Use it as a screening tool. Use metaAnalysis function to analyze an effect size in more detail.
 }
 \examples{
 #collect all summary statistics

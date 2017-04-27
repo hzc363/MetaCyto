@@ -1,12 +1,12 @@
 #' preprocess fcs files from a single experiment
 #'
-#' A function that preprocess fcs files from a single experiment.
+#' A function that preprocesses fcs files from a single experiment.
 #' @param fcsFiles A vector specifying the location of all fcs files.
 #' @param assay Either "FCM" or "CyTOF" to indicate the type of cytometry data.
-#' @param b a positive number used to specify the arcsinh transformtion. f(x) = asinh (b*x) where x is the original value and f(x) is the value after transformation. The suggested value is 1/150 for flow cytometry (FCM) data and 1/8 for CyTOF data.
+#' @param b a positive number used to specify the arcsinh transformation. f(x) = asinh (b*x) where x is the original value and f(x) is the value after transformation. The suggested value is 1/150 for flow cytometry (FCM) data and 1/8 for CyTOF data.
 #' @param fileSampleSize An integer specifying the number of events sampled from each fcs file. If NULL, all the events will be pre-processed and wrote out to the new fcs files.
-#' @param excludeTransformParameters A vector specifiying the name of parameters not to be transformed (left at linear scale).
-#' @return Returns a flowFrame object containing the preprocessed cytometry data. Cells from different fcs files are combined into one flow frame. A new paramter, sample_id, is introduced to indicate the origin of each cell.
+#' @param excludeTransformParameters A vector specifying the name of parameters not to be transformed (left at linear scale).
+#' @return Returns a flowFrame object containing the preprocessed cytometry data. Cells from different fcs files are combined into one flow frame. A new parameter, sample_id, is introduced to indicate the origin of each cell.
 #' @examples
 #' # Find fcs files
 #' files=system.file("extdata","SDY420/ResultFiles/CyTOF_result",package="MetaCyto")

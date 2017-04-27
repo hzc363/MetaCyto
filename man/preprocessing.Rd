@@ -13,17 +13,17 @@ preprocessing(fcsFiles, assay = c("FCM", "CyTOF"), b = 1/200,
 
 \item{assay}{Either "FCM" or "CyTOF" to indicate the type of cytometry data.}
 
-\item{b}{a positive number used to specify the arcsinh transformtion. f(x) = asinh (b*x) where x is the original value and f(x) is the value after transformation. The suggested value is 1/150 for flow cytometry (FCM) data and 1/8 for CyTOF data.}
+\item{b}{a positive number used to specify the arcsinh transformation. f(x) = asinh (b*x) where x is the original value and f(x) is the value after transformation. The suggested value is 1/150 for flow cytometry (FCM) data and 1/8 for CyTOF data.}
 
 \item{fileSampleSize}{An integer specifying the number of events sampled from each fcs file. If NULL, all the events will be pre-processed and wrote out to the new fcs files.}
 
-\item{excludeTransformParameters}{A vector specifiying the name of parameters not to be transformed (left at linear scale).}
+\item{excludeTransformParameters}{A vector specifying the name of parameters not to be transformed (left at linear scale).}
 }
 \value{
-Returns a flowFrame object containing the preprocessed cytometry data. Cells from different fcs files are combined into one flow frame. A new paramter, sample_id, is introduced to indicate the origin of each cell.
+Returns a flowFrame object containing the preprocessed cytometry data. Cells from different fcs files are combined into one flow frame. A new parameter, sample_id, is introduced to indicate the origin of each cell.
 }
 \description{
-A function that preprocess fcs files from a single experiment.
+A function that preprocesses fcs files from a single experiment.
 }
 \examples{
 # Find fcs files

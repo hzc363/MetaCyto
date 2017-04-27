@@ -7,14 +7,19 @@
 clusterStats(fcsFrame, clusterList, fcsNames)
 }
 \arguments{
-\item{fcsFrame}{A flow Frame object returned from preprocessing function. Must contain a parameter called "sample_id" that specifiy the origin of each cell using integer IDs.}
+\item{fcsFrame}{A flow Frame object returned from preprocessing function.
+Must contain a parameter called "sample_id" that specify the origin of
+each cell using integer IDs.}
 
-\item{clusterList}{a list, each element should be a vector containing the IDs of all cells that are belong to a cluster.}
+\item{clusterList}{a list, each element should be a vector containing the IDs
+of all cells that belong to a cluster.}
 
-\item{fcsNames}{a vector of fcs file names. Each element corresponds to an interger ID in the "sample_id" parameter in fcsFrame.}
+\item{fcsNames}{a vector of fcs file names. Each element corresponds to an
+integer ID in the "sample_id" parameter in fcsFrame.}
 }
 \value{
-Returns a data frame, with rows correspond to each fcs file, columns correspond to markers or fractions.
+Returns a data frame, rows correspond to each fcs file, columns
+  correspond to MFI of markers or fractions.
 }
 \description{
 A function that derives summary statistics for clusters.

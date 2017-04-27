@@ -3,7 +3,7 @@
 #' A function that finds markers in a flow frame object.
 #' @param fcsFrame a flow frame object.
 #' @return returns a vector of markers.
-#' @details If the antibody name is available, the antibody name will be returned, otherwise the channel name will be returned.
+#' @details If the antibody name is available, the antibody name will be returned, otherwise, the channel name will be returned.
 #' @examples
 #' library(flowCore)
 #' files=system.file("extdata","SDY420/ResultFiles/CyTOF_result",package="MetaCyto")

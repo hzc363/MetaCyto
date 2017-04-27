@@ -19,7 +19,7 @@ findCutoff(x, returnSil = FALSE, useBL = TRUE, minX = 0)
 If returnSil=F, returns a single cutoff value. Otherwise, returns a list containing the cutoff value and the max average silhouette
 }
 \description{
-A function that find cutoff for a 1D distribution.
+A function that finds cutoff for a 1D distribution.
 }
 \examples{
 x=c(rnorm(1000),rnorm(1000,5))

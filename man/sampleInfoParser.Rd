@@ -2,7 +2,7 @@
 % Please edit documentation in R/sampleInfoParser.R
 \name{sampleInfoParser}
 \alias{sampleInfoParser}
-\title{collect sample information for fcs files in  a study from ImmPort.}
+\title{collect sample information for fcs files in a study from ImmPort.}
 \usage{
 sampleInfoParser(metaData = selected_data, studyFolder, fcsCol = "ZBXFN",
   assay = "FCM", attrCol)
@@ -10,9 +10,9 @@ sampleInfoParser(metaData = selected_data, studyFolder, fcsCol = "ZBXFN",
 \arguments{
 \item{metaData}{a data frame. Must contain a column listing the names of fcs files included in the study.}
 
-\item{studyFolder}{Path of directory containing all the files of a study from ImmPort.}
+\item{studyFolder}{Path of the directory containing all the files of a study from ImmPort.}
 
-\item{fcsCol}{a string specifiying the name of the column in metaData that lists fcs files included in the study.}
+\item{fcsCol}{a string specifying the name of the column in metaData that lists fcs files included in the study.}
 
 \item{assay}{Either "FCM" or "CyTOF" to indicate the type of cytometry data.}
 
@@ -22,7 +22,7 @@ sampleInfoParser(metaData = selected_data, studyFolder, fcsCol = "ZBXFN",
 A dataframe containing sample information.
 }
 \description{
-A function that collect sample information for fcs files in  a study from ImmPort..
+A function that collects sample information for fcs files in a study from ImmPort.
 }
 \examples{
 fn=system.file("extdata","SDY736/SDY736-DR19_Subject_2_Flow_cytometry_result.txt",package="MetaCyto")

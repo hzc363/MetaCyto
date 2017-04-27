@@ -9,9 +9,9 @@ filterLabels(labels, minPlus, minMarker, maxMarker)
 \arguments{
 \item{labels}{a vector containing labels for cell clusters}
 
-\item{minPlus}{an integer, used to specify the minmum number of "+" a label should contain.}
+\item{minPlus}{an integer, used to specify the minimum  number of "+" a label should contain.}
 
-\item{minMarker}{an integer, used to specify the minmum number of markers a label should contain.}
+\item{minMarker}{an integer, used to specify the minimum  number of markers a label should contain.}
 
 \item{maxMarker}{an integer, used to specify the max number of markers a label should contain.}
 }

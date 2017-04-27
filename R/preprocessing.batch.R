@@ -1,14 +1,32 @@
 #' preprocessing fcs files from different studies in batch.
 #'
-#' It transform and compensate for the raw fcs files and write out the processed data to a new set of fcs files.
-#' @param inputMeta A dataframe containing 2 columns: a column called "fcs_files" that contains the location (relative to the working directory) of each fcs file on the hard drive and a column called "study_id" that specify what study each fcs file belongs to.
-#' @param assay A vector, each element is either "FCM" or "CyTOF" to indicate the type of cytometry data.
-#' @param outpath a string indicating the directory the pre-processed fcs files will be wrote to.
-#' @param b a positive number used to specify the arcsinh transformtion. f(x) = asinh (b*x) where x is the original value and f(x) is the value after transformation. The suggested value is 1/150 for flow cytometry (FCM) data and 1/8 for CyTOF data.
-#' @param fileSampleSize An integer specifying the number of events sampled from each fcs file. If NULL, all the events will be pre-processed and wrote out to the new fcs files.
-#' @param excludeTransformParameters A vector specifiying the name of parameters not to be transformed (left at linear scale).
-#' @return Does not return anything. The output is wrote to the directory specified by the "outpath".
-#' @details The function takes a data frame which specify the location of the fcs files and the panels the fcs files belong to. It transform the cytometry data using the arcsinh transformtion. For flow cytometry data, it compensate the data using the compensation matrix supplied in the fcs file. the preprocessed fcs files and a table called "processed_sample_summary.csv" will be wrote out to outpath as well.
+#' It transform and compensate for the raw fcs files and write out the processed
+#' data to a new set of fcs files.
+#' @param inputMeta A data frame containing 2 columns: a column called
+#'   "fcs_files" that contains the location (relative to the working directory)
+#'   of each fcs file on the hard drive and a column called "study_id" that
+#'   specify what study each fcs file belongs to.
+#' @param assay A vector, each element is either "FCM" or "CyTOF" to indicate
+#'   the type of cytometry data.
+#' @param outpath a string indicating the directory the pre-processed fcs files
+#'   will be written to.
+#' @param b a positive number used to specify the arcsinh transformation. f(x) =
+#'   asinh (b*x) where x is the original value and f(x) is the value after
+#'   transformation. The suggested value is 1/150 for flow cytometry (FCM) data
+#'   and 1/8 for CyTOF data.
+#' @param fileSampleSize An integer specifying the number of events sampled from
+#'   each fcs file. If NULL, all the events will be pre-processed and wrote out
+#'   to the new fcs files.
+#' @param excludeTransformParameters A vector specifying the name of parameters
+#'   not to be transformed (left at linear scale).
+#' @return Does not return anything. The output is written to the directory
+#'   specified by the "outpath".
+#' @details The function takes a data frame which specifies the location of the
+#'   fcs files and the panels the fcs files belong to. It transform the
+#'   cytometry data using the arcsinh transformation. For flow cytometry data, it
+#'   compensate the data using the compensation matrix supplied in the fcs file.
+#'   the preprocessed fcs files and a table called
+#'   "processed_sample_summary.csv" will be wrote out to outpath as well.
 #' @examples
 #' #get meta-data
 #' fn=system.file("extdata","fcs_info.csv",package="MetaCyto")

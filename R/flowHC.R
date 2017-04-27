@@ -2,7 +2,7 @@
 #'
 #' A function that cluster cytometry data using hierarchical clustering.
 #' @param fcsFrame a flow frame.
-#' @param excludeClusterParameters A vector specifiying the name of markers not to be used for clustering.
+#' @param excludeClusterParameters A vector specifying the name of markers not to be used for clustering.
 #' @param minimumClusterSizePercent a number between 0 and 1, used to specify the minimum size of a cluster relative to all events.
 #' @return a list of clusters. Each cluster contains the ID of all cells that belong to the cluster.
 #' @examples

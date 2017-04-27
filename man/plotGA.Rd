@@ -9,13 +9,13 @@ plotGA(GA, size = 16)
 \arguments{
 \item{GA}{a data frame returned from the function glmAnalysis.}
 
-\item{size}{font size of texts in the plot}
+\item{size}{the font size of texts in the plot}
 }
 \value{
 The plot will show up automatically.
 }
 \description{
-A function that plot the result from the glmAnalysis function.
+A function that plots the result from the glmAnalysis function.
 }
 \examples{
 #collect all summary statistics

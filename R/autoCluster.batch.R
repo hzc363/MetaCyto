@@ -1,11 +1,26 @@
 #' Cluster the preprocessed fcs files from different studies in batch
 #'
-#' A function that clusters the pre-processed fcs files from different studies in batch.
-#' @param preprocessOutputFolder Directory where the preprocessed results are stored. Should be the same with the outpath argument in preprocessing.batch function.
-#' @param excludeClusterParameters A vector specifiying the name of markers not to be used for clustering and labeling. Typical example includes: Time, cell_length.
-#' @param labelQuantile A number between 0.5 and 1. Used to specify the minimum percent of cells in a cluster required to be larger or smaller than the cutoff value for labeling.
-#' @param clusterFunction The name of unsuperviesed clustering function the user wish to use for clustering the cells. The default is "flowSOM.MC". The first argument of the function must take a flow frame, the second argument of the function must take a vector of excludeClusterParameters. The function must returns a list of clusters containing cell IDs. flowSOM.MC and flowHC are implemented in the package. For other methods, please make your own wrapper functions.
-#' @param minPercent a number between 0 and 0.5. Used to specify the minimum percent of cells in positive and negative region after bisection. Keep it small to avoid bisecting uni-mode distributions.
+#' A function that clusters the pre-processed fcs files from different studies
+#' in batch.
+#' @param preprocessOutputFolder Directory where the preprocessed results are
+#'   stored. Should be the same with the outpath argument in preprocessing.batch
+#'   function.
+#' @param excludeClusterParameters A vector specifying the name of markers not
+#'   to be used for clustering and labeling. Typical example includes: Time,
+#'   cell_length.
+#' @param labelQuantile A number between 0.5 and 1. Used to specify the minimum
+#'   percent of cells in a cluster required to express higher or lower level of a marker than the
+#'   cutoff value for labeling.
+#' @param clusterFunction The name of unsupervised clustering function the user
+#'   wish to use for clustering the cells. The default is "flowSOM.MC". The
+#'   first argument of the function must take a flow frame, the second argument
+#'   of the function must take a vector of excludeClusterParameters. The
+#'   function must return a list of clusters containing cell IDs. flowSOM.MC
+#'   and flowHC are implemented in the package. For other methods, please make
+#'   your own wrapper functions.
+#' @param minPercent a number between 0 and 0.5. Used to specify the minimum
+#'   percent of cells in the positive and negative region after bisection. Keep it
+#'   small to avoid bisecting uni-mode distributions.
 #' @param ... pass arguments to labelCluster and clusterFunction
 #' @return a vector of labels identified in the cytometry data.
 #' @examples

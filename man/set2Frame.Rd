@@ -10,10 +10,10 @@ set2Frame(flowSet)
 \item{flowSet}{a flow set object}
 }
 \value{
-Returns a flowFrame object. All cells from flow set are combined into one flow frame. A new paramter, sample_id, is introduced to indicate the origin of each cell.
+Returns a flowFrame object. All cells from flow set are combined into one flow frame. A new parameter, sample_id, is introduced to indicate the origin of each cell.
 }
 \description{
-A function that combine cells in a flow set into a flow frame.
+A function that combines cells in a flow set into a flow frame.
 }
 \examples{
 library(flowCore)

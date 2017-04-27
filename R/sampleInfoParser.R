@@ -1,9 +1,9 @@
-#' collect sample information for fcs files in  a study from ImmPort.
+#' collect sample information for fcs files in a study from ImmPort.
 #'
-#' A function that collect sample information for fcs files in  a study from ImmPort..
+#' A function that collects sample information for fcs files in a study from ImmPort.
 #' @param metaData a data frame. Must contain a column listing the names of fcs files included in the study.
-#' @param studyFolder Path of directory containing all the files of a study from ImmPort.
-#' @param fcsCol a string specifiying the name of the column in metaData that lists fcs files included in the study.
+#' @param studyFolder Path of the directory containing all the files of a study from ImmPort.
+#' @param fcsCol a string specifying the name of the column in metaData that lists fcs files included in the study.
 #' @param assay Either "FCM" or "CyTOF" to indicate the type of cytometry data.
 #' @param attrCol a vector of column names. Used to specify the information about each cytometry the user wish to include in the analysis.
 #' @return A dataframe containing sample information.

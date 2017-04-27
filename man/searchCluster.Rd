@@ -10,25 +10,25 @@ searchCluster(fcsFrame, clusterLabel, cutoff = NULL, rmNull = TRUE,
 \arguments{
 \item{fcsFrame}{A flowFrame object.}
 
-\item{clusterLabel}{a vector of labels, such as "CD3+|CD4+|CD8-". Each marker is followed by "+" or "-" and are sperated by "|".}
+\item{clusterLabel}{a vector of labels, such as "CD3+|CD4+|CD8-". Each marker is followed by "+" or "-" and are separated by "|".}
 
 \item{cutoff}{a vector of cutoff values to bisect the distribution of each
 marker. The names of the vector should be the same as the marker names. If
 NULL, the cutoff value will be determined automatically.}
 
-\item{rmNull}{True or False. Used to specifiy if a cluster with 0 cells
+\item{rmNull}{True or False. Used to specify if a cluster with 0 cells
 should be returned or not.}
 
-\item{preGate}{A character string specifiying the gated used to clean up the data. For example, use "PI-" to only analyze live cell. Or use "Cell_Length+" to only analyze non-debris.}
+\item{preGate}{A character string specifying the gated used to clean up the data. For example, use "PI-" to only analyze live cell. Or use "Cell_Length+" to only analyze non-debris.}
 }
 \value{
 Returns a list with two components: 1) clusterList is a list in which
   each element of the list is a vector containing the ID of all cells in a
-  cluster. The names corresponds to the labels specified in clusterLabel. 2)
+  cluster. The names correspond to the labels specified in clusterLabel. 2)
   cutoff, contains a vector of cutoff values used to bisect each marker.
 }
 \description{
-A function that search for clusters using pre-defined labels (cell definitions).
+A function that searches for clusters using pre-defined labels (cell definitions).
 }
 \examples{
 # Find fcs files

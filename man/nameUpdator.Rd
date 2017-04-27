@@ -11,13 +11,13 @@ nameUpdator(oldNames, newNames, files)
 
 \item{newNames}{a vector of marker names you wish each oldNames to be changed to.}
 
-\item{files}{a list of "processed_sample_summary.csv" files in which the name change will ocurre.}
+\item{files}{a list of "processed_sample_summary.csv" files output by the preprocessing.batch function, in which the name change will occur.}
 }
 \value{
 Null
 }
 \description{
-A function that update marker names in the files output by the preprocessing.batch function.
+A function that updates marker names in the files output by the preprocessing.batch function.
 }
 \examples{
 #get meta-data

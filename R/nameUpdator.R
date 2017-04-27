@@ -1,9 +1,9 @@
 #' Used to update marker names
 #'
-#' A function that update marker names in the files output by the preprocessing.batch function.
+#' A function that updates marker names in the files output by the preprocessing.batch function.
 #' @param oldNames a vector of marker names you wish to change
 #' @param newNames a vector of marker names you wish each oldNames to be changed to.
-#' @param files a list of "processed_sample_summary.csv" files in which the name change will ocurre.
+#' @param files a list of "processed_sample_summary.csv" files output by the preprocessing.batch function, in which the name change will occur.
 #' @examples
 #' #get meta-data
 #' fn=system.file("extdata","fcs_info.csv",package="MetaCyto")

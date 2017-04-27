@@ -2,20 +2,26 @@
 % Please edit documentation in R/labelSummary.R
 \name{labelSummary}
 \alias{labelSummary}
-\title{make a summary for the labels (cell populations) identified in different cytometry panels.}
+\title{make a summary for the labels (cell populations) identified in different
+cytometry panels.}
 \usage{
 labelSummary(allData, minStudy = 2)
 }
 \arguments{
-\item{allData}{A table containing the summary statistics of cell populations. Often is the output of the function "collectData".}
+\item{allData}{A table containing the summary statistics of cell populations.
+Often is the output of the function "collectData".}
 
-\item{minStudy}{Minium number of cytometry panels a label should apear in. Set it >1 to find cel populations identified in more than 1 cytometry panel for meta-analysis.}
+\item{minStudy}{Minimum number of cytometry panels a label should appear in.
+Set it >1 to find cell populations identified in more than 1 cytometry panel
+for meta-analysis.}
 }
 \value{
-A data frame summarizing the labels ifentified in different cytometry panels.
+A data frame summarizing the labels identified in different cytometry
+  panels.
 }
 \description{
-A function that summarize the labels (cell populations) identified in different cytometry panels.
+A function that summarizes the labels (cell populations) identified in
+different cytometry panels.
 }
 \examples{
 fn=system.file("extdata","",package="MetaCyto")

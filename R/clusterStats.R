@@ -1,10 +1,15 @@
 #' Derive summary statistics for clusters
 #'
 #' A function that derives summary statistics for clusters.
-#' @param fcsFrame A flow Frame object returned from preprocessing function. Must contain a parameter called "sample_id" that specifiy the origin of each cell using integer IDs.
-#' @param clusterList a list, each element should be a vector containing the IDs of all cells that are belong to a cluster.
-#' @param fcsNames a vector of fcs file names. Each element corresponds to an interger ID in the "sample_id" parameter in fcsFrame.
-#' @return Returns a data frame, with rows correspond to each fcs file, columns correspond to markers or fractions.
+#' @param fcsFrame A flow Frame object returned from preprocessing function.
+#'   Must contain a parameter called "sample_id" that specify the origin of
+#'   each cell using integer IDs.
+#' @param clusterList a list, each element should be a vector containing the IDs
+#'   of all cells that belong to a cluster.
+#' @param fcsNames a vector of fcs file names. Each element corresponds to an
+#'   integer ID in the "sample_id" parameter in fcsFrame.
+#' @return Returns a data frame, rows correspond to each fcs file, columns
+#'   correspond to MFI of markers or fractions.
 #' @examples
 #' # Find fcs files
 #' files=system.file("extdata","SDY420/ResultFiles/CyTOF_result",package="MetaCyto")

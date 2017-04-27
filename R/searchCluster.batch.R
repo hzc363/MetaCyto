@@ -1,12 +1,12 @@
 #' search for clusters using pre-defined labels in cytometry data from different studies in batch
 #'
-#' A function that search for clusters using pre-defined labels in cytometry data from different studies in batch.
+#' A function that searches for clusters using pre-defined labels in cytometry data from different studies in batch.
 #' @param preprocessOutputFolder directory where the pre-processed results are stored.
-#' @param outpath a string indicating the directory the results should be write to.
-#' @param clusterLabel a vector containing labels, such as "CD3+|CD4+|CD8-"
-#' @param ifPlot True or False. Used to specifiy if a the density plot for each cluster should be plotted
+#' @param outpath a string indicating the directory the results should be written to.
+#' @param clusterLabel a vector containing labels, such as c("CD3+|CD4+|CD8-")
+#' @param ifPlot True or False. Used to specify if a the density plot for each cluster should be plotted
 #' @return Results will be written to the outpath folder
-#' @details The function write out the summary statistics for each cluster. A seperate directory will be created for each study.
+#' @details The function writes out the summary statistics for each cluster. A separate directory will be created for each study.
 #' @examples
 #' #get meta-data
 #' fn=system.file("extdata","fcs_info.csv",package="MetaCyto")

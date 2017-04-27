@@ -9,11 +9,11 @@ flowSOM.MC(fcsFrame, excludeClusterParameters, grid = 10, k = 40)
 \arguments{
 \item{fcsFrame}{a flow frame.}
 
-\item{excludeClusterParameters}{A vector specifiying the name of markers not to be used for clustering.}
+\item{excludeClusterParameters}{A vector specifying the name of markers not to be used for clustering.}
 
-\item{grid}{An interger, defines the width and hight of SIM}
+\item{grid}{An integer, defines the width and hight of SOM}
 
-\item{k}{An interger, defines the number of clusters to be identified.}
+\item{k}{An integer, defines the number of clusters to be identified by flowSOM.}
 }
 \value{
 a list of clusters. Each cluster contains the ID of all cells that belong to the cluster.

@@ -16,7 +16,7 @@ returns a vector of markers.
 A function that finds markers in a flow frame object.
 }
 \details{
-If the antibody name is available, the antibody name will be returned, otherwise the channel name will be returned.
+If the antibody name is available, the antibody name will be returned, otherwise, the channel name will be returned.
 }
 \examples{
 library(flowCore)

@@ -1,11 +1,17 @@
 #' organize fcs files in a study from ImmPort into panels
 #'
 #' A function that organizes fcs files in a study from ImmPort into panels.
-#' @param metaData a data frame. Must contain a column listing the names of fcs files included in the study.
-#' @param studyFolder Path of directory containing all the files of a study from ImmPort.
-#' @param fcsCol a string specifiying the name of the column in metaData that lists fcs files included in the study.
+#' @param metaData a data frame. Must contain a column listing the names of fcs
+#'   files included in the study.
+#' @param studyFolder Path of the directory containing all the files of a study
+#'   from ImmPort.
+#' @param fcsCol a string specifying the name of the column in metaData that
+#'   lists fcs files included in the study.
 #' @param assay Either "FCM" or "CyTOF" to indicate the type of cytometry data.
-#' @return A dataframe containing 2 columns: a column called "fcs_files" that contains the location (relative to the working directory) of each fcs file on the hard drive and a column called "study_id" that specify what study each fcs file belongs to.
+#' @return A dataframe containing 2 columns: a column called "fcs_files" that
+#'   contains the location (relative to the working directory) of each fcs file
+#'   on the hard drive and a column called "study_id" that specify what study
+#'   each fcs file belongs to.
 #' @examples
 #' fn=system.file("extdata","SDY736/SDY736-DR19_Subject_2_Flow_cytometry_result.txt",package="MetaCyto")
 #' meta_data=read.table(fn,sep='\t',header=TRUE)
