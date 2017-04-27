@@ -5,14 +5,7 @@ MetaCyto is an R package that performs meta-analysis of both flow cytometry and 
 
 ## Installation
 
-**Method 1:** To install the MetaCyto package, please run the following code:
-```
-library("devtools")
-install_github("hzc363/MetaCyto")
-```
-Note for CITRUS users: If you have changed the compiler for R when installing CITRUS, please switch back to the default compiler.
-
-**Method 2:** Please install dependencies using the following code:
+**Method 1:** Please install dependencies using the following code:
 
 ```
 install.packages(c("dplyr", "tidyr", "fastcluster", "ggplot2", "metafor", "cluster"))
@@ -24,6 +17,16 @@ biocLite("FlowSOM")
 After installing all the dependencies, please download the whole package repository, open the “MetaCyto.Rproj” file and click Build&Reload button in RStudio. 
 
 Note for CITRUS users: No need to switch back to the default compiler using this method.
+
+**Method 2:** To install the MetaCyto package, please run the following code:
+```
+library("devtools")
+install_github("hzc363/MetaCyto")
+```
+Note: Some users report errors when installing MetaCyto using this method, due to version issues of R and devtools. If the problem persists after updating R and devtools, please use Method 1. 
+
+Note for CITRUS users: If you have changed the compiler for R when installing CITRUS, please switch back to the default compiler.
+
 
 ## Examples
 
