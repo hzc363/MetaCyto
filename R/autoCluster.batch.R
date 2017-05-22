@@ -18,11 +18,11 @@
 #'   function must return a list of clusters containing cell IDs. flowSOM.MC
 #'   and flowHC are implemented in the package. For other methods, please make
 #'   your own wrapper functions.
-#' @param minPercent a number between 0 and 0.5. Used to specify the minimum
+#' @param minPercent A number between 0 and 0.5. Used to specify the minimum
 #'   percent of cells in the positive and negative region after bisection. Keep it
 #'   small to avoid bisecting uni-mode distributions.
-#' @param ... pass arguments to labelCluster and clusterFunction
-#' @return a vector of labels identified in the cytometry data.
+#' @param ... Pass arguments to labelCluster and clusterFunction
+#' @return A vector of labels identified in the cytometry data.
 #' @examples
 #' #get meta-data
 #' fn=system.file("extdata","fcs_info.csv",package="MetaCyto")

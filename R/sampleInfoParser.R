@@ -1,11 +1,11 @@
-#' collect sample information for fcs files in a study from ImmPort.
+#' Collect sample information for fcs files in a study from ImmPort.
 #'
 #' A function that collects sample information for fcs files in a study from ImmPort.
-#' @param metaData a data frame. Must contain a column listing the names of fcs files included in the study.
+#' @param metaData A data frame. Must contain a column listing the names of fcs files included in the study.
 #' @param studyFolder Path of the directory containing all the files of a study from ImmPort.
-#' @param fcsCol a string specifying the name of the column in metaData that lists fcs files included in the study.
+#' @param fcsCol A string specifying the name of the column in metaData that lists fcs files included in the study.
 #' @param assay Either "FCM" or "CyTOF" to indicate the type of cytometry data.
-#' @param attrCol a vector of column names. Used to specify the information about each cytometry the user wish to include in the analysis.
+#' @param attrCol A vector of column names. Used to specify the information about each cytometry the user wish to include in the analysis.
 #' @return A dataframe containing sample information.
 #' @examples
 #' fn=system.file("extdata","SDY736/SDY736-DR19_Subject_2_Flow_cytometry_result.txt",package="MetaCyto")

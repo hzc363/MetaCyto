@@ -1,4 +1,4 @@
-#' preprocessing fcs files from different studies in batch.
+#' Preprocessing fcs files from different studies in batch.
 #'
 #' It transform and compensate for the raw fcs files and write out the processed
 #' data to a new set of fcs files.
@@ -8,9 +8,9 @@
 #'   specify what study each fcs file belongs to.
 #' @param assay A vector, each element is either "FCM" or "CyTOF" to indicate
 #'   the type of cytometry data.
-#' @param outpath a string indicating the directory the pre-processed fcs files
+#' @param outpath A string indicating the directory the pre-processed fcs files
 #'   will be written to.
-#' @param b a positive number used to specify the arcsinh transformation. f(x) =
+#' @param b A positive number used to specify the arcsinh transformation. f(x) =
 #'   asinh (b*x) where x is the original value and f(x) is the value after
 #'   transformation. The suggested value is 1/150 for flow cytometry (FCM) data
 #'   and 1/8 for CyTOF data.

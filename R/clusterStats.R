@@ -4,9 +4,9 @@
 #' @param fcsFrame A flow Frame object returned from preprocessing function.
 #'   Must contain a parameter called "sample_id" that specify the origin of
 #'   each cell using integer IDs.
-#' @param clusterList a list, each element should be a vector containing the IDs
+#' @param clusterList A list, each element should be a vector containing the IDs
 #'   of all cells that belong to a cluster.
-#' @param fcsNames a vector of fcs file names. Each element corresponds to an
+#' @param fcsNames A vector of fcs file names. Each element corresponds to an
 #'   integer ID in the "sample_id" parameter in fcsFrame.
 #' @return Returns a data frame, rows correspond to each fcs file, columns
 #'   correspond to MFI of markers or fractions.

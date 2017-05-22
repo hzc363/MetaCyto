@@ -1,11 +1,11 @@
-#' filter cluster labels
+#' Filter cluster labels
 #'
 #' A function that filter cluster labels.
-#' @param labels a vector containing labels for cell clusters
-#' @param minPlus an integer, used to specify the minimum  number of "+" a label should contain.
-#' @param minMarker an integer, used to specify the minimum  number of markers a label should contain.
-#' @param maxMarker an integer, used to specify the max number of markers a label should contain.
-#' @return returns a vector of labels that pass through the filter.
+#' @param labels A vector containing labels for cell clusters
+#' @param minPlus An integer, used to specify the minimum  number of "+" a label should contain.
+#' @param minMarker An integer, used to specify the minimum  number of markers a label should contain.
+#' @param maxMarker An integer, used to specify the max number of markers a label should contain.
+#' @return Returns a vector of labels that pass through the filter.
 #' @examples
 #' labels= c("CD3-|CD4-|CD8-","CD3+|CD4+|CD8-","CD3+|CD4-|CD8+","CD3+|CD4-|CD8+|CCR7+|CD45RA-|CCR6-")
 #' labels=filterLabels(labels=labels,minPlus=1,minMarker=2,maxMarker=5)

@@ -1,11 +1,11 @@
-#' draw density plot for each cell cluster.
+#' Draw density plot for each cell cluster.
 #'
 #' A function that draws density plot for each cell cluster.
 #' @param fcsFrame A flow Frame object returned from preprocessing function.
-#' @param clusterList a list, each element should be a vector containing the IDs of all cells that belong to a cluster
-#' @param cutoff a vector of cutoff values to bisect the distribution of each
+#' @param clusterList A list, each element should be a vector containing the IDs of all cells that belong to a cluster
+#' @param cutoff A vector of cutoff values to bisect the distribution of each
 #'   marker. The names of the vector should be the same as the marker names.
-#' @param markerToPlot a vector specifying markers included in the plot. If NULL, all markers will be plotted.
+#' @param markerToPlot A vector specifying markers included in the plot. If NULL, all markers will be plotted.
 #' @return NULL. The plot will show up automatically.
 #' @details The plot can be very large, we suggest plotting it into a pdf jpeg file directly.
 #' @examples

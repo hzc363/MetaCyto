@@ -1,4 +1,4 @@
-#' make a summary for the labels (cell populations) identified in different
+#' Make a summary for the labels (cell populations) identified in different
 #' cytometry panels.
 #'
 #' A function that summarizes the labels (cell populations) identified in

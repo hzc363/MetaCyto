@@ -1,10 +1,10 @@
-#' find cutoff for a 1D distribution
+#' Find cutoff for a 1D distribution
 #'
 #' A function that finds cutoff for a 1D distribution.
-#' @param x a vector of values.
+#' @param x A vector of values.
 #' @param returnSil Logic, used to specify if the max average silhouette is returned
 #' @param useBL Logic, used to specify if outliers should be ignored
-#' @param minX a numerical value, used to specify the min value allowed for the cutoff.
+#' @param minX A numerical value, used to specify the min value allowed for the cutoff.
 #' @return If returnSil=F, returns a single cutoff value. Otherwise, returns a list containing the cutoff value and the max average silhouette
 #' @examples
 #' x=c(rnorm(1000),rnorm(1000,5))

@@ -1,8 +1,8 @@
-#' summarize markers in panels.
+#' Summarize markers in panels.
 #'
 #' A function that summarizes markers in cytometry panels.
-#' @param panelInfo a data frame returned by the collectData function. It should contain all the information outputted by the preprocessing.batch function.
-#' @param folder the directory where the output should be written.
+#' @param panelInfo A data frame returned by the collectData function. It should contain all the information outputted by the preprocessing.batch function.
+#' @param folder The directory where the output should be written.
 #' @param cluster True or False. Used to indicate if the markers and panels should be clustered in the plot.
 #' @param plotImage True or False. Used to indicate if a plot summarizing markers in panels should be produced.
 #' @param width Used to specify the width of the plot

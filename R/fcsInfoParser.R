@@ -1,11 +1,11 @@
-#' organize fcs files in a study from ImmPort into panels
+#' Organize fcs files in a study from ImmPort into panels
 #'
 #' A function that organizes fcs files in a study from ImmPort into panels.
-#' @param metaData a data frame. Must contain a column listing the names of fcs
+#' @param metaData A data frame. Must contain a column listing the names of fcs
 #'   files included in the study.
 #' @param studyFolder Path of the directory containing all the files of a study
 #'   from ImmPort.
-#' @param fcsCol a string specifying the name of the column in metaData that
+#' @param fcsCol A string specifying the name of the column in metaData that
 #'   lists fcs files included in the study.
 #' @param assay Either "FCM" or "CyTOF" to indicate the type of cytometry data.
 #' @return A dataframe containing 2 columns: a column called "fcs_files" that

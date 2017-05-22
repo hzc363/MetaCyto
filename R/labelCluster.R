@@ -1,18 +1,18 @@
-#' label each cluster as "+" or "-" or neutral for each marker
+#' Label each cluster as "+" or "-" or neutral for each marker
 #'
 #' A function that labels each cluster as "+" or "-" or neutral for each marker
 #' @param fcsFrame A flowFrame object.
-#' @param clusterList a list, each element should be a vector containing the IDs
+#' @param clusterList A list, each element should be a vector containing the IDs
 #'   of all cells that belongs to a cluster
 #' @param excludeClusterParameters A vector specifying the name of markers not
 #'   to be used for labeling.
-#' @param minPercent a number between 0 and 0.5. Used to specify the minimum
+#' @param minPercent A number between 0 and 0.5. Used to specify the minimum
 #'   percent of cells in the positive and negative region after bisection. Keep it
 #'   small to avoid bisecting uni-mode distributions.
-#' @param labelQuantile a number between 0.5 and 1. Used to specify the minimum
+#' @param labelQuantile A number between 0.5 and 1. Used to specify the minimum
 #'   percent of a cluster required to be larger or smaller than the cutoff value
 #'   for labeling.
-#' @param cutoff a vector of cutoff values to bisect the distribution of each
+#' @param cutoff A vector of cutoff values to bisect the distribution of each
 #'   marker. The names of the vector should be the same as the marker names. If
 #'   NULL, the cutoff value will be determined automatically.
 #' @return Returns a list with two components: 1) clusterLabel, contains a

@@ -1,8 +1,8 @@
-#' find markers in a flow frame object
+#' Find markers in a flow frame object
 #'
 #' A function that finds markers in a flow frame object.
-#' @param fcsFrame a flow frame object.
-#' @return returns a vector of markers.
+#' @param fcsFrame A flow frame object.
+#' @return Returns a vector of markers.
 #' @details If the antibody name is available, the antibody name will be returned, otherwise, the channel name will be returned.
 #' @examples
 #' library(flowCore)

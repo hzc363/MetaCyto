@@ -1,9 +1,9 @@
-#' search for clusters using pre-defined labels
+#' Search for clusters using pre-defined labels
 #'
 #' A function that searches for clusters using pre-defined labels (cell definitions).
 #' @param fcsFrame A flowFrame object.
-#' @param clusterLabel a vector of labels, such as "CD3+|CD4+|CD8-". Each marker is followed by "+" or "-" and are separated by "|".
-#' @param cutoff a vector of cutoff values to bisect the distribution of each
+#' @param clusterLabel A vector of labels, such as "CD3+|CD4+|CD8-". Each marker is followed by "+" or "-" and are separated by "|".
+#' @param cutoff A vector of cutoff values to bisect the distribution of each
 #'   marker. The names of the vector should be the same as the marker names. If
 #'   NULL, the cutoff value will be determined automatically.
 #' @param rmNull True or False. Used to specify if a cluster with 0 cells

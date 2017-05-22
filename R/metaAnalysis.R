@@ -1,24 +1,24 @@
-#' performs meta-analysis
+#' Performs meta-analysis
 #'
 #' A function that performs meta-analysis
-#' @param value a string to specify the column name of the dependent variable
+#' @param value A string to specify the column name of the dependent variable
 #'   (y)
-#' @param variableOfInterst a string to specify the column name of the
+#' @param variableOfInterst A string to specify the column name of the
 #'   independent variable of interest (x1)
-#' @param otherVariables a string vector to specify the column names of
+#' @param otherVariables A string vector to specify the column names of
 #'   independent variables included in the regression model other than the
 #'   variableOfInterst.
-#' @param studyID a string to specify the column name of study ID.
-#' @param data a data frame containing the data
-#' @param CILevel a number between 0 to 1, used to specify the confidence
+#' @param studyID A string to specify the column name of study ID.
+#' @param data A data frame containing the data
+#' @param CILevel A number between 0 to 1, used to specify the confidence
 #'   interval to be plotted in the forest plot.
-#' @param main a string to specify the title of the forest plot
-#' @param ifScale a vector of two logic values, specifying if the dependent
+#' @param main A string to specify the title of the forest plot
+#' @param ifScale A vector of two logic values, specifying if the dependent
 #'   variable and the variableOfInterst should be scaled when calculating the
 #'   effect size.
-#' @param cex a number specifying the amount by which plotting text and symbols
+#' @param cex A number specifying the amount by which plotting text and symbols
 #'   should be scaled relative to the default in the forest plot.
-#' @return returns data frame describing the effect size of variableOfInterst on
+#' @return Returns data frame describing the effect size of variableOfInterst on
 #'   value in each individual studies, as well as the over all effect size.
 #' @examples
 #' #collect all summary statistics

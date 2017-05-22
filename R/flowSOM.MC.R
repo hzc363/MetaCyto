@@ -1,11 +1,11 @@
-#' cluster cytometry data using FlowSOM
+#' Cluster cytometry data using FlowSOM
 #'
 #' A function that cluster cytometry data using FlowSOM.
-#' @param fcsFrame a flow frame.
+#' @param fcsFrame A flow frame.
 #' @param excludeClusterParameters A vector specifying the name of markers not to be used for clustering.
 #' @param grid An integer, defines the width and hight of SOM
 #' @param k An integer, defines the number of clusters to be identified by flowSOM.
-#' @return a list of clusters. Each cluster contains the ID of all cells that belong to the cluster.
+#' @return A list of clusters. Each cluster contains the ID of all cells that belong to the cluster.
 #' @examples
 #' # Find fcs files
 #' files=system.file("extdata","SDY420/ResultFiles/CyTOF_result",package="MetaCyto")

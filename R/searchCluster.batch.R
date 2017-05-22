@@ -1,9 +1,9 @@
-#' search for clusters using pre-defined labels in cytometry data from different studies in batch
+#' Search for clusters using pre-defined labels in cytometry data from different studies in batch
 #'
 #' A function that searches for clusters using pre-defined labels in cytometry data from different studies in batch.
-#' @param preprocessOutputFolder directory where the pre-processed results are stored.
-#' @param outpath a string indicating the directory the results should be written to.
-#' @param clusterLabel a vector containing labels, such as c("CD3+|CD4+|CD8-")
+#' @param preprocessOutputFolder Directory where the pre-processed results are stored.
+#' @param outpath A string indicating the directory the results should be written to.
+#' @param clusterLabel A vector containing labels, such as c("CD3+|CD4+|CD8-")
 #' @param ifPlot True or False. Used to specify if a the density plot for each cluster should be plotted
 #' @return Results will be written to the outpath folder
 #' @details The function writes out the summary statistics for each cluster. A separate directory will be created for each study.

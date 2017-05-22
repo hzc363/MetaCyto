@@ -1,8 +1,8 @@
-#' plot the result from the glmAnalysis function
+#' Plot the result from the glmAnalysis function
 #'
 #' A function that plots the result from the glmAnalysis function.
-#' @param GA a data frame returned from the function glmAnalysis.
-#' @param size the font size of texts in the plot
+#' @param GA A data frame returned from the function glmAnalysis.
+#' @param size The font size of texts in the plot
 #' @return The plot will show up automatically.
 #' @examples
 #' #collect all summary statistics

@@ -1,7 +1,7 @@
-#' collect and combine data from multiple csv files of the same format
+#' Collect and combine data from multiple csv files of the same format
 #'
 #' A function that collect and combine data from multiple csv files of the same format.
-#' @param files a vector containing the paths of csv files to be combined.
+#' @param files A vector containing the paths of csv files to be combined.
 #' @param longform True or False. Used to specify if the table in each csv file should be converted into long form before combining.
 #' @return A dataframe containing conbined information from multiple csv files.
 #' @examples

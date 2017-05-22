@@ -1,7 +1,7 @@
-#' combine cells in a flow set into a flow frame.
+#' Combine cells in a flow set into a flow frame.
 #'
 #' A function that combines cells in a flow set into a flow frame.
-#' @param flowSet a flow set object
+#' @param flowSet A flow set object
 #' @return Returns a flowFrame object. All cells from flow set are combined into one flow frame. A new parameter, sample_id, is introduced to indicate the origin of each cell.
 #' @examples
 #' library(flowCore)
