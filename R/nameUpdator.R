@@ -9,7 +9,8 @@
 #' fn=system.file("extdata","fcs_info.csv",package="MetaCyto")
 #' fcs_info=read.csv(fn,stringsAsFactors=FALSE,check.names=FALSE)
 #' fcs_info$fcs_files=system.file("extdata",fcs_info$fcs_files,package="MetaCyto")
-#' # make sure the transformation parameter "b" and the "assay" argument are correct of FCM and CyTOF files
+#' # make sure the transformation parameter "b" and the "assay" argument
+#' # are correct of FCM and CyTOF files
 #' b=assay=rep(NA,nrow(fcs_info))
 #' b[grepl("CyTOF",fcs_info$study_id)]=1/8
 #' b[grepl("FCM",fcs_info$study_id)]=1/150
