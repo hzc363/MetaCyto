@@ -10,5 +10,5 @@ Description: This package provides functions for preprocessing, automated gating
 License: MIT
 LazyData: TRUE
 RoxygenNote: 6.0.1
-Depends: R (>= 3.3),dplyr (>= 0.5),flowCore (>= 1.40),tidyr (>= 0.6),fastcluster (>= 1.1),ggplot2 (>= 2.2),metafor (>= 1.9),cluster (>= 2.0),FlowSOM (>= 1.6)
+Depends: R (>= 3.3),dplyr,flowCore,tidyr,fastcluster,ggplot2,metafor,cluster,FlowSOM
 biocViews: CellBiology, FlowCytometry, Clustering, StatisticalMethod, Software, CellBasedAssays
