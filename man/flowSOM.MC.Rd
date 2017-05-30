@@ -2,12 +2,12 @@
 % Please edit documentation in R/flowSOM.MC.R
 \name{flowSOM.MC}
 \alias{flowSOM.MC}
-\title{cluster cytometry data using FlowSOM}
+\title{Cluster cytometry data using FlowSOM}
 \usage{
 flowSOM.MC(fcsFrame, excludeClusterParameters, grid = 10, k = 40)
 }
 \arguments{
-\item{fcsFrame}{a flow frame.}
+\item{fcsFrame}{A flow frame.}
 
 \item{excludeClusterParameters}{A vector specifying the name of markers not to be used for clustering.}
 
@@ -16,7 +16,7 @@ flowSOM.MC(fcsFrame, excludeClusterParameters, grid = 10, k = 40)
 \item{k}{An integer, defines the number of clusters to be identified by flowSOM.}
 }
 \value{
-a list of clusters. Each cluster contains the ID of all cells that belong to the cluster.
+A list of clusters. Each cluster contains the ID of all cells that belong to the cluster.
 }
 \description{
 A function that cluster cytometry data using FlowSOM.

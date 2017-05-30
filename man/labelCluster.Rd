@@ -2,7 +2,7 @@
 % Please edit documentation in R/labelCluster.R
 \name{labelCluster}
 \alias{labelCluster}
-\title{label each cluster as "+" or "-" or neutral for each marker}
+\title{Label each cluster as "+" or "-" or neutral for each marker}
 \usage{
 labelCluster(fcsFrame, clusterList, excludeClusterParameters = c("TIME"),
   minPercent = 0.05, labelQuantile = 0.95, cutoff = NULL)
@@ -10,21 +10,21 @@ labelCluster(fcsFrame, clusterList, excludeClusterParameters = c("TIME"),
 \arguments{
 \item{fcsFrame}{A flowFrame object.}
 
-\item{clusterList}{a list, each element should be a vector containing the IDs
+\item{clusterList}{A list, each element should be a vector containing the IDs
 of all cells that belongs to a cluster}
 
 \item{excludeClusterParameters}{A vector specifying the name of markers not
 to be used for labeling.}
 
-\item{minPercent}{a number between 0 and 0.5. Used to specify the minimum
+\item{minPercent}{A number between 0 and 0.5. Used to specify the minimum
 percent of cells in the positive and negative region after bisection. Keep it
 small to avoid bisecting uni-mode distributions.}
 
-\item{labelQuantile}{a number between 0.5 and 1. Used to specify the minimum
+\item{labelQuantile}{A number between 0.5 and 1. Used to specify the minimum
 percent of a cluster required to be larger or smaller than the cutoff value
 for labeling.}
 
-\item{cutoff}{a vector of cutoff values to bisect the distribution of each
+\item{cutoff}{A vector of cutoff values to bisect the distribution of each
 marker. The names of the vector should be the same as the marker names. If
 NULL, the cutoff value will be determined automatically.}
 }

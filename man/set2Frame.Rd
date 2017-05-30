@@ -2,12 +2,12 @@
 % Please edit documentation in R/set2Frame.R
 \name{set2Frame}
 \alias{set2Frame}
-\title{combine cells in a flow set into a flow frame.}
+\title{Combine cells in a flow set into a flow frame.}
 \usage{
 set2Frame(flowSet)
 }
 \arguments{
-\item{flowSet}{a flow set object}
+\item{flowSet}{A flow set object}
 }
 \value{
 Returns a flowFrame object. All cells from flow set are combined into one flow frame. A new parameter, sample_id, is introduced to indicate the origin of each cell.

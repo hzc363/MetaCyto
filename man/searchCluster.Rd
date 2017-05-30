@@ -2,7 +2,7 @@
 % Please edit documentation in R/searchCluster.R
 \name{searchCluster}
 \alias{searchCluster}
-\title{search for clusters using pre-defined labels}
+\title{Search for clusters using pre-defined labels}
 \usage{
 searchCluster(fcsFrame, clusterLabel, cutoff = NULL, rmNull = TRUE,
   preGate = NULL)
@@ -10,9 +10,9 @@ searchCluster(fcsFrame, clusterLabel, cutoff = NULL, rmNull = TRUE,
 \arguments{
 \item{fcsFrame}{A flowFrame object.}
 
-\item{clusterLabel}{a vector of labels, such as "CD3+|CD4+|CD8-". Each marker is followed by "+" or "-" and are separated by "|".}
+\item{clusterLabel}{A vector of labels, such as "CD3+|CD4+|CD8-". Each marker is followed by "+" or "-" and are separated by "|".}
 
-\item{cutoff}{a vector of cutoff values to bisect the distribution of each
+\item{cutoff}{A vector of cutoff values to bisect the distribution of each
 marker. The names of the vector should be the same as the marker names. If
 NULL, the cutoff value will be determined automatically.}
 

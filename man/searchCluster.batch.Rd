@@ -2,17 +2,17 @@
 % Please edit documentation in R/searchCluster.batch.R
 \name{searchCluster.batch}
 \alias{searchCluster.batch}
-\title{search for clusters using pre-defined labels in cytometry data from different studies in batch}
+\title{Search for clusters using pre-defined labels in cytometry data from different studies in batch}
 \usage{
 searchCluster.batch(preprocessOutputFolder, outpath = "search_output",
   clusterLabel, ifPlot = TRUE)
 }
 \arguments{
-\item{preprocessOutputFolder}{directory where the pre-processed results are stored.}
+\item{preprocessOutputFolder}{Directory where the pre-processed results are stored.}
 
-\item{outpath}{a string indicating the directory the results should be written to.}
+\item{outpath}{A string indicating the directory the results should be written to.}
 
-\item{clusterLabel}{a vector containing labels, such as c("CD3+|CD4+|CD8-")}
+\item{clusterLabel}{A vector containing labels, such as c("CD3+|CD4+|CD8-")}
 
 \item{ifPlot}{True or False. Used to specify if a the density plot for each cluster should be plotted}
 }

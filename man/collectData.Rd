@@ -2,12 +2,12 @@
 % Please edit documentation in R/collectData.R
 \name{collectData}
 \alias{collectData}
-\title{collect and combine data from multiple csv files of the same format}
+\title{Collect and combine data from multiple csv files of the same format}
 \usage{
 collectData(files, longform = TRUE)
 }
 \arguments{
-\item{files}{a vector containing the paths of csv files to be combined.}
+\item{files}{A vector containing the paths of csv files to be combined.}
 
 \item{longform}{True or False. Used to specify if the table in each csv file should be converted into long form before combining.}
 }

@@ -2,21 +2,21 @@
 % Please edit documentation in R/sampleInfoParser.R
 \name{sampleInfoParser}
 \alias{sampleInfoParser}
-\title{collect sample information for fcs files in a study from ImmPort.}
+\title{Collect sample information for fcs files in a study from ImmPort.}
 \usage{
 sampleInfoParser(metaData = selected_data, studyFolder, fcsCol = "ZBXFN",
   assay = "FCM", attrCol)
 }
 \arguments{
-\item{metaData}{a data frame. Must contain a column listing the names of fcs files included in the study.}
+\item{metaData}{A data frame. Must contain a column listing the names of fcs files included in the study.}
 
 \item{studyFolder}{Path of the directory containing all the files of a study from ImmPort.}
 
-\item{fcsCol}{a string specifying the name of the column in metaData that lists fcs files included in the study.}
+\item{fcsCol}{A string specifying the name of the column in metaData that lists fcs files included in the study.}
 
 \item{assay}{Either "FCM" or "CyTOF" to indicate the type of cytometry data.}
 
-\item{attrCol}{a vector of column names. Used to specify the information about each cytometry the user wish to include in the analysis.}
+\item{attrCol}{A vector of column names. Used to specify the information about each cytometry the user wish to include in the analysis.}
 }
 \value{
 A dataframe containing sample information.

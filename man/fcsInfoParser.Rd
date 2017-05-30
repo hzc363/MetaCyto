@@ -2,19 +2,19 @@
 % Please edit documentation in R/fcsInfoParser.R
 \name{fcsInfoParser}
 \alias{fcsInfoParser}
-\title{organize fcs files in a study from ImmPort into panels}
+\title{Organize fcs files in a study from ImmPort into panels}
 \usage{
 fcsInfoParser(metaData, studyFolder, fcsCol = "ZBXFN", assay = c("FCM",
   "CyTOF"))
 }
 \arguments{
-\item{metaData}{a data frame. Must contain a column listing the names of fcs
+\item{metaData}{A data frame. Must contain a column listing the names of fcs
 files included in the study.}
 
 \item{studyFolder}{Path of the directory containing all the files of a study
 from ImmPort.}
 
-\item{fcsCol}{a string specifying the name of the column in metaData that
+\item{fcsCol}{A string specifying the name of the column in metaData that
 lists fcs files included in the study.}
 
 \item{assay}{Either "FCM" or "CyTOF" to indicate the type of cytometry data.}

@@ -2,19 +2,19 @@
 % Please edit documentation in R/densityPlot.R
 \name{densityPlot}
 \alias{densityPlot}
-\title{draw density plot for each cell cluster.}
+\title{Draw density plot for each cell cluster.}
 \usage{
 densityPlot(fcsFrame, clusterList, cutoff, markerToPlot = NULL)
 }
 \arguments{
 \item{fcsFrame}{A flow Frame object returned from preprocessing function.}
 
-\item{clusterList}{a list, each element should be a vector containing the IDs of all cells that belong to a cluster}
+\item{clusterList}{A list, each element should be a vector containing the IDs of all cells that belong to a cluster}
 
-\item{cutoff}{a vector of cutoff values to bisect the distribution of each
+\item{cutoff}{A vector of cutoff values to bisect the distribution of each
 marker. The names of the vector should be the same as the marker names.}
 
-\item{markerToPlot}{a vector specifying markers included in the plot. If NULL, all markers will be plotted.}
+\item{markerToPlot}{A vector specifying markers included in the plot. If NULL, all markers will be plotted.}
 }
 \value{
 NULL. The plot will show up automatically.

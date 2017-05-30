@@ -2,21 +2,21 @@
 % Please edit documentation in R/filterLabels.R
 \name{filterLabels}
 \alias{filterLabels}
-\title{filter cluster labels}
+\title{Filter cluster labels}
 \usage{
 filterLabels(labels, minPlus, minMarker, maxMarker)
 }
 \arguments{
-\item{labels}{a vector containing labels for cell clusters}
+\item{labels}{A vector containing labels for cell clusters}
 
-\item{minPlus}{an integer, used to specify the minimum  number of "+" a label should contain.}
+\item{minPlus}{An integer, used to specify the minimum  number of "+" a label should contain.}
 
-\item{minMarker}{an integer, used to specify the minimum  number of markers a label should contain.}
+\item{minMarker}{An integer, used to specify the minimum  number of markers a label should contain.}
 
-\item{maxMarker}{an integer, used to specify the max number of markers a label should contain.}
+\item{maxMarker}{An integer, used to specify the max number of markers a label should contain.}
 }
 \value{
-returns a vector of labels that pass through the filter.
+Returns a vector of labels that pass through the filter.
 }
 \description{
 A function that filter cluster labels.

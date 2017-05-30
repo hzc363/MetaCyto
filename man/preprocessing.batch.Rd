@@ -2,7 +2,7 @@
 % Please edit documentation in R/preprocessing.batch.R
 \name{preprocessing.batch}
 \alias{preprocessing.batch}
-\title{preprocessing fcs files from different studies in batch.}
+\title{Preprocessing fcs files from different studies in batch.}
 \usage{
 preprocessing.batch(inputMeta, assay = c("FCM", "CyTOF"), outpath,
   b = 1/150, fileSampleSize = 5000,
@@ -18,10 +18,10 @@ specify what study each fcs file belongs to.}
 \item{assay}{A vector, each element is either "FCM" or "CyTOF" to indicate
 the type of cytometry data.}
 
-\item{outpath}{a string indicating the directory the pre-processed fcs files
+\item{outpath}{A string indicating the directory the pre-processed fcs files
 will be written to.}
 
-\item{b}{a positive number used to specify the arcsinh transformation. f(x) =
+\item{b}{A positive number used to specify the arcsinh transformation. f(x) =
 asinh (b*x) where x is the original value and f(x) is the value after
 transformation. The suggested value is 1/150 for flow cytometry (FCM) data
 and 1/8 for CyTOF data.}

@@ -2,14 +2,14 @@
 % Please edit documentation in R/plotGA.R
 \name{plotGA}
 \alias{plotGA}
-\title{plot the result from the glmAnalysis function}
+\title{Plot the result from the glmAnalysis function}
 \usage{
 plotGA(GA, size = 16)
 }
 \arguments{
-\item{GA}{a data frame returned from the function glmAnalysis.}
+\item{GA}{A data frame returned from the function glmAnalysis.}
 
-\item{size}{the font size of texts in the plot}
+\item{size}{The font size of texts in the plot}
 }
 \value{
 The plot will show up automatically.

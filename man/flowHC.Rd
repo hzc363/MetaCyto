@@ -2,19 +2,19 @@
 % Please edit documentation in R/flowHC.R
 \name{flowHC}
 \alias{flowHC}
-\title{cluster cytometry data using hierarchical clustering}
+\title{Cluster cytometry data using hierarchical clustering}
 \usage{
 flowHC(fcsFrame, excludeClusterParameters, minimumClusterSizePercent = 0.05)
 }
 \arguments{
-\item{fcsFrame}{a flow frame.}
+\item{fcsFrame}{A flow frame.}
 
 \item{excludeClusterParameters}{A vector specifying the name of markers not to be used for clustering.}
 
-\item{minimumClusterSizePercent}{a number between 0 and 1, used to specify the minimum size of a cluster relative to all events.}
+\item{minimumClusterSizePercent}{A number between 0 and 1, used to specify the minimum size of a cluster relative to all events.}
 }
 \value{
-a list of clusters. Each cluster contains the ID of all cells that belong to the cluster.
+A list of clusters. Each cluster contains the ID of all cells that belong to the cluster.
 }
 \description{
 A function that cluster cytometry data using hierarchical clustering.

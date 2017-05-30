@@ -2,15 +2,15 @@
 % Please edit documentation in R/markerFinder.R
 \name{markerFinder}
 \alias{markerFinder}
-\title{find markers in a flow frame object}
+\title{Find markers in a flow frame object}
 \usage{
 markerFinder(fcsFrame)
 }
 \arguments{
-\item{fcsFrame}{a flow frame object.}
+\item{fcsFrame}{A flow frame object.}
 }
 \value{
-returns a vector of markers.
+Returns a vector of markers.
 }
 \description{
 A function that finds markers in a flow frame object.

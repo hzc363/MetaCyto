@@ -2,7 +2,7 @@
 % Please edit documentation in R/preprocessing.R
 \name{preprocessing}
 \alias{preprocessing}
-\title{preprocess fcs files from a single experiment}
+\title{Preprocess fcs files from a single experiment}
 \usage{
 preprocessing(fcsFiles, assay = c("FCM", "CyTOF"), b = 1/200,
   fileSampleSize = 5000, excludeTransformParameters = c("FSC-A", "FSC-W",
@@ -13,7 +13,7 @@ preprocessing(fcsFiles, assay = c("FCM", "CyTOF"), b = 1/200,
 
 \item{assay}{Either "FCM" or "CyTOF" to indicate the type of cytometry data.}
 
-\item{b}{a positive number used to specify the arcsinh transformation. f(x) = asinh (b*x) where x is the original value and f(x) is the value after transformation. The suggested value is 1/150 for flow cytometry (FCM) data and 1/8 for CyTOF data.}
+\item{b}{A positive number used to specify the arcsinh transformation. f(x) = asinh (b*x) where x is the original value and f(x) is the value after transformation. The suggested value is 1/150 for flow cytometry (FCM) data and 1/8 for CyTOF data.}
 
 \item{fileSampleSize}{An integer specifying the number of events sampled from each fcs file. If NULL, all the events will be pre-processed and wrote out to the new fcs files.}
 

@@ -2,33 +2,33 @@
 % Please edit documentation in R/glmAnalysis.R
 \name{glmAnalysis}
 \alias{glmAnalysis}
-\title{perform generalized linear model analysis to estimate effect size.}
+\title{Perform generalized linear model analysis to estimate effect size.}
 \usage{
 glmAnalysis(value = "value", variableOfInterst = "SUBJECT_AGE", parameter,
   otherVariables = c("GENDER"), studyID = "study", label = "label", data,
   CILevel = 0.95, ifScale = c(TRUE, FALSE))
 }
 \arguments{
-\item{value}{a string to specify the column name of the dependent variable (y)}
+\item{value}{A string to specify the column name of the dependent variable (y)}
 
-\item{variableOfInterst}{a string to specify the column name of the independent variable of interest (x1)}
+\item{variableOfInterst}{A string to specify the column name of the independent variable of interest (x1)}
 
-\item{parameter}{a string to specify what summary statistics is the dependent variable.}
+\item{parameter}{A string to specify what summary statistics is the dependent variable.}
 
-\item{otherVariables}{a string vector to specify the column names of independent variables included in the regression model other than the variableOfInterst.}
+\item{otherVariables}{A string vector to specify the column names of independent variables included in the regression model other than the variableOfInterst.}
 
-\item{studyID}{a string to specify the column name of study ID.}
+\item{studyID}{A string to specify the column name of study ID.}
 
-\item{label}{a string to specify the name the column that contains the cluster label or name.}
+\item{label}{A string to specify the name the column that contains the cluster label or name.}
 
-\item{data}{a data frame containing the data. Usually a long form data frame returned by collectData.}
+\item{data}{A data frame containing the data. Usually a long form data frame returned by collectData.}
 
-\item{CILevel}{a number between 0 to 1, used to specify the confidence interval to be plotted in the forest plot.}
+\item{CILevel}{A number between 0 to 1, used to specify the confidence interval to be plotted in the forest plot.}
 
-\item{ifScale}{a vector of two logic values, specifying if the dependent variable and the variableOfInterst should be scaled when calculating the effect size.}
+\item{ifScale}{A vector of two logic values, specifying if the dependent variable and the variableOfInterst should be scaled when calculating the effect size.}
 }
 \value{
-returns data frame describing the overall effect size of variableOfInterst on value.  May be slightly different from the value reported from the function metaAnalysis.
+Returns data frame describing the overall effect size of variableOfInterst on value.  May be slightly different from the value reported from the function metaAnalysis.
 }
 \description{
 A function that performs generalized linear model analysis to estimate effect size.

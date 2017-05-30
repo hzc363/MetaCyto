@@ -2,7 +2,7 @@
 % Please edit documentation in R/labelSummary.R
 \name{labelSummary}
 \alias{labelSummary}
-\title{make a summary for the labels (cell populations) identified in different
+\title{Make a summary for the labels (cell populations) identified in different
 cytometry panels.}
 \usage{
 labelSummary(allData, minStudy = 2)

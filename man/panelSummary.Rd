@@ -2,15 +2,15 @@
 % Please edit documentation in R/panelSummary.R
 \name{panelSummary}
 \alias{panelSummary}
-\title{summarize markers in panels.}
+\title{Summarize markers in panels.}
 \usage{
 panelSummary(panelInfo, folder, cluster = TRUE, plotImage = TRUE,
   width = 20, height = 20)
 }
 \arguments{
-\item{panelInfo}{a data frame returned by the collectData function. It should contain all the information outputted by the preprocessing.batch function.}
+\item{panelInfo}{A data frame returned by the collectData function. It should contain all the information outputted by the preprocessing.batch function.}
 
-\item{folder}{the directory where the output should be written.}
+\item{folder}{The directory where the output should be written.}
 
 \item{cluster}{True or False. Used to indicate if the markers and panels should be clustered in the plot.}
 

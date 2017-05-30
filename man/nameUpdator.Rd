@@ -7,11 +7,11 @@
 nameUpdator(oldNames, newNames, files)
 }
 \arguments{
-\item{oldNames}{a vector of marker names you wish to change}
+\item{oldNames}{A vector of marker names you wish to change}
 
-\item{newNames}{a vector of marker names you wish each oldNames to be changed to.}
+\item{newNames}{A vector of marker names you wish each oldNames to be changed to.}
 
-\item{files}{a list of "processed_sample_summary.csv" files output by the preprocessing.batch function, in which the name change will occur.}
+\item{files}{A list of "processed_sample_summary.csv" files output by the preprocessing.batch function, in which the name change will occur.}
 }
 \value{
 Null

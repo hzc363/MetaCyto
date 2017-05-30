@@ -11,10 +11,10 @@ clusterStats(fcsFrame, clusterList, fcsNames)
 Must contain a parameter called "sample_id" that specify the origin of
 each cell using integer IDs.}
 
-\item{clusterList}{a list, each element should be a vector containing the IDs
+\item{clusterList}{A list, each element should be a vector containing the IDs
 of all cells that belong to a cluster.}
 
-\item{fcsNames}{a vector of fcs file names. Each element corresponds to an
+\item{fcsNames}{A vector of fcs file names. Each element corresponds to an
 integer ID in the "sample_id" parameter in fcsFrame.}
 }
 \value{
