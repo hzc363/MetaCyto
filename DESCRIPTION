@@ -6,7 +6,7 @@ Author: Zicheng Hu
 Maintainer: Zicheng Hu <zicheng.hu@ucsf.edu>
 Description: This package provides functions for preprocessing, automated gating
     and meta-analysis of cytometry data. It also provides functions that facilitate
-    the collection of cytometry data from ImmPort database.
+    the collection of cytometry data from the ImmPort database.
 License: MIT
 LazyData: TRUE
 RoxygenNote: 6.0.1
