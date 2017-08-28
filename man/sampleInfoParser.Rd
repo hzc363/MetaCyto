@@ -4,28 +4,35 @@
 \alias{sampleInfoParser}
 \title{Collect sample information for fcs files in a study from ImmPort.}
 \usage{
-sampleInfoParser(metaData = selected_data, studyFolder, fcsCol = "ZBXFN",
-  assay = "FCM", attrCol)
+sampleInfoParser(metaData, studyFolder, fcsCol = "ZBXFN", assay = "FCM",
+  attrCol)
 }
 \arguments{
-\item{metaData}{A data frame. Must contain a column listing the names of fcs files included in the study.}
+\item{metaData}{A data frame. Must contain a column listing the names of fcs
+files included in the study.}
 
-\item{studyFolder}{Path of the directory containing all the files of a study from ImmPort.}
+\item{studyFolder}{Path of the directory containing all the files of a study
+from ImmPort.}
 
-\item{fcsCol}{A string specifying the name of the column in metaData that lists fcs files included in the study.}
+\item{fcsCol}{A string specifying the name of the column in metaData that
+lists fcs files included in the study.}
 
 \item{assay}{Either "FCM" or "CyTOF" to indicate the type of cytometry data.}
 
-\item{attrCol}{A vector of column names. Used to specify the information about each cytometry the user wish to include in the analysis.}
+\item{attrCol}{A vector of column names. Used to specify the information
+about each cytometry the user wish to include in the analysis.}
 }
 \value{
 A dataframe containing sample information.
 }
 \description{
-A function that collects sample information for fcs files in a study from ImmPort.
+A function that collects sample information for fcs files in a study from
+ImmPort.
 }
 \examples{
-fn=system.file("extdata","SDY736/SDY736-DR19_Subject_2_Flow_cytometry_result.txt",package="MetaCyto")
+fn=system.file("extdata",
+               "SDY736/SDY736-DR19_Subject_2_Flow_cytometry_result.txt",
+               package="MetaCyto")
 meta_data=read.table(fn,sep='\\t',header=TRUE)
 # Find the AGE, GENDER info from selected_data
 fn=system.file("extdata","SDY736",package="MetaCyto")

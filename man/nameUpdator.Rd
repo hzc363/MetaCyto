@@ -9,22 +9,27 @@ nameUpdator(oldNames, newNames, files)
 \arguments{
 \item{oldNames}{A vector of marker names you wish to change}
 
-\item{newNames}{A vector of marker names you wish each oldNames to be changed to.}
+\item{newNames}{A vector of marker names you wish each oldNames to be changed
+to.}
 
-\item{files}{A list of "processed_sample_summary.csv" files output by the preprocessing.batch function, in which the name change will occur.}
+\item{files}{A list of "processed_sample_summary.csv" files output by the
+preprocessing.batch function, in which the name change will occur.}
 }
 \value{
 Null
 }
 \description{
-A function that updates marker names in the files output by the preprocessing.batch function.
+A function that updates marker names in the files output by the
+preprocessing.batch function.
 }
 \examples{
 #get meta-data
 fn=system.file("extdata","fcs_info.csv",package="MetaCyto")
 fcs_info=read.csv(fn,stringsAsFactors=FALSE,check.names=FALSE)
-fcs_info$fcs_files=system.file("extdata",fcs_info$fcs_files,package="MetaCyto")
-# make sure the transformation parameter "b" and the "assay" argument are correct of FCM and CyTOF files
+fcs_info$fcs_files=system.file("extdata",fcs_info$fcs_files,
+                               package="MetaCyto")
+# make sure the transformation parameter "b" and the "assay" argument
+# are correct of FCM and CyTOF files
 b=assay=rep(NA,nrow(fcs_info))
 b[grepl("CyTOF",fcs_info$study_id)]=1/8
 b[grepl("FCM",fcs_info$study_id)]=1/150
@@ -35,8 +40,10 @@ preprocessing.batch(inputMeta=fcs_info,
                     assay=assay,
                     b=b,
                     outpath="Example_Result/preprocess_output",
-                    excludeTransformParameters=c("FSC-A","FSC-W","FSC-H","Time","Cell_length"))
+                    excludeTransformParameters=c("FSC-A","FSC-W","FSC-H",
+                    "Time","Cell_length"))
 # Make sure marker names are consistant in different studies
-files=list.files("Example_Result",pattern="processed_sample",recursive=TRUE,full.names=TRUE)
+files=list.files("Example_Result",pattern="processed_sample",recursive=TRUE,
+                 full.names=TRUE)
 nameUpdator("CD8B","CD8",files)
 }

@@ -12,7 +12,8 @@
 #'   correspond to MFI of markers or fractions.
 #' @examples
 #' # Find fcs files
-#' files=system.file("extdata","SDY420/ResultFiles/CyTOF_result",package="MetaCyto")
+#' files=system.file("extdata","SDY420/ResultFiles/CyTOF_result",
+#'                   package="MetaCyto")
 #' files=list.files(files,pattern="fcs$",full.names=TRUE)
 #' # Preprocess
 #' fcs = preprocessing(fcsFiles=files,assay ="CyTOF",b=1/8)
@@ -23,6 +24,7 @@
 #' cluster_stats=clusterStats(fcsFrame=fcs,
 #'                            clusterList=cluster_list$clusterList,
 #'                            fcsNames=files)
+#' @importFrom flowCore exprs
 #' @export
 clusterStats=function(fcsFrame,clusterList,fcsNames){
   antibodies=markerFinder(fcsFrame)

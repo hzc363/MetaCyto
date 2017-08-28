@@ -1,11 +1,16 @@
 #' Collect sample information for fcs files in a study from ImmPort.
 #'
-#' A function that collects sample information for fcs files in a study from ImmPort.
-#' @param metaData A data frame. Must contain a column listing the names of fcs files included in the study.
-#' @param studyFolder Path of the directory containing all the files of a study from ImmPort.
-#' @param fcsCol A string specifying the name of the column in metaData that lists fcs files included in the study.
+#' A function that collects sample information for fcs files in a study from
+#' ImmPort.
+#' @param metaData A data frame. Must contain a column listing the names of fcs
+#'   files included in the study.
+#' @param studyFolder Path of the directory containing all the files of a study
+#'   from ImmPort.
+#' @param fcsCol A string specifying the name of the column in metaData that
+#'   lists fcs files included in the study.
 #' @param assay Either "FCM" or "CyTOF" to indicate the type of cytometry data.
-#' @param attrCol A vector of column names. Used to specify the information about each cytometry the user wish to include in the analysis.
+#' @param attrCol A vector of column names. Used to specify the information
+#'   about each cytometry the user wish to include in the analysis.
 #' @return A dataframe containing sample information.
 #' @examples
 #' fn=system.file("extdata",
@@ -20,7 +25,7 @@
 #'                                     fcsCol="FILE_NAME",
 #'                                     attrCol=c("SUBJECT_AGE","GENDER"))
 #' @export
-sampleInfoParser =function(metaData=selected_data,
+sampleInfoParser =function(metaData,
                            studyFolder,
                            fcsCol="ZBXFN",
                            assay="FCM",

@@ -1,8 +1,10 @@
 #' Collect and combine data from multiple csv files of the same format
 #'
-#' A function that collect and combine data from multiple csv files of the same format.
+#' A function that collect and combine data from multiple csv files of the same
+#' format.
 #' @param files A vector containing the paths of csv files to be combined.
-#' @param longform True or False. Used to specify if the table in each csv file should be converted into long form before combining.
+#' @param longform True or False. Used to specify if the table in each csv file
+#'   should be converted into long form before combining.
 #' @return A dataframe containing conbined information from multiple csv files.
 #' @examples
 #' # find all the files we want to combine
@@ -10,6 +12,7 @@
 #' fn=list.files(fn,pattern="cluster_stats_in_each_sample",full.names=TRUE)
 #' # Comine the data
 #' all_data = collectData(fn,longform=TRUE)
+#' @importFrom tidyr gather
 #' @export
 collectData=function(files,longform=TRUE){
   all_data=NULL

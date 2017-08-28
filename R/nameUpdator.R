@@ -1,14 +1,18 @@
 #' Used to update marker names
 #'
-#' A function that updates marker names in the files output by the preprocessing.batch function.
+#' A function that updates marker names in the files output by the
+#' preprocessing.batch function.
 #' @param oldNames A vector of marker names you wish to change
-#' @param newNames A vector of marker names you wish each oldNames to be changed to.
-#' @param files A list of "processed_sample_summary.csv" files output by the preprocessing.batch function, in which the name change will occur.
+#' @param newNames A vector of marker names you wish each oldNames to be changed
+#'   to.
+#' @param files A list of "processed_sample_summary.csv" files output by the
+#'   preprocessing.batch function, in which the name change will occur.
 #' @examples
 #' #get meta-data
 #' fn=system.file("extdata","fcs_info.csv",package="MetaCyto")
 #' fcs_info=read.csv(fn,stringsAsFactors=FALSE,check.names=FALSE)
-#' fcs_info$fcs_files=system.file("extdata",fcs_info$fcs_files,package="MetaCyto")
+#' fcs_info$fcs_files=system.file("extdata",fcs_info$fcs_files,
+#'                                package="MetaCyto")
 #' # make sure the transformation parameter "b" and the "assay" argument
 #' # are correct of FCM and CyTOF files
 #' b=assay=rep(NA,nrow(fcs_info))
@@ -21,9 +25,11 @@
 #'                     assay=assay,
 #'                     b=b,
 #'                     outpath="Example_Result/preprocess_output",
-#'                     excludeTransformParameters=c("FSC-A","FSC-W","FSC-H","Time","Cell_length"))
+#'                     excludeTransformParameters=c("FSC-A","FSC-W","FSC-H",
+#'                     "Time","Cell_length"))
 #' # Make sure marker names are consistant in different studies
-#' files=list.files("Example_Result",pattern="processed_sample",recursive=TRUE,full.names=TRUE)
+#' files=list.files("Example_Result",pattern="processed_sample",recursive=TRUE,
+#'                  full.names=TRUE)
 #' nameUpdator("CD8B","CD8",files)
 #' @return Null
 #' @export

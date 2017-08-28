@@ -1,27 +1,33 @@
 #' Search for clusters using pre-defined labels
 #'
-#' A function that searches for clusters using pre-defined labels (cell definitions).
+#' A function that searches for clusters using pre-defined labels (cell
+#' definitions).
 #' @param fcsFrame A flowFrame object.
-#' @param clusterLabel A vector of labels, such as "CD3+|CD4+|CD8-". Each marker is followed by "+" or "-" and are separated by "|".
+#' @param clusterLabel A vector of labels, such as "CD3+|CD4+|CD8-". Each marker
+#'   is followed by "+" or "-" and are separated by "|".
 #' @param cutoff A vector of cutoff values to bisect the distribution of each
 #'   marker. The names of the vector should be the same as the marker names. If
 #'   NULL, the cutoff value will be determined automatically.
-#' @param rmNull True or False. Used to specify if a cluster with 0 cells
-#'   should be returned or not.
-#' @param preGate A character string specifying the gated used to clean up the data. For example, use "PI-" to only analyze live cell. Or use "Cell_Length+" to only analyze non-debris.
+#' @param rmNull True or False. Used to specify if a cluster with 0 cells should
+#'   be returned or not.
+#' @param preGate A character string specifying the gated used to clean up the
+#'   data. For example, use "PI-" to only analyze live cell. Or use
+#'   "Cell_Length+" to only analyze non-debris.
 #' @return Returns a list with two components: 1) clusterList is a list in which
 #'   each element of the list is a vector containing the ID of all cells in a
 #'   cluster. The names correspond to the labels specified in clusterLabel. 2)
 #'   cutoff, contains a vector of cutoff values used to bisect each marker.
 #' @examples
 #' # Find fcs files
-#' files=system.file("extdata","SDY420/ResultFiles/CyTOF_result",package="MetaCyto")
+#' files=system.file("extdata","SDY420/ResultFiles/CyTOF_result",
+#'                   package="MetaCyto")
 #' files=list.files(files,pattern="fcs$",full.names=TRUE)
 #' # Preprocess
 #' fcs = preprocessing(fcsFiles=files,assay ="CyTOF",b=1/8)
 #' # Search clusters
 #' cluster_list=searchCluster(fcsFrame=fcs,
 #'                            clusterLabel=c("CD3+|CD8+","CD3-|CD19+"))
+#' @importFrom flowCore exprs
 #' @export
 searchCluster=function(fcsFrame,
                        clusterLabel,
@@ -51,9 +57,9 @@ searchCluster=function(fcsFrame,
       m=gsub("\\+$|-$|\\^NE$|\\^LO$|\\^HI$","",x)
       if(grepl("\\+$",x)){w=which(expr[,m]>cutoff0[m])}
       if(grepl("-$",x)){w=which(expr[,m]<cutoff0[m])}
-      if(grepl("\\^NE$",x)){w=which(expr[,m]<triS[2,m])}
-      if(grepl("\\^LO$",x)){w=which(expr[,m]<triS[1,m])&expr[,m]>triS[2,m]}
-      if(grepl("\\^HI$",x)){w=which(expr[,m]>triS[1,m])}
+      #if(grepl("\\^NE$",x)){w=which(expr[,m]<triS[2,m])}
+      #if(grepl("\\^LO$",x)){w=which(expr[,m]<triS[1,m])&expr[,m]>triS[2,m]}
+      #if(grepl("\\^HI$",x)){w=which(expr[,m]>triS[1,m])}
       return(w)
     })
     if(length(pre_vec)>1){P1=Reduce(intersect,P1)}
@@ -78,7 +84,7 @@ searchCluster=function(fcsFrame,
 
   #find cutoff of each parameter
   if(!setequal(AB,names(cutoff))){
-    t1=apply(X=expr[P1,],MARGIN=2,FUN=findCutoff)
+    t1=apply(X=expr[P1,,drop=FALSE],MARGIN=2,FUN=findCutoff)
     if(!is.null(cutoff)){
       cutoff=cutoff[names(cutoff)%in%AB]
       t1[names(cutoff)]=cutoff

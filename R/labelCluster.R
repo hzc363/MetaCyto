@@ -20,16 +20,18 @@
 #'   contains a vector of cutoff values used to bisect each marker.
 #' @examples
 #' # Find fcs files
-#' files=system.file("extdata","SDY420/ResultFiles/CyTOF_result",package="MetaCyto")
+#' files=system.file("extdata","SDY420/ResultFiles/CyTOF_result",
+#'                   package="MetaCyto")
 #' files=list.files(files,pattern="fcs$",full.names=TRUE)
 #' # Preprocess
 #' fcs = preprocessing(fcsFiles=files,assay ="CyTOF",b=1/8)
 #' # cluster using flowSOM.MC
-#' cluster_list=flowSOM.MC(fcsFrame=fcs,excludeClusterParameters=c("Time","Cell_length"))
+#' cluster_list=flowSOM.MC(fcsFrame=fcs,
+#'                         excludeClusterParameters=c("Time","Cell_length"))
 #' # label each clusters
 #' cluster_label=labelCluster(fcsFrame=fcs,clusterList=cluster_list,
 #'                            excludeClusterParameters=c("Time","Cell_length"))
-
+#' @importFrom flowCore exprs
 #' @export
 labelCluster= function(fcsFrame,
                        clusterList,

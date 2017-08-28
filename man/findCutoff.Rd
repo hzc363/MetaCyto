@@ -9,14 +9,17 @@ findCutoff(x, returnSil = FALSE, useBL = TRUE, minX = 0)
 \arguments{
 \item{x}{A vector of values.}
 
-\item{returnSil}{Logic, used to specify if the max average silhouette is returned}
+\item{returnSil}{Logic, used to specify if the max average silhouette is
+returned}
 
 \item{useBL}{Logic, used to specify if outliers should be ignored}
 
-\item{minX}{A numerical value, used to specify the min value allowed for the cutoff.}
+\item{minX}{A numerical value, used to specify the min value allowed for the
+cutoff.}
 }
 \value{
-If returnSil=F, returns a single cutoff value. Otherwise, returns a list containing the cutoff value and the max average silhouette
+If returnSil=F, returns a single cutoff value. Otherwise, returns a
+  list containing the cutoff value and the max average silhouette
 }
 \description{
 A function that finds cutoff for a 1D distribution.

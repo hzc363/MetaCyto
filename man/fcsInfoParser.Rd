@@ -29,7 +29,9 @@ A dataframe containing 2 columns: a column called "fcs_files" that
 A function that organizes fcs files in a study from ImmPort into panels.
 }
 \examples{
-fn=system.file("extdata","SDY736/SDY736-DR19_Subject_2_Flow_cytometry_result.txt",package="MetaCyto")
+fn=system.file("extdata",
+              "SDY736/SDY736-DR19_Subject_2_Flow_cytometry_result.txt",
+              package="MetaCyto")
 meta_data=read.table(fn,sep='\\t',header=TRUE)
 # Organize fcs file into panels
 fn=system.file("extdata","SDY736",package="MetaCyto")

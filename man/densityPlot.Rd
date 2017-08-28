@@ -9,12 +9,14 @@ densityPlot(fcsFrame, clusterList, cutoff, markerToPlot = NULL)
 \arguments{
 \item{fcsFrame}{A flow Frame object returned from preprocessing function.}
 
-\item{clusterList}{A list, each element should be a vector containing the IDs of all cells that belong to a cluster}
+\item{clusterList}{A list, each element should be a vector containing the IDs
+of all cells that belong to a cluster}
 
 \item{cutoff}{A vector of cutoff values to bisect the distribution of each
 marker. The names of the vector should be the same as the marker names.}
 
-\item{markerToPlot}{A vector specifying markers included in the plot. If NULL, all markers will be plotted.}
+\item{markerToPlot}{A vector specifying markers included in the plot. If
+NULL, all markers will be plotted.}
 }
 \value{
 NULL. The plot will show up automatically.
@@ -23,11 +25,13 @@ NULL. The plot will show up automatically.
 A function that draws density plot for each cell cluster.
 }
 \details{
-The plot can be very large, we suggest plotting it into a pdf jpeg file directly.
+The plot can be very large, we suggest plotting it into a pdf jpeg
+  file directly.
 }
 \examples{
 # Find fcs files
-files=system.file("extdata","SDY420/ResultFiles/CyTOF_result",package="MetaCyto")
+files=system.file("extdata","SDY420/ResultFiles/CyTOF_result",
+                  package="MetaCyto")
 files=list.files(files,pattern="fcs$",full.names=TRUE)
 # Preprocess
 fcs = preprocessing(fcsFiles=files,assay ="CyTOF",b=1/8)

@@ -27,7 +27,8 @@
 #' #get meta-data
 #' fn=system.file("extdata","fcs_info.csv",package="MetaCyto")
 #' fcs_info=read.csv(fn,stringsAsFactors=FALSE,check.names=FALSE)
-#' fcs_info$fcs_files=system.file("extdata",fcs_info$fcs_files,package="MetaCyto")
+#' fcs_info$fcs_files=system.file("extdata",fcs_info$fcs_files,
+#'                                package="MetaCyto")
 #' # Make sure the transformation parameter "b" and the "assay" argument
 #' # are correct of FCM and CyTOF files
 #' b=assay=rep(NA,nrow(fcs_info))
@@ -40,21 +41,30 @@
 #'                     assay=assay,
 #'                     b=b,
 #'                     outpath="Example_Result/preprocess_output",
-#'                     excludeTransformParameters=c("FSC-A","FSC-W","FSC-H","Time","Cell_length"))
+#'                     excludeTransformParameters=c("FSC-A","FSC-W","FSC-H",
+#'                     "Time","Cell_length"))
 #' # Make sure marker names are consistant in different studies
-#' files=list.files("Example_Result",pattern="processed_sample",recursive=TRUE,full.names=TRUE)
+#' files=list.files("Example_Result",pattern="processed_sample",
+#'                  recursive=TRUE,full.names=TRUE)
 #' nameUpdator("CD8B","CD8",files)
 #' # find the clusters
-#' excludeClusterParameters=c("FSC-A","FSC-W","FSC-H","SSC-A","SSC-W","SSC-H","Time",
+#' excludeClusterParameters=c("FSC-A","FSC-W","FSC-H","SSC-A",
+#'                            "SSC-W","SSC-H","Time",
 #'                           "CELL_LENGTH","DEAD","DNA1","DNA2")
-#' cluster_label=autoCluster.batch(preprocessOutputFolder="Example_Result/preprocess_output",
-#'                                 excludeClusterParameters=excludeClusterParameters,
-#'                                 labelQuantile=0.95,
-#'                                 clusterFunction=flowHC)
+#' cluster_label=autoCluster.batch(
+#'               preprocessOutputFolder="Example_Result/preprocess_output",
+#'               excludeClusterParameters=excludeClusterParameters,
+#'               labelQuantile=0.95,
+#'               clusterFunction=flowHC)
+#' @importFrom flowCore read.FCS exprs flowFrame
+#' @importFrom grDevices dev.off pdf rgb
+#' @importFrom graphics abline axis box hist image par
+#' @importFrom stats as.dist confint cor cutree dist lm median na.omit quantile
+#' @importFrom utils combn read.csv write.csv
 #' @export
 autoCluster.batch= function(preprocessOutputFolder,
                             excludeClusterParameters=c("TIME"),
-                            labelQuantile=0.9,
+                            labelQuantile=0.95,
                             clusterFunction=flowSOM.MC,
                             minPercent=0.05,...){
   #read the output from preprocessing
@@ -67,7 +77,7 @@ autoCluster.batch= function(preprocessOutputFolder,
   for(std in unique(inputMeta$study_id)){
     cat("Clustering , study ID = ",std, "\n")
 
-    ##### 1) read sample files for each study############################################################
+    ##### 1) read sample files for each study##################################
     fcs_files=paste0(preprocessOutputFolder,"/",std,".fcs")
     fcs=flowCore::read.FCS(fcs_files,truncate_max_range=FALSE)
 
@@ -75,7 +85,7 @@ autoCluster.batch= function(preprocessOutputFolder,
     antibodies=subset(inputMeta$antibodies,inputMeta$study_id==std)[1]
     antibodies=strsplit(antibodies,"\\|")[[1]]
 
-    ##### 2) subset the cells in fcs ############################################################
+    ##### 2) subset the cells in fcs ##########################################
     # Get expression matrix
     expr=flowCore::exprs(fcs);
     colnames(expr)=antibodies

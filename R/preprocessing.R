@@ -3,21 +3,36 @@
 #' A function that preprocesses fcs files from a single experiment.
 #' @param fcsFiles A vector specifying the location of all fcs files.
 #' @param assay Either "FCM" or "CyTOF" to indicate the type of cytometry data.
-#' @param b A positive number used to specify the arcsinh transformation. f(x) = asinh (b*x) where x is the original value and f(x) is the value after transformation. The suggested value is 1/150 for flow cytometry (FCM) data and 1/8 for CyTOF data.
-#' @param fileSampleSize An integer specifying the number of events sampled from each fcs file. If NULL, all the events will be pre-processed and wrote out to the new fcs files.
-#' @param excludeTransformParameters A vector specifying the name of parameters not to be transformed (left at linear scale).
-#' @return Returns a flowFrame object containing the preprocessed cytometry data. Cells from different fcs files are combined into one flow frame. A new parameter, sample_id, is introduced to indicate the origin of each cell.
+#' @param b A positive number used to specify the arcsinh transformation. f(x) =
+#'   asinh (b*x) where x is the original value and f(x) is the value after
+#'   transformation. The suggested value is 1/150 for flow cytometry (FCM) data
+#'   and 1/8 for CyTOF data.
+#' @param fileSampleSize An integer specifying the number of events sampled from
+#'   each fcs file. If NULL, all the events will be pre-processed and wrote out
+#'   to the new fcs files.
+#' @param excludeTransformParameters A vector specifying the name of parameters
+#'   not to be transformed (left at linear scale).
+#' @param compFiles A vector specifying the paths of user supplied compensation
+#'   matrix for each fcs file. The maxtrix must be stored in csv files.
+#' @return Returns a flowFrame object containing the preprocessed cytometry
+#'   data. Cells from different fcs files are combined into one flow frame. A
+#'   new parameter, sample_id, is introduced to indicate the origin of each
+#'   cell.
 #' @examples
 #' # Find fcs files
-#' files=system.file("extdata","SDY420/ResultFiles/CyTOF_result",package="MetaCyto")
+#' files=system.file("extdata","SDY420/ResultFiles/CyTOF_result",
+#'                   package="MetaCyto")
 #' files=list.files(files,pattern="fcs$",full.names=TRUE)
 #' # Preprocess
 #' fcs = preprocessing(fcsFiles=files,assay ="CyTOF",b=1/8)
+#' @importFrom flowCore read.flowSet fsApply keyword logTransform transformList
+#'   transform compensate arcsinhTransform colnames
 #' @export
 preprocessing=function(fcsFiles,
                        assay=c("FCM", "CyTOF"),
                        b=1/200,
                        fileSampleSize=5000,
+                       compFiles=NULL,
                        excludeTransformParameters=c("FSC-A","FSC-W","FSC-H","Time","Cell_length")){
 
   fcs_param=NULL
@@ -60,6 +75,17 @@ preprocessing=function(fcsFiles,
       translist = flowCore::transformList(biomarker_vector,trans)
       fcs = flowCore::transform(fcs, translist)
     } else if (unique_version == 3) {
+      # check if user have provided the compmatrix
+      if(!is.null(compFiles)){
+        compList=lapply(compFiles,function(x){
+          if(is.na(x)){return(as.matrix(NA))}else{return(as.matrix(read.csv(x,row.names = 1,check.names = FALSE)))}
+          })
+        for(id in 1:length(fcs)){
+          if(!is.na(compList[[id]][1,1])){
+            fcs[[id]]@description$SPILL <- compList[[id]]
+            }
+        }
+      }
 
       ### function first checks if the spill matrix in the flowframe is an actual spill matrix or an identity matrix
       if (is.null(flowCore::keyword(fcs[[1]], "SPILL")[[1]]) == FALSE) {

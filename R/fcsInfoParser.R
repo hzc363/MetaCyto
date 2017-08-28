@@ -23,6 +23,7 @@
 #'                               studyFolder=fn,
 #'                               fcsCol="FILE_NAME",
 #'                               assay="FCM")
+#' @importFrom flowCore read.FCS pData parameters
 #' @export
 fcsInfoParser =function(metaData,
                         studyFolder,

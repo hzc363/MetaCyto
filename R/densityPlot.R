@@ -2,15 +2,19 @@
 #'
 #' A function that draws density plot for each cell cluster.
 #' @param fcsFrame A flow Frame object returned from preprocessing function.
-#' @param clusterList A list, each element should be a vector containing the IDs of all cells that belong to a cluster
+#' @param clusterList A list, each element should be a vector containing the IDs
+#'   of all cells that belong to a cluster
 #' @param cutoff A vector of cutoff values to bisect the distribution of each
 #'   marker. The names of the vector should be the same as the marker names.
-#' @param markerToPlot A vector specifying markers included in the plot. If NULL, all markers will be plotted.
+#' @param markerToPlot A vector specifying markers included in the plot. If
+#'   NULL, all markers will be plotted.
 #' @return NULL. The plot will show up automatically.
-#' @details The plot can be very large, we suggest plotting it into a pdf jpeg file directly.
+#' @details The plot can be very large, we suggest plotting it into a pdf jpeg
+#'   file directly.
 #' @examples
 #' # Find fcs files
-#' files=system.file("extdata","SDY420/ResultFiles/CyTOF_result",package="MetaCyto")
+#' files=system.file("extdata","SDY420/ResultFiles/CyTOF_result",
+#'                   package="MetaCyto")
 #' files=list.files(files,pattern="fcs$",full.names=TRUE)
 #' # Preprocess
 #' fcs = preprocessing(fcsFiles=files,assay ="CyTOF",b=1/8)
@@ -22,6 +26,7 @@
 #'             clusterList=cluster_list$clusterList,
 #'             cutoff=cluster_list$cutoff,
 #'             markerToPlot=c("CD3","CD8","CD19"))
+#' @importFrom flowCore exprs
 #' @export
 
 densityPlot=function(fcsFrame,clusterList,cutoff,markerToPlot=NULL){

@@ -1,10 +1,13 @@
 #' Summarize markers in panels.
 #'
 #' A function that summarizes markers in cytometry panels.
-#' @param panelInfo A data frame returned by the collectData function. It should contain all the information outputted by the preprocessing.batch function.
+#' @param panelInfo A data frame returned by the collectData function. It should
+#'   contain all the information outputted by the preprocessing.batch function.
 #' @param folder The directory where the output should be written.
-#' @param cluster True or False. Used to indicate if the markers and panels should be clustered in the plot.
-#' @param plotImage True or False. Used to indicate if a plot summarizing markers in panels should be produced.
+#' @param cluster True or False. Used to indicate if the markers and panels
+#'   should be clustered in the plot.
+#' @param plotImage True or False. Used to indicate if a plot summarizing
+#'   markers in panels should be produced.
 #' @param width Used to specify the width of the plot
 #' @param height Used to specify the height of the plot
 #' @return A dataframe describing what markers are in each panel.
@@ -14,6 +17,7 @@
 #' panel_info=collectData(fn,longform=FALSE)
 #' dir.create("Example_Result")
 #' PS=panelSummary(panel_info,"Example_Result",cluster=FALSE,width=30,height=20)
+#' @importFrom tidyr spread
 #' @export
 panelSummary=function(panelInfo,folder,cluster=TRUE,plotImage=TRUE,width=20,height=20){
   panelInfo=unique(panelInfo[,c("study_id","antibodies")])

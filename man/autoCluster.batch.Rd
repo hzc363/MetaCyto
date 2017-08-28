@@ -5,7 +5,7 @@
 \title{Cluster the preprocessed fcs files from different studies in batch}
 \usage{
 autoCluster.batch(preprocessOutputFolder,
-  excludeClusterParameters = c("TIME"), labelQuantile = 0.9,
+  excludeClusterParameters = c("TIME"), labelQuantile = 0.95,
   clusterFunction = flowSOM.MC, minPercent = 0.05, ...)
 }
 \arguments{
@@ -18,20 +18,20 @@ to be used for clustering and labeling. Typical example includes: Time,
 cell_length.}
 
 \item{labelQuantile}{A number between 0.5 and 1. Used to specify the minimum
-percent of cells in a cluster required to express higher or lower level of a marker than the
-cutoff value for labeling.}
+percent of cells in a cluster required to express higher or lower level of
+a marker than the cutoff value for labeling.}
 
 \item{clusterFunction}{The name of unsupervised clustering function the user
 wish to use for clustering the cells. The default is "flowSOM.MC". The
 first argument of the function must take a flow frame, the second argument
 of the function must take a vector of excludeClusterParameters. The
-function must return a list of clusters containing cell IDs. flowSOM.MC
-and flowHC are implemented in the package. For other methods, please make
-your own wrapper functions.}
+function must return a list of clusters containing cell IDs. flowSOM.MC and
+flowHC are implemented in the package. For other methods, please make your
+own wrapper functions.}
 
 \item{minPercent}{A number between 0 and 0.5. Used to specify the minimum
-percent of cells in the positive and negative region after bisection. Keep it
-small to avoid bisecting uni-mode distributions.}
+percent of cells in the positive and negative region after bisection. Keep
+it small to avoid bisecting uni-mode distributions.}
 
 \item{...}{Pass arguments to labelCluster and clusterFunction}
 }
@@ -46,8 +46,10 @@ in batch.
 #get meta-data
 fn=system.file("extdata","fcs_info.csv",package="MetaCyto")
 fcs_info=read.csv(fn,stringsAsFactors=FALSE,check.names=FALSE)
-fcs_info$fcs_files=system.file("extdata",fcs_info$fcs_files,package="MetaCyto")
-# make sure the transformation parameter "b" and the "assay" argument are correct of FCM and CyTOF files
+fcs_info$fcs_files=system.file("extdata",fcs_info$fcs_files,
+                               package="MetaCyto")
+# Make sure the transformation parameter "b" and the "assay" argument
+# are correct of FCM and CyTOF files
 b=assay=rep(NA,nrow(fcs_info))
 b[grepl("CyTOF",fcs_info$study_id)]=1/8
 b[grepl("FCM",fcs_info$study_id)]=1/150
@@ -58,15 +60,19 @@ preprocessing.batch(inputMeta=fcs_info,
                     assay=assay,
                     b=b,
                     outpath="Example_Result/preprocess_output",
-                    excludeTransformParameters=c("FSC-A","FSC-W","FSC-H","Time","Cell_length"))
+                    excludeTransformParameters=c("FSC-A","FSC-W","FSC-H",
+                    "Time","Cell_length"))
 # Make sure marker names are consistant in different studies
-files=list.files("Example_Result",pattern="processed_sample",recursive=TRUE,full.names=TRUE)
+files=list.files("Example_Result",pattern="processed_sample",
+                 recursive=TRUE,full.names=TRUE)
 nameUpdator("CD8B","CD8",files)
 # find the clusters
-excludeClusterParameters=c("FSC-A","FSC-W","FSC-H","SSC-A","SSC-W","SSC-H","Time",
+excludeClusterParameters=c("FSC-A","FSC-W","FSC-H","SSC-A",
+                           "SSC-W","SSC-H","Time",
                           "CELL_LENGTH","DEAD","DNA1","DNA2")
-cluster_label=autoCluster.batch(preprocessOutputFolder="Example_Result/preprocess_output",
-                                excludeClusterParameters=excludeClusterParameters,
-                                labelQuantile=0.95,
-                                clusterFunction=flowHC)
+cluster_label=autoCluster.batch(
+              preprocessOutputFolder="Example_Result/preprocess_output",
+              excludeClusterParameters=excludeClusterParameters,
+              labelQuantile=0.95,
+              clusterFunction=flowHC)
 }

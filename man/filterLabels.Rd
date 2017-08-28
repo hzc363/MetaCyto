@@ -9,11 +9,14 @@ filterLabels(labels, minPlus, minMarker, maxMarker)
 \arguments{
 \item{labels}{A vector containing labels for cell clusters}
 
-\item{minPlus}{An integer, used to specify the minimum  number of "+" a label should contain.}
+\item{minPlus}{An integer, used to specify the minimum  number of "+" a label
+should contain.}
 
-\item{minMarker}{An integer, used to specify the minimum  number of markers a label should contain.}
+\item{minMarker}{An integer, used to specify the minimum  number of markers a
+label should contain.}
 
-\item{maxMarker}{An integer, used to specify the max number of markers a label should contain.}
+\item{maxMarker}{An integer, used to specify the max number of markers a
+label should contain.}
 }
 \value{
 Returns a vector of labels that pass through the filter.
@@ -22,6 +25,7 @@ Returns a vector of labels that pass through the filter.
 A function that filter cluster labels.
 }
 \examples{
-labels= c("CD3-|CD4-|CD8-","CD3+|CD4+|CD8-","CD3+|CD4-|CD8+","CD3+|CD4-|CD8+|CCR7+|CD45RA-|CCR6-")
+labels= c("CD3-|CD4-|CD8-","CD3+|CD4+|CD8-",
+         "CD3+|CD4-|CD8+","CD3+|CD4-|CD8+|CCR7+|CD45RA-|CCR6-")
 labels=filterLabels(labels=labels,minPlus=1,minMarker=2,maxMarker=5)
 }

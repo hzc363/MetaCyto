@@ -1,17 +1,24 @@
-#' Search for clusters using pre-defined labels in cytometry data from different studies in batch
+#' Search for clusters using pre-defined labels in cytometry data from different
+#' studies in batch
 #'
-#' A function that searches for clusters using pre-defined labels in cytometry data from different studies in batch.
-#' @param preprocessOutputFolder Directory where the pre-processed results are stored.
-#' @param outpath A string indicating the directory the results should be written to.
+#' A function that searches for clusters using pre-defined labels in cytometry
+#' data from different studies in batch.
+#' @param preprocessOutputFolder Directory where the pre-processed results are
+#'   stored.
+#' @param outpath A string indicating the directory the results should be
+#'   written to.
 #' @param clusterLabel A vector containing labels, such as c("CD3+|CD4+|CD8-")
-#' @param ifPlot True or False. Used to specify if a the density plot for each cluster should be plotted
+#' @param ifPlot True or False. Used to specify if a the density plot for each
+#'   cluster should be plotted
 #' @return Results will be written to the outpath folder
-#' @details The function writes out the summary statistics for each cluster. A separate directory will be created for each study.
+#' @details The function writes out the summary statistics for each cluster. A
+#'   separate directory will be created for each study.
 #' @examples
 #' #get meta-data
 #' fn=system.file("extdata","fcs_info.csv",package="MetaCyto")
 #' fcs_info=read.csv(fn,stringsAsFactors=FALSE,check.names=FALSE)
-#' fcs_info$fcs_files=system.file("extdata",fcs_info$fcs_files,package="MetaCyto")
+#' fcs_info$fcs_files=system.file("extdata",fcs_info$fcs_files,
+#'                                package="MetaCyto")
 #' # Make sure the transformation parameter "b" and the "assay" argument
 #' # are correct of FCM and CyTOF files
 #' b=assay=rep(NA,nrow(fcs_info))
@@ -24,15 +31,18 @@
 #'                     assay=assay,
 #'                     b=b,
 #'                     outpath="Example_Result/preprocess_output",
-#'                     excludeTransformParameters=c("FSC-A","FSC-W","FSC-H","Time","Cell_length"))
+#'                     excludeTransformParameters=c("FSC-A","FSC-W","FSC-H",
+#'                     "Time","Cell_length"))
 #' # Make sure marker names are consistant in different studies
-#' files=list.files("Example_Result",pattern="processed_sample",recursive=TRUE,full.names=TRUE)
+#' files=list.files("Example_Result",pattern="processed_sample",recursive=TRUE,
+#'                  full.names=TRUE)
 #' nameUpdator("CD8B","CD8",files)
 #' # find the clusters
 #' cluster_label=c("CD3-|CD19+","CD3+|CD4-|CD8+")
 #' searchCluster.batch(preprocessOutputFolder="Example_Result/preprocess_output",
 #'                     outpath="Example_Result/search_output",
 #'                     clusterLabel=cluster_label)
+#' @importFrom flowCore read.FCS exprs flowFrame
 #' @export
 searchCluster.batch=function(preprocessOutputFolder,
                              outpath="search_output",

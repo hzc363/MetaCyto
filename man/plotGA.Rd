@@ -18,17 +18,21 @@ The plot will show up automatically.
 A function that plots the result from the glmAnalysis function.
 }
 \examples{
+library(dplyr)
 #collect all summary statistics
 fn=system.file("extdata","",package="MetaCyto")
-files=list.files(fn,pattern="cluster_stats_in_each_sample",recursive=TRUE,full.names=TRUE)
+files=list.files(fn,pattern="cluster_stats_in_each_sample",recursive=TRUE,
+                full.names=TRUE)
 fcs_stats=collectData(files,longform=TRUE)
 # Collect sample information
 files=list.files(fn,pattern="sample_info",recursive=TRUE,full.names=TRUE)
 sample_info=collectData(files,longform=FALSE)
 # join the cluster summary statistics with sample information
 all_data=inner_join(fcs_stats,sample_info,by="fcs_files")
-# See the fraction of what clusters are affected by age (while controlling for GENDER)
-GA=glmAnalysis(value="value",variableOfInterst="SUBJECT_AGE",parameter="fraction",
+# See the fraction of what clusters are affected
+# by age (while controlling for GENDER)
+GA=glmAnalysis(value="value",variableOfInterst="SUBJECT_AGE",
+             parameter="fraction",
               otherVariables=c("GENDER"),studyID="study_id",label="label",
               data=all_data,CILevel=0.95,ifScale=c(TRUE,FALSE))
 GA=GA[order(GA$Effect_size),]

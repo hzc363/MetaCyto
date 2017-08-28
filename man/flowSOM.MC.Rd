@@ -9,24 +9,29 @@ flowSOM.MC(fcsFrame, excludeClusterParameters, grid = 10, k = 40)
 \arguments{
 \item{fcsFrame}{A flow frame.}
 
-\item{excludeClusterParameters}{A vector specifying the name of markers not to be used for clustering.}
+\item{excludeClusterParameters}{A vector specifying the name of markers not
+to be used for clustering.}
 
 \item{grid}{An integer, defines the width and hight of SOM}
 
-\item{k}{An integer, defines the number of clusters to be identified by flowSOM.}
+\item{k}{An integer, defines the number of clusters to be identified by
+flowSOM.}
 }
 \value{
-A list of clusters. Each cluster contains the ID of all cells that belong to the cluster.
+A list of clusters. Each cluster contains the ID of all cells that
+  belong to the cluster.
 }
 \description{
 A function that cluster cytometry data using FlowSOM.
 }
 \examples{
 # Find fcs files
-files=system.file("extdata","SDY420/ResultFiles/CyTOF_result",package="MetaCyto")
+files=system.file("extdata",
+                  "SDY420/ResultFiles/CyTOF_result",package="MetaCyto")
 files=list.files(files,pattern="fcs$",full.names=TRUE)
 # Preprocess
 fcs = preprocessing(fcsFiles=files,assay ="CyTOF",b=1/8)
 # cluster using flowSOM.MC
-cluster_list=flowSOM.MC(fcsFrame=fcs,excludeClusterParameters=c("Time","Cell_length"))
+cluster_list=flowSOM.MC(fcsFrame=fcs,
+                        excludeClusterParameters=c("Time","Cell_length"))
 }

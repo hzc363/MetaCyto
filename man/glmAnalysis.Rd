@@ -11,43 +11,61 @@ glmAnalysis(value = "value", variableOfInterst = "SUBJECT_AGE", parameter,
 \arguments{
 \item{value}{A string to specify the column name of the dependent variable (y)}
 
-\item{variableOfInterst}{A string to specify the column name of the independent variable of interest (x1)}
+\item{variableOfInterst}{A string to specify the column name of the
+independent variable of interest (x1)}
 
-\item{parameter}{A string to specify what summary statistics is the dependent variable.}
+\item{parameter}{A string to specify what summary statistics is the dependent
+variable.}
 
-\item{otherVariables}{A string vector to specify the column names of independent variables included in the regression model other than the variableOfInterst.}
+\item{otherVariables}{A string vector to specify the column names of
+independent variables included in the regression model other than the
+variableOfInterst.}
 
 \item{studyID}{A string to specify the column name of study ID.}
 
-\item{label}{A string to specify the name the column that contains the cluster label or name.}
+\item{label}{A string to specify the name the column that contains the cluster
+label or name.}
 
-\item{data}{A data frame containing the data. Usually a long form data frame returned by collectData.}
+\item{data}{A data frame containing the data. Usually a long form data frame
+returned by collectData.}
 
-\item{CILevel}{A number between 0 to 1, used to specify the confidence interval to be plotted in the forest plot.}
+\item{CILevel}{A number between 0 to 1, used to specify the confidence
+interval to be plotted in the forest plot.}
 
-\item{ifScale}{A vector of two logic values, specifying if the dependent variable and the variableOfInterst should be scaled when calculating the effect size.}
+\item{ifScale}{A vector of two logic values, specifying if the dependent
+variable and the variableOfInterst should be scaled when calculating the
+effect size.}
 }
 \value{
-Returns data frame describing the overall effect size of variableOfInterst on value.  May be slightly different from the value reported from the function metaAnalysis.
+Returns data frame describing the overall effect size of
+ variableOfInterst on value.  May be slightly different from the value
+ reported from the function metaAnalysis.
 }
 \description{
-A function that performs generalized linear model analysis to estimate effect size.
+A function that performs generalized linear model analysis to estimate effect
+size.
 }
 \details{
-The function use the model value ~ variableOfInterst + otherVariables + studyID to estimate the effect size. Use it as a screening tool. Use metaAnalysis function to analyze an effect size in more detail.
+The function use the model value ~ variableOfInterst + otherVariables
+ + studyID to estimate the effect size. Use it as a screening tool. Use
+ metaAnalysis function to analyze an effect size in more detail.
 }
 \examples{
+library(dplyr)
 #collect all summary statistics
 fn=system.file("extdata","",package="MetaCyto")
-files=list.files(fn,pattern="cluster_stats_in_each_sample",recursive=TRUE,full.names=TRUE)
+files=list.files(fn,pattern="cluster_stats_in_each_sample",
+                recursive=TRUE,full.names=TRUE)
 fcs_stats=collectData(files,longform=TRUE)
 # Collect sample information
 files=list.files(fn,pattern="sample_info",recursive=TRUE,full.names=TRUE)
 sample_info=collectData(files,longform=FALSE)
 # join the cluster summary statistics with sample information
 all_data=inner_join(fcs_stats,sample_info,by="fcs_files")
-# See the fraction of what clusters are affected by age (while controlling for GENDER)
-GA=glmAnalysis(value="value",variableOfInterst="SUBJECT_AGE",parameter="fraction",
+# See the fraction of what clusters are affected by
+# age (while controlling for GENDER)
+GA=glmAnalysis(value="value",variableOfInterst="SUBJECT_AGE",
+              parameter="fraction",
               otherVariables=c("GENDER"),studyID="study_id",label="label",
               data=all_data,CILevel=0.95,ifScale=c(TRUE,FALSE))
 }

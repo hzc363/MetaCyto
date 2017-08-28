@@ -26,7 +26,8 @@ A function that derives summary statistics for clusters.
 }
 \examples{
 # Find fcs files
-files=system.file("extdata","SDY420/ResultFiles/CyTOF_result",package="MetaCyto")
+files=system.file("extdata","SDY420/ResultFiles/CyTOF_result",
+                  package="MetaCyto")
 files=list.files(files,pattern="fcs$",full.names=TRUE)
 # Preprocess
 fcs = preprocessing(fcsFiles=files,assay ="CyTOF",b=1/8)

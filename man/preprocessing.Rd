@@ -5,29 +5,43 @@
 \title{Preprocess fcs files from a single experiment}
 \usage{
 preprocessing(fcsFiles, assay = c("FCM", "CyTOF"), b = 1/200,
-  fileSampleSize = 5000, excludeTransformParameters = c("FSC-A", "FSC-W",
-  "FSC-H", "Time", "Cell_length"))
+  fileSampleSize = 5000, compFiles = NULL,
+  excludeTransformParameters = c("FSC-A", "FSC-W", "FSC-H", "Time",
+  "Cell_length"))
 }
 \arguments{
 \item{fcsFiles}{A vector specifying the location of all fcs files.}
 
 \item{assay}{Either "FCM" or "CyTOF" to indicate the type of cytometry data.}
 
-\item{b}{A positive number used to specify the arcsinh transformation. f(x) = asinh (b*x) where x is the original value and f(x) is the value after transformation. The suggested value is 1/150 for flow cytometry (FCM) data and 1/8 for CyTOF data.}
+\item{b}{A positive number used to specify the arcsinh transformation. f(x) =
+asinh (b*x) where x is the original value and f(x) is the value after
+transformation. The suggested value is 1/150 for flow cytometry (FCM) data
+and 1/8 for CyTOF data.}
 
-\item{fileSampleSize}{An integer specifying the number of events sampled from each fcs file. If NULL, all the events will be pre-processed and wrote out to the new fcs files.}
+\item{fileSampleSize}{An integer specifying the number of events sampled from
+each fcs file. If NULL, all the events will be pre-processed and wrote out
+to the new fcs files.}
 
-\item{excludeTransformParameters}{A vector specifying the name of parameters not to be transformed (left at linear scale).}
+\item{compFiles}{A vector specifying the paths of user supplied compensation
+matrix for each fcs file. The maxtrix must be stored in csv files.}
+
+\item{excludeTransformParameters}{A vector specifying the name of parameters
+not to be transformed (left at linear scale).}
 }
 \value{
-Returns a flowFrame object containing the preprocessed cytometry data. Cells from different fcs files are combined into one flow frame. A new parameter, sample_id, is introduced to indicate the origin of each cell.
+Returns a flowFrame object containing the preprocessed cytometry
+  data. Cells from different fcs files are combined into one flow frame. A
+  new parameter, sample_id, is introduced to indicate the origin of each
+  cell.
 }
 \description{
 A function that preprocesses fcs files from a single experiment.
 }
 \examples{
 # Find fcs files
-files=system.file("extdata","SDY420/ResultFiles/CyTOF_result",package="MetaCyto")
+files=system.file("extdata","SDY420/ResultFiles/CyTOF_result",
+                  package="MetaCyto")
 files=list.files(files,pattern="fcs$",full.names=TRUE)
 # Preprocess
 fcs = preprocessing(fcsFiles=files,assay ="CyTOF",b=1/8)

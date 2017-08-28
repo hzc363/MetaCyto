@@ -21,9 +21,11 @@
 #' @return Returns data frame describing the effect size of variableOfInterst on
 #'   value in each individual studies, as well as the over all effect size.
 #' @examples
+#' library(dplyr)
 #' #collect all summary statistics
 #' fn=system.file("extdata","",package="MetaCyto")
-#' files=list.files(fn,pattern="cluster_stats_in_each_sample",recursive=TRUE,full.names=TRUE)
+#' files=list.files(fn,pattern="cluster_stats_in_each_sample",recursive=TRUE,
+#'                  full.names=TRUE)
 #' fcs_stats=collectData(files,longform=TRUE)
 #' # Collect sample information
 #' files=list.files(fn,pattern="sample_info",recursive=TRUE,full.names=TRUE)
@@ -39,6 +41,7 @@
 #' MA=metaAnalysis(value="value",variableOfInterst="SUBJECT_AGE",main=L,
 #'                 otherVariables=c("GENDER"),studyID="study_id",
 #'                 data=dat,CILevel=0.95,ifScale=c(TRUE,FALSE))
+#' @importFrom metafor rma.uni forest
 #' @export
 metaAnalysis=function(value,variableOfInterst,otherVariables,
                       studyID,data,CILevel,main,

@@ -2,35 +2,43 @@
 % Please edit documentation in R/searchCluster.batch.R
 \name{searchCluster.batch}
 \alias{searchCluster.batch}
-\title{Search for clusters using pre-defined labels in cytometry data from different studies in batch}
+\title{Search for clusters using pre-defined labels in cytometry data from different
+studies in batch}
 \usage{
 searchCluster.batch(preprocessOutputFolder, outpath = "search_output",
   clusterLabel, ifPlot = TRUE)
 }
 \arguments{
-\item{preprocessOutputFolder}{Directory where the pre-processed results are stored.}
+\item{preprocessOutputFolder}{Directory where the pre-processed results are
+stored.}
 
-\item{outpath}{A string indicating the directory the results should be written to.}
+\item{outpath}{A string indicating the directory the results should be
+written to.}
 
 \item{clusterLabel}{A vector containing labels, such as c("CD3+|CD4+|CD8-")}
 
-\item{ifPlot}{True or False. Used to specify if a the density plot for each cluster should be plotted}
+\item{ifPlot}{True or False. Used to specify if a the density plot for each
+cluster should be plotted}
 }
 \value{
 Results will be written to the outpath folder
 }
 \description{
-A function that searches for clusters using pre-defined labels in cytometry data from different studies in batch.
+A function that searches for clusters using pre-defined labels in cytometry
+data from different studies in batch.
 }
 \details{
-The function writes out the summary statistics for each cluster. A separate directory will be created for each study.
+The function writes out the summary statistics for each cluster. A
+  separate directory will be created for each study.
 }
 \examples{
 #get meta-data
 fn=system.file("extdata","fcs_info.csv",package="MetaCyto")
 fcs_info=read.csv(fn,stringsAsFactors=FALSE,check.names=FALSE)
-fcs_info$fcs_files=system.file("extdata",fcs_info$fcs_files,package="MetaCyto")
-# make sure the transformation parameter "b" and the "assay" argument are correct of FCM and CyTOF files
+fcs_info$fcs_files=system.file("extdata",fcs_info$fcs_files,
+                               package="MetaCyto")
+# Make sure the transformation parameter "b" and the "assay" argument
+# are correct of FCM and CyTOF files
 b=assay=rep(NA,nrow(fcs_info))
 b[grepl("CyTOF",fcs_info$study_id)]=1/8
 b[grepl("FCM",fcs_info$study_id)]=1/150
@@ -41,9 +49,11 @@ preprocessing.batch(inputMeta=fcs_info,
                     assay=assay,
                     b=b,
                     outpath="Example_Result/preprocess_output",
-                    excludeTransformParameters=c("FSC-A","FSC-W","FSC-H","Time","Cell_length"))
+                    excludeTransformParameters=c("FSC-A","FSC-W","FSC-H",
+                    "Time","Cell_length"))
 # Make sure marker names are consistant in different studies
-files=list.files("Example_Result",pattern="processed_sample",recursive=TRUE,full.names=TRUE)
+files=list.files("Example_Result",pattern="processed_sample",recursive=TRUE,
+                 full.names=TRUE)
 nameUpdator("CD8B","CD8",files)
 # find the clusters
 cluster_label=c("CD3-|CD19+","CD3+|CD4-|CD8+")

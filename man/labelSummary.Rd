@@ -12,8 +12,8 @@ labelSummary(allData, minStudy = 2)
 Often is the output of the function "collectData".}
 
 \item{minStudy}{Minimum number of cytometry panels a label should appear in.
-Set it >1 to find cell populations identified in more than 1 cytometry panel
-for meta-analysis.}
+Set it >1 to find cell populations identified in more than 1 cytometry
+panel for meta-analysis.}
 }
 \value{
 A data frame summarizing the labels identified in different cytometry
@@ -25,7 +25,8 @@ different cytometry panels.
 }
 \examples{
 fn=system.file("extdata","",package="MetaCyto")
-files=list.files(fn,pattern="cluster_stats_in_each_sample",recursive=TRUE,full.names=TRUE)
+files=list.files(fn,pattern="cluster_stats_in_each_sample",
+                 recursive=TRUE,full.names=TRUE)
 fcs_stats=collectData(files,longform=TRUE)
 label_summary = labelSummary(allData=fcs_stats,minStudy=2)
 }

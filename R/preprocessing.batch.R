@@ -23,16 +23,17 @@
 #'   specified by the "outpath".
 #' @details The function takes a data frame which specifies the location of the
 #'   fcs files and the panels the fcs files belong to. It transform the
-#'   cytometry data using the arcsinh transformation. For flow cytometry data, it
-#'   compensate the data using the compensation matrix supplied in the fcs file.
-#'   the preprocessed fcs files and a table called
+#'   cytometry data using the arcsinh transformation. For flow cytometry data,
+#'   it compensate the data using the compensation matrix supplied in the fcs
+#'   file. the preprocessed fcs files and a table called
 #'   "processed_sample_summary.csv" will be wrote out to outpath as well.
 #' @examples
 #' #get meta-data
 #' fn=system.file("extdata","fcs_info.csv",package="MetaCyto")
 #' fcs_info=read.csv(fn,stringsAsFactors=FALSE,check.names=FALSE)
 #' fcs_info$fcs_files=system.file("extdata",fcs_info$fcs_files,package="MetaCyto")
-#' # make sure the transformation parameter "b" and the "assay" argument are correct of FCM and CyTOF files
+#' # make sure the transformation parameter "b" and the "assay" argument are
+#' # correct for FCM and CyTOF files
 #' b=assay=rep(NA,nrow(fcs_info))
 #' b[grepl("CyTOF",fcs_info$study_id)]=1/8
 #' b[grepl("FCM",fcs_info$study_id)]=1/150
@@ -43,8 +44,10 @@
 #'                     assay=assay,
 #'                     b=b,
 #'                     outpath="Example_Result/preprocess_output",
-#'                     excludeTransformParameters=c("FSC-A","FSC-W","FSC-H","Time","Cell_length"))
+#'                     excludeTransformParameters=c("FSC-A","FSC-W","FSC-H",
+#'                     "Time","Cell_length"))
 
+#' @importFrom flowCore write.FCS
 #' @export
 
 preprocessing.batch = function(inputMeta,

@@ -2,19 +2,25 @@
 #'
 #' A function that cluster cytometry data using hierarchical clustering.
 #' @param fcsFrame A flow frame.
-#' @param excludeClusterParameters A vector specifying the name of markers not to be used for clustering.
-#' @param minimumClusterSizePercent A number between 0 and 1, used to specify the minimum size of a cluster relative to all events.
-#' @return A list of clusters. Each cluster contains the ID of all cells that belong to the cluster.
+#' @param excludeClusterParameters A vector specifying the name of markers not
+#'   to be used for clustering.
+#' @param minimumClusterSizePercent A number between 0 and 1, used to specify
+#'   the minimum size of a cluster relative to all events.
+#' @return A list of clusters. Each cluster contains the ID of all cells that
+#'   belong to the cluster.
 #' @examples
 #' # Find fcs files
-#' files=system.file("extdata","SDY420/ResultFiles/CyTOF_result",package="MetaCyto")
+#' files=system.file("extdata","SDY420/ResultFiles/CyTOF_result",
+#'                  package="MetaCyto")
 #' files=list.files(files,pattern="fcs$",full.names=TRUE)
 #' # Preprocess
 #' fcs = preprocessing(fcsFiles=files,assay ="CyTOF",b=1/8)
 #' # cluster using flowHC
-#' cluster_list=flowHC(fcsFrame=fcs,excludeClusterParameters=c("Time","Cell_length"))
+#' cluster_list=flowHC(fcsFrame=fcs,
+#'                     excludeClusterParameters=c("Time","Cell_length"))
 #' @export
-#' @import fastcluster
+#' @importFrom flowCore exprs
+#' @importFrom fastcluster hclust
 flowHC=function(fcsFrame,excludeClusterParameters,minimumClusterSizePercent=0.05){
   antibodies=markerFinder(fcsFrame)
   excludeClusterParameters=toupper(excludeClusterParameters)

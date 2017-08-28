@@ -49,6 +49,8 @@ baselineCut=function(x){
   x=x[x>breaks[bound[1]]&x<breaks[bound[2]]]
   return(x)
 }
+
+
 trisect=function(x){
   if(length(x)>2000){x=sample(x,2000)}
   x=baselineCut(x)

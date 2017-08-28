@@ -6,13 +6,14 @@
 #' @param allData A table containing the summary statistics of cell populations.
 #'   Often is the output of the function "collectData".
 #' @param minStudy Minimum number of cytometry panels a label should appear in.
-#'   Set it >1 to find cell populations identified in more than 1 cytometry panel
-#'   for meta-analysis.
+#'   Set it >1 to find cell populations identified in more than 1 cytometry
+#'   panel for meta-analysis.
 #' @return A data frame summarizing the labels identified in different cytometry
 #'   panels.
 #' @examples
 #' fn=system.file("extdata","",package="MetaCyto")
-#' files=list.files(fn,pattern="cluster_stats_in_each_sample",recursive=TRUE,full.names=TRUE)
+#' files=list.files(fn,pattern="cluster_stats_in_each_sample",
+#'                  recursive=TRUE,full.names=TRUE)
 #' fcs_stats=collectData(files,longform=TRUE)
 #' label_summary = labelSummary(allData=fcs_stats,minStudy=2)
 #' @export

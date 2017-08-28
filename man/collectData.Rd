@@ -9,13 +9,15 @@ collectData(files, longform = TRUE)
 \arguments{
 \item{files}{A vector containing the paths of csv files to be combined.}
 
-\item{longform}{True or False. Used to specify if the table in each csv file should be converted into long form before combining.}
+\item{longform}{True or False. Used to specify if the table in each csv file
+should be converted into long form before combining.}
 }
 \value{
 A dataframe containing conbined information from multiple csv files.
 }
 \description{
-A function that collect and combine data from multiple csv files of the same format.
+A function that collect and combine data from multiple csv files of the same
+format.
 }
 \examples{
 # find all the files we want to combine

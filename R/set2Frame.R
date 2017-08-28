@@ -2,13 +2,17 @@
 #'
 #' A function that combines cells in a flow set into a flow frame.
 #' @param flowSet A flow set object
-#' @return Returns a flowFrame object. All cells from flow set are combined into one flow frame. A new parameter, sample_id, is introduced to indicate the origin of each cell.
+#' @return Returns a flowFrame object. All cells from flow set are combined into
+#'   one flow frame. A new parameter, sample_id, is introduced to indicate the
+#'   origin of each cell.
 #' @examples
 #' library(flowCore)
-#' files=system.file("extdata","SDY420/ResultFiles/CyTOF_result",package="MetaCyto")
+#' files=system.file("extdata","SDY420/ResultFiles/CyTOF_result",
+#'                   package="MetaCyto")
 #' files=list.files(files,pattern="fcs$",full.names=TRUE)
 #' flow_set = read.flowSet(files)
 #' flow_frame = set2Frame(flow_set)
+#' @importFrom flowCore fsApply exprs pData flowFrame parameters
 #' @export
 set2Frame=function(flowSet){
   expr=flowCore::fsApply(flowSet,function(x){
