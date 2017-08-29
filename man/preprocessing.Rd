@@ -24,7 +24,7 @@ each fcs file. If NULL, all the events will be pre-processed and wrote out
 to the new fcs files.}
 
 \item{compFiles}{A vector specifying the paths of user supplied compensation
-matrix for each fcs file. The maxtrix must be stored in csv files.}
+matrix for each fcs file. The matrix must be stored in csv files.}
 
 \item{excludeTransformParameters}{A vector specifying the name of parameters
 not to be transformed (left at linear scale).}

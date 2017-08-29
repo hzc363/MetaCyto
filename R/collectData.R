@@ -5,7 +5,7 @@
 #' @param files A vector containing the paths of csv files to be combined.
 #' @param longform True or False. Used to specify if the table in each csv file
 #'   should be converted into long form before combining.
-#' @return A dataframe containing conbined information from multiple csv files.
+#' @return A dataframe containing combined information from multiple csv files.
 #' @examples
 #' # find all the files we want to combine
 #' fn=system.file("extdata","",package="MetaCyto")

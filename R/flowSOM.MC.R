@@ -4,7 +4,7 @@
 #' @param fcsFrame A flow frame.
 #' @param excludeClusterParameters A vector specifying the name of markers not
 #'   to be used for clustering.
-#' @param grid An integer, defines the width and hight of SOM
+#' @param grid An integer, defines the width and height of SOM
 #' @param k An integer, defines the number of clusters to be identified by
 #'   flowSOM.
 #' @return A list of clusters. Each cluster contains the ID of all cells that

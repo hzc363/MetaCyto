@@ -12,7 +12,7 @@ flowSOM.MC(fcsFrame, excludeClusterParameters, grid = 10, k = 40)
 \item{excludeClusterParameters}{A vector specifying the name of markers not
 to be used for clustering.}
 
-\item{grid}{An integer, defines the width and hight of SOM}
+\item{grid}{An integer, defines the width and height of SOM}
 
 \item{k}{An integer, defines the number of clusters to be identified by
 flowSOM.}

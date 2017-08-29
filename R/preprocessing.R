@@ -13,7 +13,7 @@
 #' @param excludeTransformParameters A vector specifying the name of parameters
 #'   not to be transformed (left at linear scale).
 #' @param compFiles A vector specifying the paths of user supplied compensation
-#'   matrix for each fcs file. The maxtrix must be stored in csv files.
+#'   matrix for each fcs file. The matrix must be stored in csv files.
 #' @return Returns a flowFrame object containing the preprocessed cytometry
 #'   data. Cells from different fcs files are combined into one flow frame. A
 #'   new parameter, sample_id, is introduced to indicate the origin of each

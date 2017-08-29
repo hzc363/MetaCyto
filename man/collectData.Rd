@@ -13,7 +13,7 @@ collectData(files, longform = TRUE)
 should be converted into long form before combining.}
 }
 \value{
-A dataframe containing conbined information from multiple csv files.
+A dataframe containing combined information from multiple csv files.
 }
 \description{
 A function that collect and combine data from multiple csv files of the same
