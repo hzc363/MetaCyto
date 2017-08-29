@@ -23,7 +23,8 @@ collectData=function(files,longform=TRUE){
     if(is.null(nms)){nms=colnames(cluster_stat)}
     w=which(nms=="fcs_names")+1
     if(longform==TRUE){
-      cluster_stat=tidyr::gather(cluster_stat,parameter_name, value ,w:ncol(cluster_stat))
+      t1=w:ncol(cluster_stat)
+      cluster_stat=tidyr::gather(cluster_stat,parameter_name, value,!!t1)
     }else(colnames(cluster_stat)=nms)
     all_data=rbind(all_data,cluster_stat)
   }
