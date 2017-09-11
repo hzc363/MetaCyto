@@ -43,5 +43,6 @@ set2Frame=function(flowSet){
   expr=cbind(expr,"sample_id"=sample_id)
   #return flowFrame
   fFrame=flowCore::flowFrame(expr)
+  rownames(fFrame@parameters@data) = paste0("$P",1:nrow(fFrame@parameters@data))
   return(fFrame)
 }
