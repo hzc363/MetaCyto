@@ -49,14 +49,14 @@ metaAnalysis=function(value,variableOfInterst,otherVariables,
   study_result=NULL
   for(std in unique(data[,studyID])){
     sub_data=subset(data,data[,studyID]==std)
+    sub_data = sub_data[,c(value,variableOfInterst,otherVariables)]
     sub_data=na.omit(sub_data)
     NL=apply(sub_data[,c(value,variableOfInterst,otherVariables)],2,function(x){length(unique(x))})
     if(!all(NL>1)){cat(std,"is skipped. One of the variable have 0 variance.\n");next}
     if(ifScale[1]){sub_data[,value]=scale(sub_data[,value])}
     if(ifScale[2]){sub_data[,variableOfInterst]=scale(sub_data[,variableOfInterst])}
-    x=sub_data[,c(value,variableOfInterst,otherVariables)]
-    colnames(x)[1]="Y"
-    LM=lm(Y~.,data=x)
+    colnames(sub_data)[1]="Y"
+    LM=lm(Y~.,data=sub_data)
     CE=t(summary(LM)$coefficients[2,])
     CI=confint(LM,parm=2,level=CILevel)
     t1=cbind("study_id"=std,data.frame(CE,check.names=FALSE),
