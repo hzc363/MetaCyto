@@ -198,6 +198,9 @@ MA=metaAnalysis(value="value",variableOfInterst="SUBJECT_AGE",main=L,
                   data=dat,CILevel=0.95,ifScale=c(TRUE,FALSE))
 ```
 
+```{r, echo=FALSE}
+unlink("Example_Result",recursive = TRUE)
+```
 
 ## Example 2: Data collection for ImmPort datasets
 

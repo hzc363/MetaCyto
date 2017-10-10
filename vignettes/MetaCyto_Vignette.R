@@ -123,6 +123,9 @@ MA=metaAnalysis(value="value",variableOfInterst="SUBJECT_AGE",main=L,
                   otherVariables=c("GENDER"),studyID="study_id",
                   data=dat,CILevel=0.95,ifScale=c(TRUE,FALSE))
 
+## ---- echo=FALSE---------------------------------------------------------
+unlink("Example_Result",recursive = TRUE)
+
 ## ---- fig.show='hold', results="hide", message=FALSE, warning=FALSE , fig.height=4, fig.width=6----
 
 # read meta-data of SDY736

@@ -1,14 +1,13 @@
 Package: MetaCyto
 Type: Package
 Title: MetaCyto: A package for meta-analysis of cytometry data
-Version: 0.99.7
+Version: 0.99.8
 Author: Zicheng Hu
 Maintainer: Zicheng Hu <zicheng.hu@ucsf.edu>
 Description: This package provides functions for preprocessing, automated gating
     and meta-analysis of cytometry data. It also provides functions that facilitate
     the collection of cytometry data from the ImmPort database.
 License: GPL (>= 2)
-LazyData: TRUE
 RoxygenNote: 6.0.1
 Imports: flowCore (>= 1.4),tidyr (>= 0.7),fastcluster,ggplot2,metafor,cluster,FlowSOM, grDevices, graphics, stats, utils 
 Depends: R (>= 3.4)
