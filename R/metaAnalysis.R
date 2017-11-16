@@ -34,12 +34,12 @@
 #' all_data=inner_join(fcs_stats,sample_info,by="fcs_files")
 #'
 #' # plot forrest plot to see if the proportion of CCR7+ CD8 T cell
-#' # is affected by age (while controlling for GENDER)
+#' # is affected by age (while controlling for Gender)
 #' L="CD3+|CD4-|CD8+|CCR7+"
 #' dat=subset(all_data,all_data$parameter_name=="fraction"&
 #'             all_data$label==L)
-#' MA=metaAnalysis(value="value",variableOfInterst="SUBJECT_AGE",main=L,
-#'                 otherVariables=c("GENDER"),studyID="study_id",
+#' MA=metaAnalysis(value="value",variableOfInterst="Subject Age",main=L,
+#'                 otherVariables=c("Gender"),studyID="study_id",
 #'                 data=dat,CILevel=0.95,ifScale=c(TRUE,FALSE))
 #' @importFrom metafor rma.uni forest
 #' @export

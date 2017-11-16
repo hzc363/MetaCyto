@@ -45,12 +45,15 @@ The best way to learn how to use MetaCyto is through running examples. Three sel
 A vignette in the form of R Markdown (MetaCyto_Vignette.Rmd) is created to introduce users to MetaCyto. It is available in : https://github.com/hzc363/MetaCyto_Examples
 
 ## Reference
+If you use the FlowSOM package, please use the following citation[1]:
 
-Data used in the example is a subset of data from SDY420[1] and SDY736[2] on ImmPort[3]. 
+* [1]Hu, Zicheng, et al. "Meta-analysis of Cytometry Data Reveals Racial Differences in Immune Cells." bioRxiv (2017): 130948.
 
 
-* [1] Whiting, Chan C., et al. "Large-scale and comprehensive immune profiling and functional analysis of normal human aging." PloS one 10.7 (2015): e0133627.
+Data used in the example is a subset of data from SDY420[2] and SDY736[3] on ImmPort[4].
 
-* [2] Wertheimer, Anne M., et al. "Aging and cytomegalovirus infection differentially and jointly affect distinct circulating T cell subsets in humans." The Journal of Immunology 192.5 (2014): 2143-2155.
+* [2] Whiting, Chan C., et al. "Large-scale and comprehensive immune profiling and functional analysis of normal human aging." PloS one 10.7 (2015): e0133627.
 
-* [3] Bhattacharya, Sanchita, et al. "ImmPort: disseminating data to the public for the future of immunology." Immunologic research 58.2-3 (2014): 234-239.
+* [3] Wertheimer, Anne M., et al. "Aging and cytomegalovirus infection differentially and jointly affect distinct circulating T cell subsets in humans." The Journal of Immunology 192.5 (2014): 2143-2155.
+
+* [4] Bhattacharya, Sanchita, et al. "ImmPort: disseminating data to the public for the future of immunology." Immunologic research 58.2-3 (2014): 234-239.

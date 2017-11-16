@@ -16,12 +16,12 @@
 #' fn=system.file("extdata",
 #'               "SDY736/SDY736-DR19_Subject_2_Flow_cytometry_result.txt",
 #'               package="MetaCyto")
-#' meta_data=read.table(fn,sep='\t',header=TRUE)
+#' meta_data=read.table(fn,sep='\t',header=TRUE, check.names= FALSE)
 #' # Organize fcs file into panels
 #' fn=system.file("extdata","SDY736",package="MetaCyto")
 #' fcs_info_SDY736=fcsInfoParser(metaData=meta_data,
 #'                               studyFolder=fn,
-#'                               fcsCol="FILE_NAME",
+#'                               fcsCol="File Name",
 #'                               assay="FCM")
 #' @importFrom flowCore read.FCS pData parameters
 #' @export
