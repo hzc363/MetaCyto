@@ -1,7 +1,7 @@
 Package: MetaCyto
 Type: Package
 Title: MetaCyto: A package for meta-analysis of cytometry data
-Version: 0.99.8
+Version: 1.0.0
 Author: Zicheng Hu, Chethan Jujjavarapu, Sanchita Bhattacharya, Atul J. Butte
 Maintainer: Zicheng Hu <zicheng.hu@ucsf.edu>
 Description: This package provides functions for preprocessing, automated gating
