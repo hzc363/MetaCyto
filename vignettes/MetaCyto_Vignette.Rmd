@@ -166,12 +166,12 @@ all_data=inner_join(fcs_stats,sample_info,by="fcs_files")
 ```
 
 
-To see how the fraction of cell subsets within the blood chance with age, we can use the glmAnalysis function. The following code performs a regression model: fraction ~ SUBJECT_AGE + GENDER + study_id. The "variableOfInterest" argument specifies the variable that a researcher is interested in. The function will only report the effect size for the "variableOfInterst", which is SUBJECT_AGE in this case. The "otherVariables" argument specifies other variables to be included in the regression. In this case, GENDER is included to control for gender differences. the study ID variable will always be included to adjust for batch effects.  the "parameter" variable specifies the type of summary statistics. In this case, we are interested in how age affects the fraction of cells. If a researcher is interested in how age affects CD28 expression, change "parameter" argument from "fraction" to "CD28".
+To see how the fraction of cell subsets within the blood chance with age, we can use the glmAnalysis function. The following code performs a regression model: fraction ~ Subject Age + Gender + study_id. The "variableOfInterest" argument specifies the variable that a researcher is interested in. The function will only report the effect size for the "variableOfInterst", which is Subject Age in this case. The "otherVariables" argument specifies other variables to be included in the regression. In this case, Gender is included to control for gender differences. the study ID variable will always be included to adjust for batch effects.  the "parameter" variable specifies the type of summary statistics. In this case, we are interested in how age affects the fraction of cells. If a researcher is interested in how age affects CD28 expression, change "parameter" argument from "fraction" to "CD28".
 
 ```{r, fig.show='hold', message=FALSE, warning=FALSE , fig.height=4, fig.width=6}
-# See the fraction of what clusters are affected by age (while controlling for GENDER)
-GA=glmAnalysis(value="value",variableOfInterst="SUBJECT_AGE",parameter="fraction",
-               otherVariables=c("GENDER"),studyID="study_id",label="label",
+# See the fraction of what clusters are affected by age (while controlling for Gender)
+GA=glmAnalysis(value="value",variableOfInterst="Subject Age",parameter="fraction",
+               otherVariables=c("Gender"),studyID="study_id",label="label",
                data=all_data,CILevel=0.95,ifScale=c(TRUE,FALSE))
 GA=GA[order(GA$Effect_size),]
 
@@ -193,8 +193,8 @@ dat=subset(all_data,all_data$parameter_name=="fraction"&
              all_data$label==L)
 
 # run the metaAnalysis function
-MA=metaAnalysis(value="value",variableOfInterst="SUBJECT_AGE",main=L,
-                  otherVariables=c("GENDER"),studyID="study_id",
+MA=metaAnalysis(value="value",variableOfInterst="Subject Age",main=L,
+                  otherVariables=c("Gender"),studyID="study_id",
                   data=dat,CILevel=0.95,ifScale=c(TRUE,FALSE))
 ```
 
@@ -211,24 +211,24 @@ We first generate fcs info using the "fcsInfoParser" function for SDY736 from Im
 
 # read meta-data of SDY736
 fn=system.file("extdata","SDY736/SDY736-DR19_Subject_2_Flow_cytometry_result.txt",package="MetaCyto")
-meta_data=read.table(fn,sep='\t',header=TRUE)
+meta_data=read.table(fn,sep='\t',header=TRUE,check.names = FALSE)
 
 # Organize fcs file into panels
 fn=system.file("extdata","SDY736",package="MetaCyto")
 fcs_info_SDY736=fcsInfoParser(metaData=meta_data,studyFolder=fn,
-                               fcsCol="FILE_NAME",assay="FCM")
+                               fcsCol="File Name",assay="FCM")
 ```
 
 We then generate fcs info for SDY420
 ```{r, fig.show='hold', results="hide", message=FALSE, warning=FALSE , fig.height=4, fig.width=6}
 # read meta-data of SDY420
 fn=system.file("extdata","SDY420/SDY420-DR19_Subject_2_CyTOF_result.txt",package="MetaCyto")
-meta_data=read.table(fn,sep='\t',header=TRUE)
+meta_data=read.table(fn,sep='\t',header=TRUE,check.names = FALSE)
 
 # Organize fcs file into panels
 fn=system.file("extdata","SDY420",package="MetaCyto")
 fcs_info_SDY420=fcsInfoParser(metaData=meta_data,studyFolder=fn,
-                               fcsCol="FILE_NAME",assay="CyTOF")
+                               fcsCol="File Name",assay="CyTOF")
 
 ```
 
@@ -242,30 +242,30 @@ For generating sample info, we can use the "sampleInfoParser" function. We first
 ```{r, fig.show='hold', results="hide", message=FALSE, warning=FALSE , fig.height=4, fig.width=6}
 # read meta-data of SDY736
 fn=system.file("extdata","SDY736/SDY736-DR19_Subject_2_Flow_cytometry_result.txt",package="MetaCyto")
-meta_data=read.table(fn,sep='\t',header=TRUE)
+meta_data=read.table(fn,sep='\t',header=TRUE, check.names = FALSE)
 
-# Find the AGE, GENDER info from selected_data
+# Find the AGE, Gender info from selected_data
 fn=system.file("extdata","SDY736",package="MetaCyto")
 sample_info_SDY736=sampleInfoParser(metaData=meta_data,
                                    studyFolder=fn,
                                    assay="FCM",
-                                   fcsCol="FILE_NAME",
-                                   attrCol=c("SUBJECT_AGE","GENDER"))
+                                   fcsCol="File Name",
+                                   attrCol=c("Subject Age","Gender"))
 ```
 
 We then generate sample info for SDY420
 ```{r, fig.show='hold', results="hide", message=FALSE, warning=FALSE , fig.height=4, fig.width=6}
 # read meta-data of SDY420
 fn=system.file("extdata","SDY420/SDY420-DR19_Subject_2_CyTOF_result.txt",package="MetaCyto")
-meta_data=read.table(fn,sep='\t',header=TRUE)
+meta_data=read.table(fn,sep='\t',header=TRUE,check.names = FALSE)
 
-# Find the AGE, GENDER info from selected_data
+# Find the AGE, Gender info from selected_data
 fn=system.file("extdata","SDY736",package="MetaCyto")
 sample_info_SDY420=sampleInfoParser(metaData=meta_data,
                                    studyFolder=fn,
                                    assay="CyTOF",
-                                   fcsCol="FILE_NAME",
-                                   attrCol=c("SUBJECT_AGE","GENDER"))
+                                   fcsCol="File Name",
+                                   attrCol=c("Subject Age","Gender"))
 
 ```
 

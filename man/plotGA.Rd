@@ -30,10 +30,10 @@ sample_info=collectData(files,longform=FALSE)
 # join the cluster summary statistics with sample information
 all_data=inner_join(fcs_stats,sample_info,by="fcs_files")
 # See the fraction of what clusters are affected
-# by age (while controlling for GENDER)
-GA=glmAnalysis(value="value",variableOfInterst="SUBJECT_AGE",
+# by age (while controlling for Gender)
+GA=glmAnalysis(value="value",variableOfInterst="Subject Age",
              parameter="fraction",
-              otherVariables=c("GENDER"),studyID="study_id",label="label",
+              otherVariables=c("Gender"),studyID="study_id",label="label",
               data=all_data,CILevel=0.95,ifScale=c(TRUE,FALSE))
 GA=GA[order(GA$Effect_size),]
 # plot the effect sizes

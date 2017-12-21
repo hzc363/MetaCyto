@@ -33,12 +33,12 @@ ImmPort.
 fn=system.file("extdata",
                "SDY736/SDY736-DR19_Subject_2_Flow_cytometry_result.txt",
                package="MetaCyto")
-meta_data=read.table(fn,sep='\\t',header=TRUE)
+meta_data=read.table(fn,sep='\\t',header=TRUE,check.names=FALSE)
 # Find the AGE, GENDER info from selected_data
 fn=system.file("extdata","SDY736",package="MetaCyto")
 sample_info_SDY736=sampleInfoParser(metaData=meta_data,
                                     studyFolder=fn,
                                     assay="FCM",
-                                    fcsCol="FILE_NAME",
-                                    attrCol=c("SUBJECT_AGE","GENDER"))
+                                    fcsCol="File Name",
+                                    attrCol=c("Subject Age","Gender"))
 }

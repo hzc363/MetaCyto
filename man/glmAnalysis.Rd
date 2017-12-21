@@ -4,8 +4,8 @@
 \alias{glmAnalysis}
 \title{Perform generalized linear model analysis to estimate effect size.}
 \usage{
-glmAnalysis(value = "value", variableOfInterst = "SUBJECT_AGE", parameter,
-  otherVariables = c("GENDER"), studyID = "study", label = "label", data,
+glmAnalysis(value = "value", variableOfInterst = "Subject Age", parameter,
+  otherVariables = c("Gender"), studyID = "study", label = "label", data,
   CILevel = 0.95, ifScale = c(TRUE, FALSE))
 }
 \arguments{
@@ -63,9 +63,9 @@ sample_info=collectData(files,longform=FALSE)
 # join the cluster summary statistics with sample information
 all_data=inner_join(fcs_stats,sample_info,by="fcs_files")
 # See the fraction of what clusters are affected by
-# age (while controlling for GENDER)
-GA=glmAnalysis(value="value",variableOfInterst="SUBJECT_AGE",
+# age (while controlling for Gender)
+GA=glmAnalysis(value="value",variableOfInterst="Subject Age",
               parameter="fraction",
-              otherVariables=c("GENDER"),studyID="study_id",label="label",
+              otherVariables=c("Gender"),studyID="study_id",label="label",
               data=all_data,CILevel=0.95,ifScale=c(TRUE,FALSE))
 }
