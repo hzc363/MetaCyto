@@ -33,7 +33,7 @@ own wrapper functions.}
 percent of cells in the positive and negative region after bisection. Keep
 it small to avoid bisecting uni-mode distributions.}
 
-\item{...}{Pass arguments to labelCluster and clusterFunction}
+\item{...}{Pass arguments to clusterFunction}
 }
 \value{
 A vector of labels identified in the cytometry data.

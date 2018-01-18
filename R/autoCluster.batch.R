@@ -21,7 +21,7 @@
 #' @param minPercent A number between 0 and 0.5. Used to specify the minimum
 #'   percent of cells in the positive and negative region after bisection. Keep
 #'   it small to avoid bisecting uni-mode distributions.
-#' @param ... Pass arguments to labelCluster and clusterFunction
+#' @param ... Pass arguments to clusterFunction
 #' @return A vector of labels identified in the cytometry data.
 #' @examples
 #' #get meta-data
@@ -66,7 +66,7 @@ autoCluster.batch= function(preprocessOutputFolder,
                             excludeClusterParameters=c("TIME"),
                             labelQuantile=0.95,
                             clusterFunction=flowSOM.MC,
-                            minPercent=0.05,...){
+                            minPercent=0.05, ...){
   #read the output from preprocessing
   inputMeta=read.csv(paste0(preprocessOutputFolder,'/processed_sample_summary.csv'),stringsAsFactors=FALSE)
   #create output foler
@@ -101,7 +101,7 @@ autoCluster.batch= function(preprocessOutputFolder,
     CL=clusterFunction(fcs,excludeClusterParameters,...)
     CL_label=labelCluster(fcs,CL,excludeClusterParameters,
                           labelQuantile=labelQuantile,
-                          minPercent=minPercent,...)
+                          minPercent=minPercent,cutoff=NULL)
     all_labels=union(all_labels,CL_label$clusterLabel)
   }#end of each study
   return(all_labels)
