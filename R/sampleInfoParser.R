@@ -31,9 +31,9 @@ sampleInfoParser =function(metaData,
                            assay="FCM",
                            attrCol){
   if(assay=="FCM"){
-    fcs_files=paste(studyFolder,"ResultFiles/Flow_cytometry_result",metaData[,fcsCol],sep="/")
+    fcs_files=file.path(studyFolder,"ResultFiles","Flow_cytometry_result",metaData[,fcsCol])
   }else{
-    fcs_files=paste(studyFolder,"ResultFiles/CyTOF_result",metaData[,fcsCol],sep="/")
+    fcs_files=file.path(studyFolder,"ResultFiles","CyTOF_result",metaData[,fcsCol])
   }
   inputMeta=data.frame("fcs_files"=fcs_files)
   inputMeta=cbind(inputMeta,metaData[,attrCol])

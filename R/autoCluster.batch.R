@@ -68,7 +68,7 @@ autoCluster.batch= function(preprocessOutputFolder,
                             clusterFunction=flowSOM.MC,
                             minPercent=0.05, ...){
   #read the output from preprocessing
-  inputMeta=read.csv(paste0(preprocessOutputFolder,'/processed_sample_summary.csv'),stringsAsFactors=FALSE)
+  inputMeta=read.csv(file.path(preprocessOutputFolder,'processed_sample_summary.csv'),stringsAsFactors=FALSE)
   #create output foler
 
   #prepare exclude parameters
@@ -78,7 +78,7 @@ autoCluster.batch= function(preprocessOutputFolder,
     cat("Clustering , study ID = ",std, "\n")
 
     ##### 1) read sample files for each study##################################
-    fcs_files=paste0(preprocessOutputFolder,"/",std,".fcs")
+    fcs_files=file.path(preprocessOutputFolder,paste0(std,".fcs"))
     fcs=flowCore::read.FCS(fcs_files,truncate_max_range=FALSE)
 
     # make sure the fcs file antibody names are the same as the preprocessed output

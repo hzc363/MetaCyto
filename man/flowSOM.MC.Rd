@@ -4,7 +4,8 @@
 \alias{flowSOM.MC}
 \title{Cluster cytometry data using FlowSOM}
 \usage{
-flowSOM.MC(fcsFrame, excludeClusterParameters, grid = 10, k = 40)
+flowSOM.MC(fcsFrame, excludeClusterParameters, xdim = 10, ydim = 10,
+  k = 40, seed = NULL)
 }
 \arguments{
 \item{fcsFrame}{A flow frame.}
@@ -12,10 +13,14 @@ flowSOM.MC(fcsFrame, excludeClusterParameters, grid = 10, k = 40)
 \item{excludeClusterParameters}{A vector specifying the name of markers not
 to be used for clustering.}
 
-\item{grid}{An integer, defines the width and height of SOM}
+\item{xdim}{An integer, defines the width of SOM}
+
+\item{ydim}{An integer, defines the height of SOM}
 
 \item{k}{An integer, defines the number of clusters to be identified by
 flowSOM.}
+
+\item{seed}{Set seed for reproducible results.}
 }
 \value{
 A list of clusters. Each cluster contains the ID of all cells that

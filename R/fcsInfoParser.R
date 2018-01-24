@@ -33,9 +33,9 @@ fcsInfoParser =function(metaData,
   metaData=unique(metaData[,fcsCol,drop=FALSE])
 
   if(assay=="FCM"){
-    fcs_files=paste(studyFolder,"ResultFiles/Flow_cytometry_result",metaData[,fcsCol],sep="/")
+    fcs_files=file.path(studyFolder,"ResultFiles","Flow_cytometry_result",metaData[,fcsCol])
   }else{
-    fcs_files=paste(studyFolder,"ResultFiles/CyTOF_result",metaData[,fcsCol],sep="/")
+    fcs_files=file.path(studyFolder,"ResultFiles","CyTOF_result",metaData[,fcsCol])
   }
   fsc_markers=sapply(fcs_files,function(x){
     tryCatch({

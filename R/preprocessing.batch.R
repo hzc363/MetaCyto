@@ -76,13 +76,13 @@ preprocessing.batch = function(inputMeta,
                       excludeTransformParameters=excludeTransformParameters)
 
     # 5) outputting resuts
-    flowCore::write.FCS(fcs,filename=paste0(outpath,'/',std,".fcs"))
+    flowCore::write.FCS(fcs,filename=file.path(outpath,paste0(std,".fcs")))
 
     antibodies=markerFinder(fcs)
     antibodies=paste(antibodies,collapse="|")
     fcs_param=rbind(fcs_param,data.frame("fcs_files"=fcs_files,"study_id"=std,"antibodies"=antibodies))
   }
   fcs_param=cbind("fcs_names"=fcs_names,fcs_param)
-  write.csv(fcs_param,paste0(outpath,"/processed_sample_summary.csv"),row.names=FALSE)
+  write.csv(fcs_param,file.path(outpath,"processed_sample_summary.csv"),row.names=FALSE)
   cat("Preprocess result stored in the folder:",outpath, "\n")
 }#end of function

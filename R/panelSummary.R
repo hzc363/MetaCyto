@@ -41,10 +41,10 @@ panelSummary=function(panelInfo,folder,cluster=TRUE,plotImage=TRUE,width=20,heig
     r1=hclust(d)$order
     ab_table=ab_table[r1,c1]
   }
-  write.csv(ab_table,paste0(folder,"/panel_summary.csv"))
+  write.csv(ab_table,file.path(folder,"panel_summary.csv"))
 
   if(plotImage==TRUE){
-    pdf(paste0(folder,"/panel_summary.pdf"),width=width,height=height)
+    pdf(file.path(folder,"panel_summary.pdf"),width=width,height=height)
     op <- par(mar = c(30,30,30,10))
     image(z = ab_table, col = c("white","red"), axes = FALSE)
     t1=1/(nrow(ab_table)-1)
