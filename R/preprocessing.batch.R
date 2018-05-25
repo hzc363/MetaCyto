@@ -13,7 +13,7 @@
 #' @param b A positive number used to specify the arcsinh transformation. f(x) =
 #'   asinh (b*x) where x is the original value and f(x) is the value after
 #'   transformation. The suggested value is 1/150 for flow cytometry (FCM) data
-#'   and 1/8 for CyTOF data.
+#'   and 1/8 for CyTOF data. If b = 0, the transformation is skipped.
 #' @param fileSampleSize An integer specifying the number of events sampled from
 #'   each fcs file. If NULL, all the events will be pre-processed and wrote out
 #'   to the new fcs files.
@@ -76,13 +76,13 @@ preprocessing.batch = function(inputMeta,
                       excludeTransformParameters=excludeTransformParameters)
 
     # 5) outputting resuts
-    flowCore::write.FCS(fcs,filename=paste0(outpath,'/',std,".fcs"))
+    flowCore::write.FCS(fcs,filename=file.path(outpath,paste0(std,".fcs")))
 
     antibodies=markerFinder(fcs)
     antibodies=paste(antibodies,collapse="|")
     fcs_param=rbind(fcs_param,data.frame("fcs_files"=fcs_files,"study_id"=std,"antibodies"=antibodies))
   }
   fcs_param=cbind("fcs_names"=fcs_names,fcs_param)
-  write.csv(fcs_param,paste0(outpath,"/processed_sample_summary.csv"),row.names=FALSE)
+  write.csv(fcs_param,file.path(outpath,"processed_sample_summary.csv"),row.names=FALSE)
   cat("Preprocess result stored in the folder:",outpath, "\n")
 }#end of function

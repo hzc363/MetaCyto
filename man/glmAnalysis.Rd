@@ -30,7 +30,7 @@ label or name.}
 returned by collectData.}
 
 \item{CILevel}{A number between 0 to 1, used to specify the confidence
-interval to be plotted in the forest plot.}
+levels. e.g. 0.95 represent 95 percent confidence interval.}
 
 \item{ifScale}{A vector of two logic values, specifying if the dependent
 variable and the variableOfInterst should be scaled when calculating the

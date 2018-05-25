@@ -4,9 +4,11 @@
 #' @param fcsFrame A flow frame.
 #' @param excludeClusterParameters A vector specifying the name of markers not
 #'   to be used for clustering.
-#' @param grid An integer, defines the width and height of SOM
+#' @param xdim An integer, defines the width of SOM
+#' @param ydim An integer, defines the height of SOM
 #' @param k An integer, defines the number of clusters to be identified by
 #'   flowSOM.
+#' @param seed Set seed for reproducible results.
 #' @return A list of clusters. Each cluster contains the ID of all cells that
 #'   belong to the cluster.
 #' @examples
@@ -21,16 +23,18 @@
 #'                         excludeClusterParameters=c("Time","Cell_length"))
 #' @importFrom FlowSOM ReadInput BuildSOM BuildMST metaClustering_consensus
 #' @export
-flowSOM.MC=function(fcsFrame,excludeClusterParameters,grid=10,k=40){
+flowSOM.MC=function(fcsFrame,excludeClusterParameters,
+                    xdim=10,ydim=10,k=40,seed = NULL){
+  set.seed(seed)
   antibodies=markerFinder(fcsFrame)
   excludeClusterParameters=toupper(excludeClusterParameters)
   excludeClusterParameters=union(excludeClusterParameters,c("TIME","SAMPLE_ID"))
   w=which(!antibodies%in%excludeClusterParameters)
   fSOM <- FlowSOM::ReadInput(fcsFrame, transform = FALSE, scale = FALSE)
   fSOM <- FlowSOM::BuildSOM(fSOM, colsToUse = w,
-                            xdim = grid, ydim = grid)
+                            xdim = xdim, ydim = ydim)
   fSOM <- FlowSOM::BuildMST(fSOM)
-  meta <- FlowSOM::metaClustering_consensus(fSOM$map$codes,k=k)
+  meta <- FlowSOM::metaClustering_consensus(fSOM$map$codes,k=k,seed = seed)
   CL <- meta[fSOM$map$mapping[, 1]]
   CL=lapply(unique(CL),function(x){which(CL==x)})
   return(CL)

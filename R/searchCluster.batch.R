@@ -50,7 +50,7 @@ searchCluster.batch=function(preprocessOutputFolder,
                              ifPlot=TRUE){
 
   #read the output from preprocessing
-  inputMeta=read.csv(paste0(preprocessOutputFolder,'/processed_sample_summary.csv'),stringsAsFactors=FALSE)
+  inputMeta=read.csv(file.path(preprocessOutputFolder,'processed_sample_summary.csv'),stringsAsFactors=FALSE)
   #create output foler
   dir.create(file.path(outpath),recursive=TRUE)
 
@@ -59,9 +59,9 @@ searchCluster.batch=function(preprocessOutputFolder,
   cluster_summary=NULL
   for(std in unique(inputMeta$study_id)){
     cat("Searching , study ID = ",std, "\n")
-    dir.create(paste(outpath,std,sep="/"))
+    dir.create(file.path(outpath,std))
     ##### 1) read sample files for each study############################################################
-    fcs_files=paste0(preprocessOutputFolder,"/",std,".fcs")
+    fcs_files=file.path(preprocessOutputFolder,paste0(std,".fcs"))
     fcs=flowCore::read.FCS(fcs_files,truncate_max_range=FALSE)
 
     # make sure the fcs file antibody names are the same as the preprocessed output
@@ -82,14 +82,14 @@ searchCluster.batch=function(preprocessOutputFolder,
 
     CL_stats=clusterStats(fcs,CL,inputMeta$fcs_names[inputMeta$study_id==std])
     CL_stats=cbind("study_id"=std,"fcs_files"=inputMeta$fcs_files[inputMeta$study_id==std],CL_stats)
-    write.csv(CL_stats,paste(outpath,std,"cluster_stats_in_each_sample.csv",sep="/"),row.names=FALSE)
+    write.csv(CL_stats,file.path(outpath,std,"cluster_stats_in_each_sample.csv"),row.names=FALSE)
 
     ##### 6) plot the density plot############################
     if(ifPlot==TRUE){
-      filename=paste(outpath,std,"density_plot.pdf",sep="/")
+      filename=file.path(outpath,std,"density_plot.pdf")
       height=3*length(CL);width=3*length(antibodies)
       pdf(filename,width=width,height=height)
-      densityPlot(fcs,CL,cutoff=sC$cutoff)
+      densityPlot(fcs,CL,cutoff=sC$cutoff,markerToPlot = names(sC$cutoff))
       dev.off()
     }
   }#end of each study

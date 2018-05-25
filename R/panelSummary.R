@@ -3,23 +3,22 @@
 #' A function that summarizes markers in cytometry panels.
 #' @param panelInfo A data frame returned by the collectData function. It should
 #'   contain all the information outputted by the preprocessing.batch function.
-#' @param folder The directory where the output should be written.
 #' @param cluster True or False. Used to indicate if the markers and panels
 #'   should be clustered in the plot.
 #' @param plotImage True or False. Used to indicate if a plot summarizing
 #'   markers in panels should be produced.
-#' @param width Used to specify the width of the plot
-#' @param height Used to specify the height of the plot
 #' @return A dataframe describing what markers are in each panel.
 #' @examples
 #' fn=system.file("extdata","",package="MetaCyto")
 #' fn=list.files(fn,pattern="processed_sample",full.names=TRUE)
 #' panel_info=collectData(fn,longform=FALSE)
-#' dir.create("Example_Result")
-#' PS=panelSummary(panel_info,"Example_Result",cluster=FALSE,width=30,height=20)
+#' pdf("Panel_summary.pdf",width=30,height=20)
+#' PS=panelSummary(panelInfo = panel_info,
+#'                 cluster=FALSE)
+#' dev.off()
 #' @importFrom tidyr spread
 #' @export
-panelSummary=function(panelInfo,folder,cluster=TRUE,plotImage=TRUE,width=20,height=20){
+panelSummary=function(panelInfo,cluster=TRUE,plotImage=TRUE){
   panelInfo=unique(panelInfo[,c("study_id","antibodies")])
   ab_list=NULL
   for(i in 1:nrow(panelInfo)){
@@ -41,10 +40,8 @@ panelSummary=function(panelInfo,folder,cluster=TRUE,plotImage=TRUE,width=20,heig
     r1=hclust(d)$order
     ab_table=ab_table[r1,c1]
   }
-  write.csv(ab_table,paste0(folder,"/panel_summary.csv"))
 
   if(plotImage==TRUE){
-    pdf(paste0(folder,"/panel_summary.pdf"),width=width,height=height)
     op <- par(mar = c(30,30,30,10))
     image(z = ab_table, col = c("white","red"), axes = FALSE)
     t1=1/(nrow(ab_table)-1)
@@ -55,7 +52,7 @@ panelSummary=function(panelInfo,folder,cluster=TRUE,plotImage=TRUE,width=20,heig
          at = seq(0, 1,by = t1))
     box()
     par(op)
-    dev.off()
   }
+
   return(ab_table)
 }

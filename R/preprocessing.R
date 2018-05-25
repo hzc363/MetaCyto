@@ -6,7 +6,7 @@
 #' @param b A positive number used to specify the arcsinh transformation. f(x) =
 #'   asinh (b*x) where x is the original value and f(x) is the value after
 #'   transformation. The suggested value is 1/150 for flow cytometry (FCM) data
-#'   and 1/8 for CyTOF data.
+#'   and 1/8 for CyTOF data. If b = 0, the transformation is skipped.
 #' @param fileSampleSize An integer specifying the number of events sampled from
 #'   each fcs file. If NULL, all the events will be pre-processed and wrote out
 #'   to the new fcs files.
@@ -47,7 +47,7 @@ preprocessing=function(fcsFiles,
 
   # 2) read the fcs files
   fcs = flowCore::read.flowSet(fcsFiles,transformation="linearize",alter.names=FALSE,truncate_max_range=FALSE)
-  if(!is.null(fileSampleSize)){
+  if(!is.null(fileSampleSize)& (!is.na(fileSampleSize)) ){
     fcs = flowCore::fsApply(fcs, function(f){
       L=nrow(f@exprs)
       if(L>fileSampleSize){
@@ -101,18 +101,22 @@ preprocessing=function(fcsFiles,
           })
         }
       }
+      if(b != 0){
+        trans = flowCore::arcsinhTransform(transformationId="defaultArcsinhTransform",a=0,b=b,c=0)
+        translist = flowCore::transformList(biomarker_vector, trans)
+        fcs = flowCore::transform(fcs, translist)
+      }
 
-      trans = flowCore::arcsinhTransform(transformationId="defaultArcsinhTransform",a=0,b=b,c=0)
-      translist = flowCore::transformList(biomarker_vector, trans)
-      fcs = flowCore::transform(fcs, translist)
     }
   } else if (assay == "CyTOF") {
     w=which(!grepl(excludeTransformParameters,flowCore::colnames(fcs),ignore.case = TRUE))
     biomarker_vector = flowCore::colnames(fcs)[w]
 
+    if(b != 0){
     trans = flowCore::arcsinhTransform(transformationId = "defaultArcsinhTransform", a = 0, b = b, c = 0)
     translist = flowCore::transformList(biomarker_vector, trans)
     fcs = flowCore::transform(fcs, translist)
+    }
   }
   fcs=set2Frame(fcs)
   return(fcs)
