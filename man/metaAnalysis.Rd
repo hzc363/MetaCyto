@@ -36,7 +36,8 @@ should be scaled relative to the default in the forest plot.}
 }
 \value{
 Returns data frame describing the effect size of variableOfInterst on
-  value in each individual studies, as well as the over all effect size.
+  value in each individual studies, as well as the over all effect size. In addition, it returns the
+  random effect model and the leave one out analysis result.
 }
 \description{
 A function that performs meta-analysis

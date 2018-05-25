@@ -1,46 +1,46 @@
-#'Perform generalized linear model analysis to estimate effect size.
+#' Perform generalized linear model analysis to estimate effect size.
 #'
-#'A function that performs generalized linear model analysis to estimate effect
-#'size.
-#'@param value A string to specify the column name of the dependent variable (y)
-#'@param variableOfInterst A string to specify the column name of the
+#' A function that performs generalized linear model analysis to estimate effect
+#' size.
+#' @param value A string to specify the column name of the dependent variable (y)
+#' @param variableOfInterst A string to specify the column name of the
 #'  independent variable of interest (x1)
-#'@param otherVariables A string vector to specify the column names of
+#' @param otherVariables A string vector to specify the column names of
 #'  independent variables included in the regression model other than the
 #'  variableOfInterst.
-#'@param parameter A string to specify what summary statistics is the dependent
+#' @param parameter A string to specify what summary statistics is the dependent
 #'  variable.
-#'@param studyID A string to specify the column name of study ID.
-#'@param label A string to specify the name the column that contains the cluster
+#' @param studyID A string to specify the column name of study ID.
+#' @param label A string to specify the name the column that contains the cluster
 #'  label or name.
-#'@param data A data frame containing the data. Usually a long form data frame
+#' @param data A data frame containing the data. Usually a long form data frame
 #'  returned by collectData.
-#'@param CILevel A number between 0 to 1, used to specify the confidence
-#'  interval to be plotted in the forest plot.
-#'@param ifScale A vector of two logic values, specifying if the dependent
+#' @param CILevel A number between 0 to 1, used to specify the confidence
+#'  levels. e.g. 0.95 represent 95 percent confidence interval.
+#' @param ifScale A vector of two logic values, specifying if the dependent
 #'  variable and the variableOfInterst should be scaled when calculating the
 #'  effect size.
-#'@return Returns data frame describing the overall effect size of
+#' @return Returns data frame describing the overall effect size of
 #'  variableOfInterst on value.  May be slightly different from the value
 #'  reported from the function metaAnalysis.
-#'@details The function use the model value ~ variableOfInterst + otherVariables
+#' @details The function use the model value ~ variableOfInterst + otherVariables
 #'  + studyID to estimate the effect size. Use it as a screening tool. Use
 #'  metaAnalysis function to analyze an effect size in more detail.
 #' @examples
 #' library(dplyr)
 #' #collect all summary statistics
-#'fn=system.file("extdata","",package="MetaCyto")
-#'files=list.files(fn,pattern="cluster_stats_in_each_sample",
+#' fn=system.file("extdata","",package="MetaCyto")
+#' files=list.files(fn,pattern="cluster_stats_in_each_sample",
 #'                 recursive=TRUE,full.names=TRUE)
-#'fcs_stats=collectData(files,longform=TRUE)
-#'# Collect sample information
-#'files=list.files(fn,pattern="sample_info",recursive=TRUE,full.names=TRUE)
-#'sample_info=collectData(files,longform=FALSE)
-#'# join the cluster summary statistics with sample information
-#'all_data=inner_join(fcs_stats,sample_info,by="fcs_files")
-#'# See the fraction of what clusters are affected by
-#'# age (while controlling for Gender)
-#'GA=glmAnalysis(value="value",variableOfInterst="Subject Age",
+#' fcs_stats=collectData(files,longform=TRUE)
+#' # Collect sample information
+#' files=list.files(fn,pattern="sample_info",recursive=TRUE,full.names=TRUE)
+#' sample_info=collectData(files,longform=FALSE)
+#' # join the cluster summary statistics with sample information
+#' all_data=inner_join(fcs_stats,sample_info,by="fcs_files")
+#' # See the fraction of what clusters are affected by
+#' # age (while controlling for Gender)
+#' GA=glmAnalysis(value="value",variableOfInterst="Subject Age",
 #'               parameter="fraction",
 #'               otherVariables=c("Gender"),studyID="study_id",label="label",
 #'               data=all_data,CILevel=0.95,ifScale=c(TRUE,FALSE))

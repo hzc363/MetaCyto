@@ -19,7 +19,8 @@
 #' @param cex A number specifying the amount by which plotting text and symbols
 #'   should be scaled relative to the default in the forest plot.
 #' @return Returns data frame describing the effect size of variableOfInterst on
-#'   value in each individual studies, as well as the over all effect size.
+#'   value in each individual studies, as well as the over all effect size. In addition, it returns the
+#'   random effect model and the leave one out analysis result.
 #' @examples
 #' library(dplyr)
 #' #collect all summary statistics
@@ -41,7 +42,7 @@
 #' MA=metaAnalysis(value="value",variableOfInterst="Subject Age",main=L,
 #'                 otherVariables=c("Gender"),studyID="study_id",
 #'                 data=dat,CILevel=0.95,ifScale=c(TRUE,FALSE))
-#' @importFrom metafor rma.uni forest
+#' @importFrom metafor rma.uni forest leave1out
 #' @export
 metaAnalysis=function(value,variableOfInterst,otherVariables,
                       studyID,data,CILevel,main,
@@ -72,5 +73,6 @@ metaAnalysis=function(value,variableOfInterst,otherVariables,
   names(t1)=names(study_result)
   study_result=rbind(study_result,t1)
   rownames(study_result)=NULL
-  return(study_result)
+  loo = metafor::leave1out(res)
+  return(list("Summary"=study_result,"REmodel"=res,"leave1out"=loo))
 }

@@ -89,7 +89,7 @@ searchCluster.batch=function(preprocessOutputFolder,
       filename=file.path(outpath,std,"density_plot.pdf")
       height=3*length(CL);width=3*length(antibodies)
       pdf(filename,width=width,height=height)
-      densityPlot(fcs,CL,cutoff=sC$cutoff)
+      densityPlot(fcs,CL,cutoff=sC$cutoff,markerToPlot = names(sC$cutoff))
       dev.off()
     }
   }#end of each study
