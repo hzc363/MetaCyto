@@ -46,7 +46,7 @@ baselineCut=function(x){
   #h2=h$counts[h$counts>1]
   baseline=max(4,mean(h$counts)/10)
   bound=range(which(h$counts>baseline))
-  x=x[x>breaks[bound[1]]&x<breaks[bound[2]]]
+  x=x[x>=breaks[bound[1]]&x<breaks[bound[2]]]
   return(x)
 }
 
