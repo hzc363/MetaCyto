@@ -4,17 +4,24 @@
 \alias{panelSummary}
 \title{Summarize markers in panels.}
 \usage{
-panelSummary(panelInfo, cluster = TRUE, plotImage = TRUE)
+panelSummary(panelInfo, folder, cluster = TRUE, plotImage = TRUE,
+  width = 20, height = 20)
 }
 \arguments{
 \item{panelInfo}{A data frame returned by the collectData function. It should
 contain all the information outputted by the preprocessing.batch function.}
+
+\item{folder}{The directory where the output should be written.}
 
 \item{cluster}{True or False. Used to indicate if the markers and panels
 should be clustered in the plot.}
 
 \item{plotImage}{True or False. Used to indicate if a plot summarizing
 markers in panels should be produced.}
+
+\item{width}{Used to specify the width of the plot}
+
+\item{height}{Used to specify the height of the plot}
 }
 \value{
 A dataframe describing what markers are in each panel.
@@ -26,8 +33,6 @@ A function that summarizes markers in cytometry panels.
 fn=system.file("extdata","",package="MetaCyto")
 fn=list.files(fn,pattern="processed_sample",full.names=TRUE)
 panel_info=collectData(fn,longform=FALSE)
-pdf("Panel_summary.pdf",width=30,height=20)
-PS=panelSummary(panelInfo = panel_info,
-                cluster=FALSE)
-dev.off()
+dir.create("Example_Result")
+PS=panelSummary(panel_info,"Example_Result",cluster=FALSE,width=30,height=20)
 }

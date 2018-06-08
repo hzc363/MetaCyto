@@ -84,10 +84,11 @@ files=list.files("Example_Result",pattern="processed_sample",recursive=TRUE,full
 panel_info=collectData(files,longform=FALSE)
 
 # analyze the panels
-pdf("Panel_summary.pdf",width=30,height=20)
 PS=panelSummary(panelInfo = panel_info,
-                cluster=FALSE)
-dev.off()
+                folder = "Example_Result",
+                cluster=FALSE,
+                width=30,
+                height=20)
 knitr::kable(head(PS))
 ```
 
