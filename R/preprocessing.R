@@ -74,7 +74,7 @@ preprocessing=function(fcsFiles,
       trans = flowCore::logTransform()
       translist = flowCore::transformList(biomarker_vector,trans)
       fcs = flowCore::transform(fcs, translist)
-    } else if (unique_version == 3) {
+    } else if (unique_version >= 3) {
       # check if user have provided the compmatrix
       if(!is.null(compFiles)){
         compList=lapply(compFiles,function(x){
