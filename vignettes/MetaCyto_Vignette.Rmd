@@ -55,6 +55,7 @@ b[grepl("FCM",fcs_info$study_id)]=1/150
 # define cytometry type for each fcs files
 assay[grepl("CyTOF",fcs_info$study_id)]="CyTOF"
 assay[grepl("FCM",fcs_info$study_id)]="FCM"
+
 ```
 
 As you can see, the type of fcs file is identified by the "study_id" column in the fcs_info.csv file. So, it is beneficial to name your study_id informatively, not just use "study 1", "study 2".  

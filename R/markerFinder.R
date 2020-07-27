@@ -21,7 +21,7 @@ markerFinder=function(fcsFrame){
   antibodies=toupper(antibodies)
   channels=toupper(channels)
   antibodies=sapply(1:length(antibodies), function(i){
-    if(is.na(antibodies[i])|antibodies[i]=="NA"){return(channels[i])}else{antibodies[i]}
+    if(is.na(antibodies[i])|antibodies[i]=="NA"|antibodies[i]==""){return(channels[i])}else{antibodies[i]}
   })
   return(antibodies)
 }
